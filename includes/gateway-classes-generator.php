@@ -1,16 +1,16 @@
 <?php
-$gateways = json_decode(get_option('icenox_pay_gateways'));
-if($gateways){
-    foreach($gateways as $gateway){
-        $class_name =  'icenox_pay_' . preg_replace('/^a-zA-Z0-9/', "",
-		        strtolower(str_replace(" ", "_", str_replace("-", "_", $gateway->name)))
-	        );
-        eval("
-            class ".$class_name." extends WC_IceNox_Pay_Payment_Gateway {
+$gateways = json_decode( get_option( 'icenox_pay_gateways' ) );
+if ( $gateways ) {
+	foreach ( $gateways as $gateway ) {
+		$class_name = 'icenox_pay_' . preg_replace( '/^a-zA-Z0-9/', "",
+				strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) )
+			);
+		eval( "
+            class " . $class_name . " extends WC_IceNox_Pay_Payment_Gateway {
                 public function __construct(){
                     parent::__construct(true);
-                    \$this->id = '".substr($class_name, 0, 22)."';
-                    \$this->method_title = '".$gateway->name."';
+                    \$this->id = '" . substr( $class_name, 0, 22 ) . "';
+                    \$this->method_title = '" . $gateway->name . "';
                     \$this->title = 'IceNox Pay Method';
                     \$this->has_fields = false;
 
@@ -49,6 +49,6 @@ if($gateways){
 
                 }
             }
-        ");
-    }
+        " );
+	}
 }

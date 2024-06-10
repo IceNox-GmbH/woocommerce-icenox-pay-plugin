@@ -1,30 +1,20 @@
 <?php
-$gateways = get_option('icenox_pay_default_gateways');
+$gateways = get_option( 'icenox_pay_default_gateways' );
 
-if (!function_exists('array_key_first')) {
-    function array_key_first(array $arr) {
-        foreach($arr as $key => $unused) {
-            return $key;
-        }
-        return NULL;
-    }
-}
-
-
-if($gateways){
-	foreach($gateways as $gateway){
-		$class_name =  'icenox_pay_' . preg_replace('/[^a-zA-Z0-9_]/', "",
-				strtolower(str_replace(" ", "_", str_replace("-", "_", $gateway)))
+if ( $gateways ) {
+	foreach ( $gateways as $gateway ) {
+		$class_name = 'icenox_pay_' . preg_replace( '/[^a-zA-Z0-9_]/', "",
+				strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway ) ) )
 			);
-		if(file_exists( __DIR__ . '/default-gateways/icenox-pay-' . str_replace("_", "-", $gateway) . ".php" )) {
-			require_once ( __DIR__ . '/default-gateways/icenox-pay-' . str_replace("_", "-", $gateway) . ".php" );
+		if ( file_exists( __DIR__ . '/default-gateways/icenox-pay-' . str_replace( "_", "-", $gateway ) . ".php" ) ) {
+			require_once( __DIR__ . '/default-gateways/icenox-pay-' . str_replace( "_", "-", $gateway ) . ".php" );
 		} else {
-			eval("
-	            class ".$class_name." extends WC_IceNox_Pay_Payment_Gateway {
+			eval( "
+	            class " . $class_name . " extends WC_IceNox_Pay_Payment_Gateway {
 	                public function __construct(){
 	                    parent::__construct(true);
-	                    \$this->id = '".$class_name."';
-	                    \$this->method_title = \$this->defaultGateways['".$gateway."']['name'];
+	                    \$this->id = '" . $class_name . "';
+	                    \$this->method_title = \$this->defaultGateways['" . $gateway . "']['name'];
 	                    \$this->title = 'IceNox Pay Method';
 	                    \$this->has_fields = false;
 	
@@ -46,10 +36,10 @@ if($gateways){
 						\$this->custom_api_atts = \$this->get_option('custom_api_atts');
 				
 						\$this->icenox_pay_api_key = get_option( 'icenox_pay_api_key' );
-						\$this->icenox_pay_method_processor = \$this->get_option('icenox_pay_processor') ?: ((isset(\$this->defaultGateways['".$gateway."']) && !empty(\$this->defaultGateways['".$gateway."']['processor'])) ? \array_key_first(\$this->defaultGateways['".$gateway."']['processor']) : null);	
+						\$this->icenox_pay_method_processor = \$this->get_option('icenox_pay_processor') ?: ((isset(\$this->defaultGateways['" . $gateway . "']) && !empty(\$this->defaultGateways['" . $gateway . "']['processor'])) ? \array_key_first(\$this->defaultGateways['" . $gateway . "']['processor']) : null);	
 						
 						\$this->icenox_pay_payment_method_identifier = (\$this->icenox_pay_method_processor !== '" . $gateway . "') ? 
-							\$this->icenox_pay_method_processor . '-".$gateway."' : '" . $gateway . "';
+							\$this->icenox_pay_method_processor . '-" . $gateway . "' : '" . $gateway . "';
 				
 						\$this->icenox_pay_express_redirect = \$this->get_option('icenox_pay_express_redirect');
 						\$this->icenox_pay_notification = 'yes';
@@ -78,13 +68,13 @@ if($gateways){
 								'title'       => __( 'Method Title', 'woocommerce-custom-payment-gateway' ),
 								'type'        => 'text',
 								'description' => __( 'The title of the payment method which will show to the user on the checkout page.', 'woocommerce-custom-payment-gateway' ),
-								'default'     => \$this->defaultGateways['".$gateway."']['name'],
+								'default'     => \$this->defaultGateways['" . $gateway . "']['name'],
 							),
 							'gateway_icon'                         => array(
 								'title'       => __( 'Method Logo', 'woocommerce-custom-payment-gateway' ),
 								'type'        => 'text',
 								'description' => __( 'URL for the payment method that will show to the user on the checkout page.', 'woocommerce-custom-payment-gateway' ),
-								'default'     => '".home_url()."/wp-content/plugins/woocommerce-icenox-pay-plugin/includes/assets/images/paymentmethods/".$gateway.".svg',
+								'default'     => '" . home_url() . "/wp-content/plugins/woocommerce-icenox-pay-plugin/includes/assets/images/paymentmethods/" . $gateway . ".svg',
 							),
 							'description'                          => array(
 								'title'       => __( 'Method Description', 'woocommerce-custom-payment-gateway' ),
@@ -98,16 +88,16 @@ if($gateways){
 								'type'        => 'title',
 								'description' => '',
 							),
-							'icenox_pay_processor'                 => \$this->defaultGateways['".$gateway."']['processor'] ? array(
+							'icenox_pay_processor'                 => \$this->defaultGateways['" . $gateway . "']['processor'] ? array(
 								'title'       => __( 'Payment Processor', 'woocommerce-custom-payment-gateway' ),
 								'type'        => 'select',
 								'description' => __( 'Please select your Payment Service Provider to process this payment method.', 'woocommerce-custom-payment-gateway' ),
-								'options'     => \$this->defaultGateways['".$gateway."']['processor']
+								'options'     => \$this->defaultGateways['" . $gateway . "']['processor']
 							) : array(
 								'type'        => 'text',
 								'css'         => 'display:none',
-								'value'     => '".$gateway."',
-								'default'     => '".$gateway."'
+								'value'     => '" . $gateway . "',
+								'default'     => '" . $gateway . "'
 							),
 							'icenox_pay_express_redirect'          => array(
 								'title'   => __( 'Express Redirect', 'woocommerce-custom-payment-gateway' ),
@@ -125,7 +115,7 @@ if($gateways){
 						);
 	                }
 	            }
-	        ");
+	        " );
 		}
 	}
 }

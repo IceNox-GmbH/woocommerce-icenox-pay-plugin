@@ -3,9 +3,9 @@
 class icenox_pay_cards extends WC_IceNox_Pay_Payment_Gateway {
 	public function __construct() {
 		parent::__construct( true );
-		$this->id = "icenox_pay_cards";
+		$this->id           = "icenox_pay_cards";
 		$this->method_title = __( 'Credit Card or Debit Card', 'woocommerce-icenox-pay-plugin' );
-		$this->title = __( 'IceNox Pay Method', 'woocommerce-icenox-pay-plugin' );
+		$this->title        = __( 'IceNox Pay Method', 'woocommerce-icenox-pay-plugin' );
 		$this->has_fields   = false;
 
 
@@ -43,25 +43,25 @@ class icenox_pay_cards extends WC_IceNox_Pay_Payment_Gateway {
 
 	public function init_form_fields() {
 		$this->form_fields = array(
-			'enabled'                              => array(
+			'enabled'                 => array(
 				'title'   => __( 'Enable/Disable', 'woocommerce-custom-payment-gateway' ),
 				'type'    => 'checkbox',
 				'label'   => __( 'Enable Payment Method', 'woocommerce-custom-payment-gateway' ),
 				'default' => 'no'
 			),
-			'title'                                => array(
+			'title'                   => array(
 				'title'       => __( 'Method Title', 'woocommerce-custom-payment-gateway' ),
 				'type'        => 'text',
 				'description' => __( 'The title of the payment method which will show to the user on the checkout page.', 'woocommerce-custom-payment-gateway' ),
 				'default'     => $this->method_title,
 			),
-			'gateway_icon'                         => array(
+			'gateway_icon'            => array(
 				'title'       => __( 'Method Logo', 'woocommerce-custom-payment-gateway' ),
 				'type'        => 'text',
 				'description' => __( 'URL for the payment method that will show to the user on the checkout page.', 'woocommerce-custom-payment-gateway' ),
 				'default'     => home_url() . '/wp-content/plugins/woocommerce-icenox-pay-plugin/includes/assets/images/paymentmethods/cards.svg',
 			),
-			'description'                          => array(
+			'description'             => array(
 				'title'       => __( 'Method Description', 'woocommerce-custom-payment-gateway' ),
 				'css'         => 'width:50%;',
 				'type'        => 'textarea',
@@ -69,33 +69,33 @@ class icenox_pay_cards extends WC_IceNox_Pay_Payment_Gateway {
 				'description' => __( 'Description for the payment method that will show to the user on the checkout page.', 'woocommerce-custom-payment-gateway' ),
 
 			),
-			'advanced'                             => array(
+			'advanced'                => array(
 				'title'       => __( 'Method Settings<hr>', 'woocommerce-custom-payment-gateway' ),
 				'type'        => 'title',
 				'description' => '',
 			),
-			'icenox_pay_notification'              => array(
+			'icenox_pay_notification' => array(
 				'title'   => __( 'Auto-Update Payment Status', 'woocommerce-custom-payment-gateway' ),
 				'type'    => 'checkbox',
 				'label'   => __( 'Enable IceNox Pay to update the WooCommerce order status after successful payment.', 'woocommerce-custom-payment-gateway' ),
 				'default' => 'yes'
 			),
-			'icenox_pay_processor'                 => array(
+			'icenox_pay_processor'    => array(
 				'title'       => __( 'Payment Processor', 'woocommerce-custom-payment-gateway' ),
 				'type'        => 'select',
 				'description' => __( 'Please select your Payment Service Provider to process card payments.', 'woocommerce-custom-payment-gateway' ),
 				'options'     => [
 					'stripe' => 'Stripe',
 					'mollie' => 'Mollie',
-					'ct' => 'Computop',
-					'mp' => 'Micropayment',
+					'ct'     => 'Computop',
+					'mp'     => 'Micropayment',
 					'paypal' => 'PayPal',
-					'sumup' => 'SumUp',
+					'sumup'  => 'SumUp',
 					'paddle' => 'Paddle',
 				],
-                'default'   => 'stripe'
+				'default'     => 'stripe'
 			),
-			'debug_mode'                           => array(
+			'debug_mode'              => array(
 				'title'       => __( 'Enable Debug Mode', 'woocommerce-custom-payment-gateway' ),
 				'type'        => 'checkbox',
 				'label'       => __( 'Enable ', 'woocommerce-custom-payment-gateway' ),
