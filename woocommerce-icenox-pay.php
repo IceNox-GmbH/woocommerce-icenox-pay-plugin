@@ -141,7 +141,6 @@ class IceNox_Pay {
 
 	public function init_custom_payment_gateway() {
 		require_once 'class-woocommerce-icenox-pay-gateway.php';
-		//require_once __DIR__ . '/includes/icenox-pay-upgrade.php';
 		require_once __DIR__ . '/includes/default-gateway-classes-generator.php';
 		require_once __DIR__ . '/includes/gateway-classes-generator.php';
 	}
