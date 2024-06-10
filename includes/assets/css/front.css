@@ -1,0 +1,9 @@
+.customized_payment_icon{
+	vertical-align: middle !important;
+	max-height: 40px;
+	max-width: 60px;
+}
+
+#payment .payment_methods .woocommerce-info img{
+	max-height: none !important;
+}

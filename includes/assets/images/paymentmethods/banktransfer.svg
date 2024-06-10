@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="200">
+  <title>Vorkasse Icon</title>
+  <text x="225" y="100" stroke="#000" stroke-width="0" font-family="'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="100" font-weight="700" text-anchor="middle">
+    Vorkasse
+  </text>
+  <path fill="none" stroke="#000" stroke-linecap="null" stroke-linejoin="null" stroke-opacity="null" stroke-width="5" d="M0 125h450"/>
+  <text x="225" y="175" stroke="#000" stroke-width="0" font-family="'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="48" font-weight="600" text-anchor="middle">
+    Banküberweisung
+  </text>
+</svg>

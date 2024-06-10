@@ -1,0 +1,18 @@
+{
+  "name": "icenox/woocommerce-icenox-pay-plugin",
+  "description": "Connect your WooCommerce Store with IceNox Pay. The payment system for your online shop.",
+  "type": "wordpress-plugin",
+  "homepage": "https://github.com/IceNox-GmbH/woocommerce-icenox-pay-plugin",
+  "minimum-stability": "stable",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "IceNox GmbH",
+      "email": "info@icenox.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.3",
+    "woocommerce/woocommerce": ">=3.0"
+  }
+}

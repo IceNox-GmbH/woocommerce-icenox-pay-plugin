@@ -1,0 +1,468 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce IceNox Pay Plugin\n"
+"POT-Creation-Date: 2023-06-07 13:36+0200\n"
+"PO-Revision-Date: 2023-05-26 21:41+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.3.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: woocommerce-icenox-pay.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: class-woocommerce-icenox-pay-gateway.php:288
+msgid "IceNox Pay Payment"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:289
+msgid "IceNox Pay"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:337
+#: includes/default-gateways/icenox-pay-cards.php:48
+#: includes/default-gateways/icenox-pay-express-checkout.php:86
+#: includes/default-gateways/icenox-pay-paypal.php:50
+msgid "Enable/Disable"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:339
+#: includes/default-gateways/icenox-pay-cards.php:50
+#: includes/default-gateways/icenox-pay-express-checkout.php:88
+#: includes/default-gateways/icenox-pay-paypal.php:52
+msgid "Enable Payment Method"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:343
+#: includes/default-gateways/icenox-pay-cards.php:54
+#: includes/default-gateways/icenox-pay-paypal.php:56
+msgid "Method Title"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:345
+#: includes/default-gateways/icenox-pay-cards.php:56
+#: includes/default-gateways/icenox-pay-paypal.php:58
+msgid ""
+"The title of the payment method which will show to the user on the checkout "
+"page."
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:349
+#: includes/default-gateways/icenox-pay-cards.php:60
+#: includes/default-gateways/icenox-pay-paypal.php:62
+msgid "Method Logo"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:351
+#: includes/default-gateways/icenox-pay-cards.php:62
+#: includes/default-gateways/icenox-pay-paypal.php:64
+msgid ""
+"URL for the payment method that will show to the user on the checkout page."
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:355
+#: includes/default-gateways/icenox-pay-cards.php:66
+#: includes/default-gateways/icenox-pay-paypal.php:68
+msgid "Method Description"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:359
+#: includes/default-gateways/icenox-pay-cards.php:70
+#: includes/default-gateways/icenox-pay-paypal.php:72
+msgid ""
+"Description for the payment method that will show to the user on the "
+"checkout page."
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:363
+#: includes/default-gateways/icenox-pay-paypal.php:76
+msgid "Payment Fee in %"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:370
+#: includes/default-gateways/icenox-pay-paypal.php:83
+msgid "Add an additional payment fee for this payment method."
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:373
+#: includes/default-gateways/icenox-pay-cards.php:74
+#: includes/default-gateways/icenox-pay-paypal.php:86
+msgid "Method Settings"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:378
+#: includes/icenox-pay-settings-page.php:180
+msgid "API Key"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:380
+msgid "API Key for IceNox Pay."
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:385
+msgid "Payment Method Identifier"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:387
+msgid "Payment Method Identifier for IceNox Pay."
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:392
+msgid "Express Redirect"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:394
+msgid ""
+"Redirect immediately to the payment (only available for selected payment "
+"methods)"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:398
+#: includes/default-gateways/icenox-pay-cards.php:94
+#: includes/default-gateways/icenox-pay-express-checkout.php:166
+#: includes/default-gateways/icenox-pay-paypal.php:102
+msgid "Enable Debug Mode"
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:400
+#: includes/default-gateways/icenox-pay-cards.php:96
+#: includes/default-gateways/icenox-pay-express-checkout.php:168
+#: includes/default-gateways/icenox-pay-paypal.php:104
+msgid "Enable "
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:402
+msgid ""
+"If debug mode is enabled, the payment gateway will be activated just for the "
+"administrator. You can use the debug mode to make sure that the gateway work "
+"as you expected."
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:448
+msgid ""
+"There was a problem redirecting you to the Payment Gateway. Please try again "
+"or contact our support."
+msgstr ""
+
+#: class-woocommerce-icenox-pay-gateway.php:630
+#: class-woocommerce-icenox-pay-gateway.php:657
+#: class-woocommerce-icenox-pay-gateway.php:686
+msgid "Payment Method Fee"
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:240
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s."
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:248
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s "
+"or %5$supdate now%6$s."
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:498
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: includes/EDD_SL_Plugin_Updater.php:498
+msgid "Error"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-cards.php:9
+msgid "Credit Card or Debit Card"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-cards.php:10
+#: includes/default-gateways/icenox-pay-express-checkout.php:10
+#: includes/default-gateways/icenox-pay-paypal.php:13
+msgid "IceNox Pay Method"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-cards.php:79
+#: includes/default-gateways/icenox-pay-express-checkout.php:156
+#: includes/default-gateways/icenox-pay-paypal.php:91
+msgid "Payment Processor"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-cards.php:81
+msgid "Please select your Payment Service Provider to process card payments."
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-cards.php:98
+#: includes/default-gateways/icenox-pay-express-checkout.php:170
+#: includes/default-gateways/icenox-pay-paypal.php:106
+msgid ""
+"If debug mode is enabled, the payment gateway will be activated just for the "
+"administrator. You can use the debug mode to make sure that the gateway "
+"works as expected."
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:9
+msgid "Express Checkout"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:92
+msgid "Express Checkout Settings"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:96
+msgid "Checkout Buttons"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:99
+msgid "Please select which Express Checkout Buttons you would like to show."
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:106
+msgid "Button Placement"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:109
+msgid ""
+"Please select where you would like the selected Express Checkout Buttons to "
+"be shown."
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:111
+msgid "Cart"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:112
+msgid "Checkout"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:117
+msgid "Button Appearance"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:119
+msgid ""
+"Please select how the Express Checkout Buttons should appear. White is "
+"recommended for dark websites."
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:121
+msgid "Black"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:122
+msgid "White"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:123
+msgid "White with outline"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:128
+#: includes/icenox-pay-settings-page.php:197
+msgid "Merchant Name"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:130
+msgid ""
+"This Name is shown in the Button Interface as \"Paid to [Merchant Name]\""
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:134
+msgid "Accepted Card Brands"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:137
+msgid ""
+"Please select which Cards Brands you accept. (Maybe check with your PSP or "
+"contact our support to find out which brands you can accept.)"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:151
+msgid "Google Pay Merchant ID"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-express-checkout.php:158
+msgid ""
+"Please select your Payment Service Provider to process Express Checkout "
+"Payments."
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-paypal.php:12
+msgid "PayPal"
+msgstr ""
+
+#: includes/default-gateways/icenox-pay-paypal.php:93
+msgid "Please select your Payment Service Provider to process PayPal payments."
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:174
+msgid "IceNox Pay Settings"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:181
+msgid ""
+"Please enter your IceNox Pay API Key. The API Key can be found in the "
+"Merchant Dashboard."
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:189
+msgid "Merchant ID"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:193
+#: includes/icenox-pay-settings-page.php:201
+msgid "Will be filled in automatically"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:209
+msgid "Optional Features"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:215
+msgid "Include Cancel URL"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:216
+msgid ""
+"Add a Cancel Button on the Payment Page. The customer can then return to the "
+"checkout to select a different payment method."
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:223
+msgid "Fee Calculation"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:224
+msgid "Add optional fees to selected payment methods."
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:231
+msgid "Advanced Mode"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:232
+msgid ""
+"Enable the Advanced mode to add custom payment methods or add the same "
+"payment method with a different PSP."
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:243
+msgid "Add or Remove Payment Methods"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:249
+msgid "Payment Methods"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:250
+msgid "Select which IceNox Pay Methods you would like to use."
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:257
+#: includes/icenox-pay-settings-page.php:432
+msgid "Custom Method"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:258
+msgid "Enter the name of the payment method then click on Save Changes."
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:272
+msgid "Available Payment Methods"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:310
+msgid "Payment Method"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:311
+msgid "Processor"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:312
+msgid "Created By"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:313
+msgid "Actions"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:361
+#: includes/icenox-pay-settings-page.php:415
+msgid "Enabled"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:361
+#: includes/icenox-pay-settings-page.php:415
+msgid "Yes"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:363
+#: includes/icenox-pay-settings-page.php:366
+#: includes/icenox-pay-settings-page.php:417
+#: includes/icenox-pay-settings-page.php:420
+msgid "Disabled"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:363
+#: includes/icenox-pay-settings-page.php:366
+#: includes/icenox-pay-settings-page.php:417
+#: includes/icenox-pay-settings-page.php:420
+msgid "No"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:372
+#: includes/icenox-pay-settings-page.php:426
+msgid "Configure"
+msgstr ""
+
+#: includes/icenox-pay-settings-page.php:427
+msgid "Delete"
+msgstr ""
+
+#: includes/views/admin_options_html.php:1
+msgid "IceNox Pay Payment Settings"
+msgstr ""
+
+#: woocommerce-icenox-pay.php:69
+msgid "Settings"
+msgstr ""
+
+#: woocommerce-icenox-pay.php:71
+msgid "Merchant Dashboard"
+msgstr ""
+
+#: woocommerce-icenox-pay.php:167
+msgid "Payment Fee"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce IceNox Pay Plugin"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://pay.icenox.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Connect your WooCommerce Store with IceNox Pay. The payment system for your "
+"online shop."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "IceNox GmbH"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://icenox.com/"
+msgstr ""
