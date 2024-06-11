@@ -1,10 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="450" height="200">
-  <title>Vorkasse Icon</title>
-  <text x="225" y="100" stroke="#000" stroke-width="0" font-family="'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="100" font-weight="700" text-anchor="middle">
-    Vorkasse
-  </text>
-  <path fill="none" stroke="#000" stroke-linecap="null" stroke-linejoin="null" stroke-opacity="null" stroke-width="5" d="M0 125h450"/>
-  <text x="225" y="175" stroke="#000" stroke-width="0" font-family="'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="48" font-weight="600" text-anchor="middle">
-    Banküberweisung
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 24" width="38" height="24" role="img">
+  <title>SEPA</title>
+  <rect fill="#fff" width="36" height="22" x="1" y="1" rx="2"/>
+  <rect fill="#fff" width="37" height="23" x=".5" y=".5" stroke="#000" stroke-opacity=".07" rx="2.5"/>
+  <path fill="#0054A5" d="M28.37 15l-.3-1.04h-2.13l-.3 1.04H24l1.78-6h2.4l1.8 6h-1.61zM27 10.2l-.72 2.6h1.47L27 10.2zm-3.86 3.21l-.89.03-.26.01h-.95V15h-1.6V9h2.97c.41 0 .72.03.93.1.5.16.82.47.99.95.09.25.13.63.13 1.14 0 .61-.05 1.05-.14 1.31-.2.53-.59.83-1.18.91zm-.37-2.77c-.06-.18-.2-.28-.42-.32a2.9 2.9 0 00-.3 0h-1.01v1.74h.99c.32-.01.5-.04.58-.07.1-.06.15-.16.19-.32.02-.1.03-.26.03-.47 0-.25-.02-.44-.06-.56zm-11.02 4.29c-.25.05-.61.07-1.11.07a6.8 6.8 0 01-1.74-.15c-.4-.12-.67-.37-.8-.75-.06-.21-.1-.56-.1-1.05h1.48v.13c0 .26.08.43.23.5a.86.86 0 00.37.08h.54c.28 0 .46-.01.53-.04a.43.43 0 00.27-.26 1 1 0 00.04-.3c0-.26-.1-.42-.29-.48-.07-.02-.4-.05-.99-.1a11.96 11.96 0 01-.99-.1c-.48-.08-.8-.27-.97-.56a2.26 2.26 0 01-.21-1.1c0-.38.04-.69.11-.91.08-.23.2-.4.37-.52.25-.18.57-.29.96-.32.36-.03.72-.04 1.08-.04.63 0 1.07.04 1.33.1.65.18.97.67.97 1.48l-.01.3h-1.48c0-.24-.03-.41-.09-.5-.09-.12-.33-.18-.73-.18-.39 0-.65.03-.77.1-.13.08-.19.23-.19.48 0 .22.06.36.17.43a.7.7 0 00.31.08l.3.02 1.2.1c.51.05.88.18 1.1.4.19.18.3.4.33.68a4.77 4.77 0 01-.1 1.63c-.18.4-.55.67-1.12.78z"/>
+  <path fill="#FEC10E" d="M17.14 9.85a2.1 2.1 0 00-1.82 1.06h3.3l-.4.86h-3.17c-.02.18-.02.36 0 .53h2.93l-.4.86h-2.2a2.1 2.1 0 003.34.24v1.05a3 3 0 01-1.68.52 2.99 2.99 0 01-2.75-1.8h-1.05l.4-.87h.43a2.9 2.9 0 010-.53h-.87l.4-.86h.67a2.99 2.99 0 012.77-1.86 3 3 0 012.08.83l-.35.75a2.09 2.09 0 00-1.63-.79z"/>
 </svg>

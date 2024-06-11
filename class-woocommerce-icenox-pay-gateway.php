@@ -104,6 +104,13 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 				'stripe' => 'Stripe',
 			],
 		],
+		'direct-debit'           => [
+			'id'        => 'direct-debit',
+			'name'      => 'Direct Debit',
+			'processor' => [
+				'stripe' => 'Stripe',
+			],
+		],
 		'eps'               => [
 			'id'        => 'eps',
 			'name'      => 'EPS',
