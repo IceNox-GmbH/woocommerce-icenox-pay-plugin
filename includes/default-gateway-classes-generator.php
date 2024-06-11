@@ -29,9 +29,6 @@ if ( $gateways ) {
 				
 				
 						\$this->description = \$this->get_option('description');
-						\$this->order_status = \$this->get_option('order_status');
-						\$this->customer_note = \$this->get_option('customer_note');
-						\$this->customized_form = \$this->get_option('customized_form');
 				
 						\$this->custom_api_atts = \$this->get_option('custom_api_atts');
 				
