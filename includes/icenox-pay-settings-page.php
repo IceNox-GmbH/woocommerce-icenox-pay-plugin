@@ -303,15 +303,15 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 							$user             = "IceNox Pay";
 							$processorMap     = [
 								"stripe" => "Stripe",
+								"s" => "Stripe",
 								"mollie" => "Mollie",
-								"pay",
+								"m" => "Mollie PSC",
+								"pay" => "PAY.NL",
 								"mp"     => "Micropayment",
-								"PAY.NL",
 								"ct"     => "Computop",
 								"sumup"  => "SumUp",
 								"paypal" => "PayPal",
-								"e"      => "e-Payouts",
-								"paddle" => "Paddle"
+								"e"      => "e-Payouts"
 							];
 							if ( isset( $gateway_settings['icenox_pay_processor'] ) ) {
 								if ( isset( $processorMap[ $gateway_settings['icenox_pay_processor'] ] ) ) {
