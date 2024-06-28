@@ -45,6 +45,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 		'revolut-pay'       => 'Revolut Pay',
 		'sofort'            => 'Sofort',
 		'swish'             => 'Swish',
+		'trustly'           => 'Trustly',
 		'twint'             => 'TWINT',
 		'wechat'            => 'WeChat Pay'
 	];

@@ -3,7 +3,7 @@
  * Plugin Name:             WooCommerce IceNox Pay
  * Plugin URI:              https://pay.icenox.com/
  * Description:             Connect your WooCommerce Store with IceNox Pay. The payment system for your online shop.
- * Version:                 1.9.3
+ * Version:                 1.9.4
  * Requires at least:       4.0
  * Tested up to:            6.5
  * Requires PHP:            7.3
@@ -24,7 +24,7 @@ class IceNox_Pay {
 	 * The single instance of the class.
 	 */
 	protected static $_instance = null;
-	public static $plugin_version = "1.9.3";
+	public static $plugin_version = "1.9.4";
 
 	/**
 	 * @return IceNox_Pay
@@ -55,6 +55,7 @@ class IceNox_Pay {
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_js' ] );
 		add_action( 'admin_notices', [ $this, 'api_key_not_set' ] );
 		add_action( 'admin_notices', [ $this, 'api_key_invalid' ] );
+		add_action( 'admin_notices', [ $this, 'payment_method_deprecation_warning' ] );
 
 
 		//add_action( 'woocommerce_cart_calculate_fees', 'woocommerce_custom_surcharge' );
@@ -113,16 +114,31 @@ class IceNox_Pay {
 	function api_key_not_set() {
 		if ( get_option( "icenox_pay_api_key" ) === false ) {
 			echo '<div class="notice notice-info is-dismissible">
-          <p>Thank you for installing the IceNox Pay Plugin for WooCommerce. Click <a href="' . get_admin_url() . 'admin.php?page=wc-settings&tab=icenox_pay">here</a> to set up the plugin.</p>
-         </div>';
+	          <p>Thank you for installing the IceNox Pay Plugin for WooCommerce. Click <a href="' . get_admin_url() . 'admin.php?page=wc-settings&tab=icenox_pay">here</a> to set up the plugin.</p>
+	         </div>';
 		}
 	}
 
 	function api_key_invalid() {
 		if ( get_option( "icenox_pay_api_key" ) !== false && get_option( "icenox_pay_api_key_valid" ) !== "yes" ) {
 			echo '<div class="notice notice-error is-dismissible">
-          <p>The IceNox Pay API Key is invalid. Please correct the API Key <a href="' . get_admin_url() . 'admin.php?page=wc-settings&tab=icenox_pay">here</a>.</p>
-         </div>';
+	          <p>The IceNox Pay API Key is invalid. Please correct the API Key <a href="' . get_admin_url() . 'admin.php?page=wc-settings&tab=icenox_pay">here</a>.</p>
+	         </div>';
+		}
+	}
+
+	function payment_method_deprecation_warning() {
+		$giropayConfig = get_option( "woocommerce_icenox_pay_giropay_settings", false );
+		$giropayProcessor = $giropayConfig["icenox_pay_processor"];
+		if( $giropayConfig && in_array($giropayProcessor, ["", "stripe", "mollie"]) ) {
+			$giropayConfig["enabled"] = "no";
+			$giropayConfig["icenox_pay_processor"] = "";
+			update_option( 'woocommerce_icenox_pay_giropay_settings', $giropayConfig );
+		?>
+			<div class="notice notice-error is-dismissible">
+			<p>The payment method giropay has been disabled, because it is no longer supported by the selected Payment Processor (<?php echo $giropayProcessor; ?>)</p>
+			</div>
+		<?php
 		}
 	}
 

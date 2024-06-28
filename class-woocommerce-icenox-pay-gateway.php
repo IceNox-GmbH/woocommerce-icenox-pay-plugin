@@ -125,8 +125,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 			'id'        => 'giropay',
 			'name'      => 'giropay',
 			'processor' => [
-				'stripe' => 'Stripe',
-				'mollie' => 'Mollie',
 				'pay'    => 'PAY.NL',
 				'sumup'  => 'SumUp',
 			],
@@ -255,6 +253,13 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 			'name'      => 'Swish',
 			'processor' => [
 				'stripe' => 'Stripe'
+			],
+		],
+		'trustly'           => [
+			'id'        => 'trustly',
+			'name'      => 'Trustly',
+			'processor' => [
+				'mollie' => 'Mollie',
 			],
 		],
 		'twint'             => [
