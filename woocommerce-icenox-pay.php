@@ -136,7 +136,8 @@ class IceNox_Pay {
 			update_option( 'woocommerce_icenox_pay_giropay_settings', $giropayConfig );
 		?>
 			<div class="notice notice-error is-dismissible">
-			<p>The payment method giropay has been disabled, because it is no longer supported by the selected Payment Processor (<?php echo $giropayProcessor; ?>)</p>
+                <p><strong>IceNox Pay Warning:</strong> The payment method <strong>giropay</strong> has been disabled, because it is no longer supported by the selected Payment Processor <?php echo $giropayProcessor; ?></p>>
+                <p>It will no longer be offered in checkout. Please use a different Payment Processor or a different Payment Method. For questions, please contact Merchant Support.</p>
 			</div>
 		<?php
 		}
