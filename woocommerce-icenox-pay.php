@@ -128,18 +128,25 @@ class IceNox_Pay {
 	}
 
 	function payment_method_deprecation_warning() {
-		$giropayConfig = get_option( "woocommerce_icenox_pay_giropay_settings", false );
-		$giropayProcessor = $giropayConfig["icenox_pay_processor"];
-		if( $giropayConfig && in_array($giropayProcessor, ["", "stripe", "mollie"]) ) {
+		$giropayConfig    = get_option( "woocommerce_icenox_pay_giropay_settings", false );
+		$giropayProcessor = $giropayConfig["icenox_pay_processor"] ?: "stripe";
+		if ( $giropayConfig && in_array( $giropayProcessor, [ "stripe", "mollie" ] ) ) {
 			$giropayConfig["enabled"] = "no";
-			$giropayConfig["icenox_pay_processor"] = "";
 			update_option( 'woocommerce_icenox_pay_giropay_settings', $giropayConfig );
-		?>
-			<div class="notice notice-error is-dismissible">
-                <p><strong>IceNox Pay Warning:</strong> The payment method <strong>giropay</strong> has been disabled, because it is no longer supported by the selected Payment Processor <?php echo $giropayProcessor; ?></p>>
-                <p>It will no longer be offered in checkout. Please use a different Payment Processor or a different Payment Method. For questions, please contact Merchant Support.</p>
-			</div>
-		<?php
+			?>
+            <div class="notice notice-error is-dismissible">
+                <p><strong>IceNox Pay Warning:</strong> The payment method <strong>giropay</strong> has been disabled,
+                    because it is no longer supported by the selected Payment Processor
+                    (<?php echo ucfirst( $giropayProcessor ); ?>).</p>
+                <p>It will no longer be offered in Checkout.
+                    Please remove giropay from the enabled payment methods in the
+                    <a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=icenox_pay">IceNox Pay Tab</a>
+                    or choose a different Payment Processor
+                    <a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=checkout&section=icenox_pay_giropay">here</a>.
+                    For questions, please contact Merchant Support.
+                </p>
+            </div>
+			<?php
 		}
 	}
 
