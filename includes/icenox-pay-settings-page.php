@@ -20,6 +20,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 		'alipay'            => 'Alipay',
 		'amazon-pay'        => 'Amazon Pay',
 		'apple-pay'         => 'Apple Pay',
+		'bancomat-pay'      => 'BANCOMAT Pay',
 		'bancontact'        => 'Bancontact',
 		'banktransfer'      => 'SEPA Banktransfer',
 		'belfius'           => 'Belfius',
@@ -45,6 +46,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 		'revolut-pay'       => 'Revolut Pay',
 		'sofort'            => 'Sofort',
 		'swish'             => 'Swish',
+		'tink'              => 'Tink',
 		'trustly'           => 'Trustly',
 		'twint'             => 'TWINT',
 		'wechat'            => 'WeChat Pay'

@@ -43,6 +43,13 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 				'sumup'  => 'SumUp',
 			],
 		],
+		'bancomat-pay'      => [
+			'id'        => 'bancomat-pay',
+			'name'      => 'BANCOMAT Pay',
+			'processor' => [
+				'mollie' => 'Mollie',
+			],
+		],
 		'bancontact'        => [
 			'id'        => 'bancontact',
 			'name'      => 'Bancontact',
@@ -104,7 +111,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 				'stripe' => 'Stripe',
 			],
 		],
-		'direct-debit'           => [
+		'direct-debit'      => [
 			'id'        => 'direct-debit',
 			'name'      => 'Direct Debit',
 			'processor' => [
@@ -125,8 +132,8 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 			'id'        => 'giropay',
 			'name'      => 'giropay',
 			'processor' => [
-				'pay'    => 'PAY.NL',
-				'sumup'  => 'SumUp',
+				'pay'   => 'PAY.NL',
+				'sumup' => 'SumUp',
 			],
 		],
 		'google-pay'        => [
@@ -253,6 +260,14 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 			'name'      => 'Swish',
 			'processor' => [
 				'stripe' => 'Stripe'
+			],
+		],
+		'tink'              => [
+			'id'        => 'tink',
+			'name'      => 'Tink',
+			'processor' => [
+				'mp' => 'Micropayment',
+				'e'  => 'e-Payouts',
 			],
 		],
 		'trustly'           => [
