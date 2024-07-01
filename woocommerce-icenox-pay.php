@@ -8,7 +8,7 @@
  * Tested up to:            6.5
  * Requires PHP:            7.3
  * WC requires at least:    6.0
- * WC tested up to:         8.9.2
+ * WC tested up to:         9.0
  * Author:                  IceNox GmbH
  * Author URI:              https://icenox.com/
  * License:                 GPL v2 or later
@@ -149,7 +149,8 @@ class IceNox_Pay {
 			update_option( $option_name, $method_config );
 			?>
             <div class="notice notice-error is-dismissible">
-                <p><strong>IceNox Pay Warning:</strong> The payment method <strong><?php echo $payment_method; ?></strong> has been disabled,
+                <p><strong>IceNox Pay Warning:</strong> The payment method
+                    <strong><?php echo $payment_method; ?></strong> has been disabled,
                     because it is no longer supported by the selected Payment Processor
                     (<?php echo ucfirst( $method_processor ); ?>).</p>
                 <p>It will no longer be offered in Checkout.

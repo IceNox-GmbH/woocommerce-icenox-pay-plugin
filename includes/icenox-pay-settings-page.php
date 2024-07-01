@@ -188,7 +188,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'type'  => 'title',
 				'id'    => 'title_gateways_options'
 			],
-			'api_key'       => [
+			'api_key'                => [
 				'title'    => __( 'API Key', 'woocommerce' ),
 				'desc'     => __( 'Please enter your IceNox Pay API Key. The API Key can be found in the Merchant Dashboard.', 'woocommerce' ),
 				'id'       => 'icenox_pay_api_key',
@@ -197,7 +197,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'default'  => '',
 				'autoload' => true,
 			],
-			'merchant_id'   => [
+			'merchant_id'            => [
 				'title'       => __( 'Merchant ID', 'woocommerce' ),
 				'type'        => 'text',
 				'css'         => 'min-width:300px;pointer-events:none',
@@ -205,7 +205,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'placeholder' => 'Will be filled in automatically',
 				'autoload'    => true,
 			],
-			'merchant_name' => [
+			'merchant_name'          => [
 				'title'       => __( 'Merchant Name', 'woocommerce' ),
 				'type'        => 'text',
 				'css'         => 'min-width:300px;pointer-events:none',
@@ -213,7 +213,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'placeholder' => 'Will be filled in automatically',
 				'autoload'    => true,
 			],
-			'advanced_mode' => [
+			'advanced_mode'          => [
 				'title'   => __( 'Advanced Mode', 'woocommerce' ),
 				'id'      => 'icenox_pay_advanced_mode',
 				'type'    => 'checkbox',
@@ -224,20 +224,20 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'type' => 'sectionend',
 				'id'   => 'title_gateways_options'
 			],
-			'title'           => [
+			'title'                  => [
 				'title' => __( 'Add or Remove Payment Methods', 'woocommerce' ),
 				'type'  => 'title',
 				'id'    => 'add_gateway',
 				'css'   => 'margin-top: 30px;'
 			],
-			'default_methods' => [
+			'default_methods'        => [
 				'title'   => __( 'Payment Methods', 'woocommerce' ),
 				'desc'    => __( 'Select which IceNox Pay Methods you would like to use.', 'woocommerce' ),
 				'id'      => 'icenox_pay_default_gateways',
 				'type'    => 'multiselect',
 				'options' => $default_method_options
 			],
-			'name'            => get_option( 'icenox_pay_advanced_mode' ) === "yes" ? [
+			'name'                   => get_option( 'icenox_pay_advanced_mode' ) === "yes" ? [
 				'title'    => __( 'Custom Method', 'woocommerce' ),
 				'desc'     => __( 'Enter the name of the payment method then click on Save Changes.', 'woocommerce' ),
 				'id'       => 'wc_gateway_name',
@@ -251,7 +251,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'type' => 'sectionend',
 				'id'   => 'add_gateway'
 			],
-			'title_gateways_table' => [
+			'title_gateways_table'   => [
 				'title' => __( 'Available Payment Methods', 'woocommerce' ),
 				'type'  => 'title',
 				'id'    => 'add_gateways'
@@ -260,7 +260,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'type' => 'sectionend',
 				'id'   => 'add_gateways'
 			],
-			'generated_gateways'   => [
+			'generated_gateways'     => [
 				'type' => 'gateways_table'
 			],
 		];
