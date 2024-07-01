@@ -128,16 +128,30 @@ class IceNox_Pay {
 	}
 
 	function payment_method_deprecation_warning() {
-		$giropayConfig    = get_option( "woocommerce_icenox_pay_giropay_settings", false );
-		if ( $giropayConfig ) {
-			$giropayProcessor = $giropayConfig["icenox_pay_processor"] ?: "stripe";
-			$giropayConfig["enabled"] = "no";
-			update_option( 'woocommerce_icenox_pay_giropay_settings', $giropayConfig );
+		$deprecated_methods = [ "giropay", "klarna_pay_later", "klarna_pay_over_time", "klarna_pay_now", "klarna_us" ];
+		foreach ( $deprecated_methods as $method ) {
+			$this->show_deprecation_warning( $method );
+		}
+	}
+
+	function show_deprecation_warning( $payment_method ) {
+		$option_name   = "woocommerce_icenox_pay_" . $payment_method . "_settings";
+		$method_config = get_option( $option_name, false );
+		if ( $method_config ) {
+			$enabled_methods = get_option( "icenox_pay_default_gateways", [] );
+			if ( empty( $enabled_methods ) || ! isset( $enabled_methods[ $payment_method ] ) ) {
+				delete_option( $option_name );
+
+				return;
+			}
+			$method_processor         = $method_config["icenox_pay_processor"] ?: "stripe";
+			$method_config["enabled"] = "no";
+			update_option( $option_name, $method_config );
 			?>
             <div class="notice notice-error is-dismissible">
-                <p><strong>IceNox Pay Warning:</strong> The payment method <strong>giropay</strong> has been disabled,
+                <p><strong>IceNox Pay Warning:</strong> The payment method <strong><?php echo $payment_method; ?></strong> has been disabled,
                     because it is no longer supported by the selected Payment Processor
-                    (<?php echo ucfirst( $giropayProcessor ); ?>).</p>
+                    (<?php echo ucfirst( $method_processor ); ?>).</p>
                 <p>It will no longer be offered in Checkout.
                     Please remove giropay from the enabled payment methods in the
                     <a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=icenox_pay">IceNox Pay Tab</a>.
