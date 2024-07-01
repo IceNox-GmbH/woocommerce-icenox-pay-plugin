@@ -170,14 +170,24 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 	 */
 	public function get_settings() {
 
-		$settings = [
+		$enabled_method_keys   = get_option( 'icenox_pay_default_gateways', [] );
+		$enabled_method_values = array_map( function ( $value ) {
+			if ( isset( $this->defaultGateways[ $value ] ) ) {
+				return $this->defaultGateways[ $value ];
+			}
 
+			return $value . " (DEPRECATED)";
+		}, $enabled_method_keys );
+		$enabled_methods       = array_combine( $enabled_method_keys, $enabled_method_values );
+
+		$default_method_options = array_merge( $enabled_methods, $this->defaultGateways );
+
+		return [
 			'title_gateways_options' => [
 				'title' => __( 'IceNox Pay Settings', 'woocommerce' ),
 				'type'  => 'title',
 				'id'    => 'title_gateways_options'
 			],
-
 			'api_key'       => [
 				'title'    => __( 'API Key', 'woocommerce' ),
 				'desc'     => __( 'Please enter your IceNox Pay API Key. The API Key can be found in the Merchant Dashboard.', 'woocommerce' ),
@@ -214,7 +224,6 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'type' => 'sectionend',
 				'id'   => 'title_gateways_options'
 			],
-
 			'title'           => [
 				'title' => __( 'Add or Remove Payment Methods', 'woocommerce' ),
 				'type'  => 'title',
@@ -226,7 +235,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'desc'    => __( 'Select which IceNox Pay Methods you would like to use.', 'woocommerce' ),
 				'id'      => 'icenox_pay_default_gateways',
 				'type'    => 'multiselect',
-				'options' => $this->defaultGateways
+				'options' => $default_method_options
 			],
 			'name'            => get_option( 'icenox_pay_advanced_mode' ) === "yes" ? [
 				'title'    => __( 'Custom Method', 'woocommerce' ),
@@ -242,7 +251,6 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'type' => 'sectionend',
 				'id'   => 'add_gateway'
 			],
-
 			'title_gateways_table' => [
 				'title' => __( 'Available Payment Methods', 'woocommerce' ),
 				'type'  => 'title',
@@ -256,8 +264,6 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'type' => 'gateways_table'
 			],
 		];
-
-		return $settings;
 	}
 
 	/**
@@ -302,10 +308,10 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 							$user             = "IceNox Pay";
 							$processorMap     = [
 								"stripe" => "Stripe",
-								"s" => "Stripe",
+								"s"      => "Stripe",
 								"mollie" => "Mollie",
-								"m" => "Mollie PSC",
-								"pay" => "PAY.NL",
+								"m"      => "Mollie PSC",
+								"pay"    => "PAY.NL",
 								"mp"     => "Micropayment",
 								"ct"     => "Computop",
 								"sumup"  => "SumUp",
