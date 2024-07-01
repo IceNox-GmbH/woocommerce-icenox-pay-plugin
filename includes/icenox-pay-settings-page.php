@@ -30,7 +30,6 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 		'cashapp'           => 'Cash App Pay',
 		'direct-debit'      => 'Direct Debit',
 		'eps'               => 'EPS',
-		'giropay'           => 'giropay',
 		'google-pay'        => 'Google Pay',
 		'ideal'             => 'iDEAL',
 		'kbc'               => 'KBC Payment Button',

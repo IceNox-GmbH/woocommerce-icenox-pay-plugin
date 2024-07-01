@@ -128,14 +128,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 				'sumup'  => 'SumUp',
 			],
 		],
-		'giropay'           => [
-			'id'        => 'giropay',
-			'name'      => 'giropay',
-			'processor' => [
-				'pay'   => 'PAY.NL',
-				'sumup' => 'SumUp',
-			],
-		],
 		'google-pay'        => [
 			'id'        => 'google-pay',
 			'name'      => 'Google Pay',

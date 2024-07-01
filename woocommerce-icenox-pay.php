@@ -3,7 +3,7 @@
  * Plugin Name:             WooCommerce IceNox Pay
  * Plugin URI:              https://pay.icenox.com/
  * Description:             Connect your WooCommerce Store with IceNox Pay. The payment system for your online shop.
- * Version:                 1.10.0
+ * Version:                 1.10.0-rc.2
  * Requires at least:       4.0
  * Tested up to:            6.5
  * Requires PHP:            7.3
@@ -129,8 +129,8 @@ class IceNox_Pay {
 
 	function payment_method_deprecation_warning() {
 		$giropayConfig    = get_option( "woocommerce_icenox_pay_giropay_settings", false );
-		$giropayProcessor = $giropayConfig["icenox_pay_processor"] ?: "stripe";
-		if ( $giropayConfig && in_array( $giropayProcessor, [ "stripe", "mollie" ] ) ) {
+		if ( $giropayConfig ) {
+			$giropayProcessor = $giropayConfig["icenox_pay_processor"] ?: "stripe";
 			$giropayConfig["enabled"] = "no";
 			update_option( 'woocommerce_icenox_pay_giropay_settings', $giropayConfig );
 			?>
@@ -140,9 +140,7 @@ class IceNox_Pay {
                     (<?php echo ucfirst( $giropayProcessor ); ?>).</p>
                 <p>It will no longer be offered in Checkout.
                     Please remove giropay from the enabled payment methods in the
-                    <a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=icenox_pay">IceNox Pay Tab</a>
-                    or choose a different Payment Processor
-                    <a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=checkout&section=icenox_pay_giropay">here</a>.
+                    <a href="<?php echo get_admin_url(); ?>admin.php?page=wc-settings&tab=icenox_pay">IceNox Pay Tab</a>.
                     For questions, please contact Merchant Support.
                 </p>
             </div>
