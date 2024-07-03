@@ -78,10 +78,10 @@ class IceNox_Pay {
 	}
 
 	private function is_woocommerce_active(): bool {
-		$active_plugins = (array) get_option( 'active_plugins', array() );
+		$active_plugins = (array) get_option( 'active_plugins', [] );
 
 		if ( is_multisite() ) {
-			$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
+			$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', [] ) );
 		}
 
 		return in_array( 'woocommerce/woocommerce.php', $active_plugins ) || array_key_exists( 'woocommerce/woocommerce.php', $active_plugins );
@@ -165,14 +165,9 @@ class IceNox_Pay {
 
 	public function admin_js( $hook ) {
 		if ( 'woocommerce_page_wc-settings' === $hook ) {
-			wp_enqueue_script( 'icenox-pay', plugins_url( "includes/assets/js/icenox-pay.js", __FILE__ ), array(
-				'jquery',
-				'jquery-ui-sortable',
-				'jquery-ui-accordion'
-			), $this::$plugin_version, true );
-			wp_enqueue_script( 'nice-select', plugins_url( "includes/assets/js/nice-select.js", __FILE__ ), array(
+			wp_enqueue_script( 'icenox-pay', plugins_url( "includes/assets/js/icenox-pay.js", __FILE__ ), [
 				'jquery'
-			), $this::$plugin_version, true );
+			], $this::$plugin_version, true );
 		}
 	}
 
@@ -183,8 +178,7 @@ class IceNox_Pay {
 	}
 
 	public function admin_css() {
-		wp_enqueue_style( 'custom_payment_admin_css', plugins_url( 'includes/assets/css/admin.css', __FILE__ ) );
-		wp_enqueue_style( 'jquery-css', plugins_url( 'includes/assets/css/nice-select.css', __FILE__ ) );
+		wp_enqueue_style( 'icenox_pay_admin_css', plugins_url( 'includes/assets/css/admin.css', __FILE__ ) );
 	}
 
 	public function load_plugin_textdomain() {

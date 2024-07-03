@@ -1,15 +1,16 @@
-#custom_payment_form_components{
+#custom_payment_form_components {
     float: left;
-    width:21%;
+    width: 21%;
     overflow: auto;
     padding: 0 .9em;
     border: 1px solid #dfdfdf;
     background-color: #fdfdfd;
 
 }
-#custom_payment_form_fields{
+
+#custom_payment_form_fields {
     float: left;
-    width:68%;
+    width: 68%;
     margin-left: 5px;
     min-height: 70px;
     height: auto;
@@ -19,19 +20,22 @@
     padding: 10px;
 }
 
-#custom_payment_form_fields p.description{
-    width:95% !important;
+#custom_payment_form_fields p.description {
+    width: 95% !important;
 }
-#custom_payment_form_fields p.description-thin{
-    width:45% !important;
+
+#custom_payment_form_fields p.description-thin {
+    width: 45% !important;
 }
-.form_components_col1{
-    float:left;
-    width:90%;
-}
-.form_components_col2{
+
+.form_components_col1 {
     float: left;
-    width:49%;
+    width: 90%;
+}
+
+.form_components_col2 {
+    float: left;
+    width: 49%;
 }
 
 #custom_payment_form_components .draggable-form-item {
@@ -174,7 +178,8 @@
     padding: 0;
     width: 99%;
 }
-.ui-state-highlight{
+
+.ui-state-highlight {
     background: #D8D8D8 !important;
     height: 35px !important;
     border-radius: 5px 5px 5px 5px;
@@ -182,16 +187,19 @@
     -webkit-border-radius: 5px 5px 5px 5px;
     border: none !important;
 }
- #fields_wrap li h3{
+
+#fields_wrap li h3 {
     background: #ffffff;
- }
- #fields_wrap li .controls{
+}
+
+#fields_wrap li .controls {
     position: absolute;
     right: 20px;
     bottom: 3px;
 
- }
-#fields_wrap li .controls label{
+}
+
+#fields_wrap li .controls label {
     font-size: 8pt;
     padding: 3px;
     background: #D8D8D8;
@@ -199,10 +207,12 @@
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
 }
-#fields_wrap li .controls a{
+
+#fields_wrap li .controls a {
     font-size: 10pt;
 }
-#fields_wrap li span.move{
+
+#fields_wrap li span.move {
     cursor: crosshair;
 }
 
@@ -211,23 +221,27 @@
     line-height: 1.2em;
 }
 
-.form_details{
+.form_details {
     padding: 10px 0 10px 10px !important;
     position: relative;
     z-index: 10;
     border: 1px solid #e5e5e5;
 }
-.form_details p label{
-    width:95%;
+
+.form_details p label {
+    width: 95%;
 }
-.form_details p.description{
+
+.form_details p.description {
     font-size: 10pt;
 }
-.form_details .delete_field{
-    color:#a00;
+
+.form_details .delete_field {
+    color: #a00;
     font-size: 10pt;
 }
-.delete_field .dashicons-trash,.delete_field_from_header .dashicons-trash{
+
+.delete_field .dashicons-trash, .delete_field_from_header .dashicons-trash {
     font-size: 10pt !important;
     margin-top: 5px !important;
     text-decoration: none;
@@ -237,44 +251,54 @@
     right: .5em !important;
     left: initial !important;
 }
+
 #fields_wrap li .ui-accordion-icons {
-    padding-left:10px  !important;
+    padding-left: 10px !important;
 }
-#fields_wrap .dashicons-menu{
+
+#fields_wrap .dashicons-menu {
     cursor: move;
 }
-a.add-option-btn span{
+
+a.add-option-btn span {
     margin-top: 5px;
     font-size: 15px;
 }
 
-.field_options li span.dashicons-menu{
+.field_options li span.dashicons-menu {
     cursor: move;
 }
-.field_options li span.dashicons-trash{
+
+.field_options li span.dashicons-trash {
     cursor: pointer;
 }
-#customized_payment_extra_attrs{
-    width:100%;
+
+#customized_payment_extra_attrs {
+    width: 100%;
 }
-#customized_payment_extra_attrs .column-key{
-    width:100px !important;
+
+#customized_payment_extra_attrs .column-key {
+    width: 100px !important;
 }
-#customized_payment_extra_attrs th{
-    padding: 8px 0 8px 10px !important;
-}
-#customized_payment_wc_attrs{
-    width:80%;
-}
-#customized_payment_wc_attrs .column-key{
-    width:100px !important;
-}
-#customized_payment_wc_attrs th{
+
+#customized_payment_extra_attrs th {
     padding: 8px 0 8px 10px !important;
 }
 
-#custom_payment_form_fields .form_details input, #custom_payment_form_fields select, #custom_payment_form_fields textarea{
-    width:auto !important;
+#customized_payment_wc_attrs {
+    width: 80%;
+}
+
+#customized_payment_wc_attrs .column-key {
+    width: 100px !important;
+}
+
+#customized_payment_wc_attrs th {
+    padding: 8px 0 8px 10px !important;
+}
+
+#custom_payment_form_fields .form_details input, #custom_payment_form_fields select, #custom_payment_form_fields textarea {
+    width: auto !important;
 }
 
 .forminp.forminp-multiselect {

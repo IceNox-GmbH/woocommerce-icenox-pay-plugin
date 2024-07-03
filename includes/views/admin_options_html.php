@@ -4,7 +4,7 @@
         <div id="post-body-content">
             <table class="form-table">
 				<?php $this->generate_settings_html(); ?>
-            </table><!--/.form-table-->
+            </table>
         </div>
         <div id="postbox-container-1" class="postbox-container">
             <div id="side-sortables" class="meta-box-sortables ui-sortable">
@@ -15,7 +15,7 @@
                         <div class="support-widget">
                             <p>
                                 <br/>
-                                <img style="width:100%;" src="https://pay.icenox.com/static/images/logo-dark.svg">
+                                <img style="width:100%;" src="https://pay.icenox.com/static/images/logo-dark.svg" alt="IceNox Pay">
                                 <br/>
                                 <br/>
                                 <br/>
