@@ -427,7 +427,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	 * @since 1.0.0
 	 */
 	public function admin_options() {
-		include_once( dirname( __FILE__ ) . '/includes/views/admin_options_html.php' );
+		include_once dirname( __FILE__ ) . '/includes/views/admin_options_html.php' ;
 	}
 
 	public function process_payment( $order_id ) {
