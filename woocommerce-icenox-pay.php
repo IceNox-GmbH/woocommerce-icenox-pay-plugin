@@ -53,12 +53,9 @@ class IceNox_Pay {
 		add_action( 'plugins_loaded', [ $this, 'init_custom_payment_gateway' ] );
 		add_action( 'admin_init', [ $this, 'admin_css' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_js' ] );
-		add_action( 'admin_notices', [ $this, 'api_key_not_set' ] );
-		add_action( 'admin_notices', [ $this, 'api_key_invalid' ] );
+		add_action( 'admin_notices', [ $this, 'display_warning_notices' ] );
 		add_action( 'admin_notices', [ $this, 'payment_method_deprecation_warning' ] );
 
-
-		//add_action( 'woocommerce_cart_calculate_fees', 'woocommerce_custom_surcharge' );
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'icenox_pay_settings_link' );
 
 		function icenox_pay_settings_link( array $links ): array {
@@ -111,16 +108,14 @@ class IceNox_Pay {
 		);
 	}
 
-	function api_key_not_set() {
-		if ( get_option( "icenox_pay_api_key" ) === false ) {
+	function display_warning_notices() {
+		if ( get_option( "icenox_pay_api_key", false ) === false ) {
 			echo '<div class="notice notice-info is-dismissible">
 	          <p>Thank you for installing the IceNox Pay Plugin for WooCommerce. Click <a href="' . get_admin_url() . 'admin.php?page=wc-settings&tab=icenox_pay">here</a> to set up the plugin.</p>
 	         </div>';
 		}
-	}
 
-	function api_key_invalid() {
-		if ( get_option( "icenox_pay_api_key" ) !== false && get_option( "icenox_pay_api_key_valid" ) !== "yes" ) {
+		if ( get_option( "icenox_pay_api_key", false ) !== false && get_option( "icenox_pay_api_key_valid" ) !== "yes" ) {
 			echo '<div class="notice notice-error is-dismissible">
 	          <p>The IceNox Pay API Key is invalid. Please correct the API Key <a href="' . get_admin_url() . 'admin.php?page=wc-settings&tab=icenox_pay">here</a>.</p>
 	         </div>';
@@ -165,24 +160,22 @@ class IceNox_Pay {
 
 	public function admin_js( $hook ) {
 		if ( 'woocommerce_page_wc-settings' === $hook ) {
-			wp_enqueue_script( 'icenox-pay', plugins_url( "includes/assets/js/icenox-pay.js", __FILE__ ), [
-				'jquery'
-			], $this::$plugin_version, true );
+			wp_enqueue_script( 'icenox-pay', plugins_url( "includes/assets/js/icenox-pay.js", __FILE__ ), [ 'jquery' ], $this::$plugin_version, true );
 		}
 	}
 
+	public function admin_css() {
+		wp_enqueue_style( 'icenox_pay_admin_css', plugins_url( 'includes/assets/css/admin.css', __FILE__ ), [], $this::$plugin_version );
+	}
+
 	public function init_custom_payment_gateway() {
-		require_once 'class-woocommerce-icenox-pay-gateway.php';
+		require_once __DIR__ . '/class-woocommerce-icenox-pay-gateway.php';
 		require_once __DIR__ . '/includes/default-gateway-classes-generator.php';
 		require_once __DIR__ . '/includes/gateway-classes-generator.php';
 	}
 
-	public function admin_css() {
-		wp_enqueue_style( 'icenox_pay_admin_css', plugins_url( 'includes/assets/css/admin.css', __FILE__ ) );
-	}
-
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'woocommerce-icenox-pay-plugin', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'woocommerce-icenox-pay-plugin', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
 	public function add_custom_payment_gateway( $gateways ) {

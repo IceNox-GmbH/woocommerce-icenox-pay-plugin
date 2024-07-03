@@ -184,13 +184,13 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 
 		return [
 			'title_gateways_options' => [
-				'title' => __( 'IceNox Pay Settings', 'woocommerce' ),
+				'title' => __( 'IceNox Pay Settings', 'woocommerce-icenox-pay-plugin' ),
 				'type'  => 'title',
 				'id'    => 'title_gateways_options'
 			],
 			'api_key'                => [
-				'title'    => __( 'API Key', 'woocommerce' ),
-				'desc'     => __( 'Please enter your IceNox Pay API Key. The API Key can be found in the Merchant Dashboard.', 'woocommerce' ),
+				'title'    => __( 'API Key', 'woocommerce-icenox-pay-plugin' ),
+				'desc'     => __( 'Please enter your IceNox Pay API Key. The API Key can be found in the Merchant Dashboard.', 'woocommerce-icenox-pay-plugin' ),
 				'id'       => 'icenox_pay_api_key',
 				'type'     => 'text',
 				'css'      => 'min-width:300px;',
@@ -198,7 +198,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'autoload' => true,
 			],
 			'merchant_id'            => [
-				'title'       => __( 'Merchant ID', 'woocommerce' ),
+				'title'       => __( 'Merchant ID', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'text',
 				'css'         => 'min-width:300px;pointer-events:none',
 				'value'       => get_option( 'icenox_pay_merchant_id' ),
@@ -206,7 +206,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'autoload'    => true,
 			],
 			'merchant_name'          => [
-				'title'       => __( 'Merchant Name', 'woocommerce' ),
+				'title'       => __( 'Merchant Name', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'text',
 				'css'         => 'min-width:300px;pointer-events:none',
 				'value'       => get_option( 'icenox_pay_merchant_name' ),
@@ -214,7 +214,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'autoload'    => true,
 			],
 			'advanced_mode'          => [
-				'title'   => __( 'Advanced Mode', 'woocommerce' ),
+				'title'   => __( 'Advanced Mode', 'woocommerce-icenox-pay-plugin' ),
 				'id'      => 'icenox_pay_advanced_mode',
 				'type'    => 'checkbox',
 				'value'   => get_option( 'icenox_pay_advanced_mode' ),
@@ -225,22 +225,22 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'id'   => 'title_gateways_options'
 			],
 			'title'                  => [
-				'title' => __( 'Add or Remove Payment Methods', 'woocommerce' ),
+				'title' => __( 'Add or Remove Payment Methods', 'woocommerce-icenox-pay-plugin' ),
 				'type'  => 'title',
 				'id'    => 'add_gateway',
 				'css'   => 'margin-top: 30px;'
 			],
 			'default_methods'        => [
-				'title'   => __( 'Payment Methods', 'woocommerce' ),
-				'desc'    => __( 'Select which IceNox Pay Methods you would like to use.', 'woocommerce' ),
+				'title'   => __( 'Payment Methods', 'woocommerce-icenox-pay-plugin' ),
+				'desc'    => __( 'Select which IceNox Pay Methods you would like to use.', 'woocommerce-icenox-pay-plugin' ),
 				'id'      => 'icenox_pay_default_gateways',
                 'class'   => 'icenox_pay_multiselect',
 				'type'    => 'multiselect',
 				'options' => $default_method_options
 			],
 			'name'                   => get_option( 'icenox_pay_advanced_mode' ) === "yes" ? [
-				'title'    => __( 'Custom Method', 'woocommerce' ),
-				'desc'     => __( 'Enter the name of the payment method then click on Save Changes.', 'woocommerce' ),
+				'title'    => __( 'Custom Method', 'woocommerce-icenox-pay-plugin' ),
+				'desc'     => __( 'Enter the name of the payment method then click on Save Changes.', 'woocommerce-icenox-pay-plugin' ),
 				'id'       => 'wc_gateway_name',
 				'type'     => 'text',
 				'css'      => 'min-width:300px;',
@@ -253,7 +253,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'id'   => 'add_gateway'
 			],
 			'title_gateways_table'   => [
-				'title' => __( 'Available Payment Methods', 'woocommerce' ),
+				'title' => __( 'Available Payment Methods', 'woocommerce-icenox-pay-plugin' ),
 				'type'  => 'title',
 				'id'    => 'add_gateways'
 			],
@@ -289,10 +289,10 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 						<?php
 						$columns = apply_filters( 'woocommerce_custom_gateways_setting_columns', array(
 							'status'     => '',
-							'name'       => __( 'Payment Method', 'woocommerce' ),
-							'processor'  => __( 'Processor', 'woocommerce' ),
-							'created_by' => __( 'Created By', 'woocommerce' ),
-							'actions'    => __( 'Actions', 'woocommerce' ),
+							'name'       => __( 'Payment Method', 'woocommerce-icenox-pay-plugin' ),
+							'processor'  => __( 'Processor', 'woocommerce-icenox-pay-plugin' ),
+							'created_by' => __( 'Created By', 'woocommerce-icenox-pay-plugin' ),
+							'actions'    => __( 'Actions', 'woocommerce-icenox-pay-plugin' ),
 						) );
 						foreach ( $columns as $key => $column ) {
 							echo '<th class="wc-email-settings-table-' . esc_attr( $key ) . '">' . esc_html( $column ) . '</th>';
@@ -347,18 +347,18 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">';
 										if ( $gateway_settings ) {
 											if ( $gateway_settings['enabled'] == 'yes' ) {
-												echo '<span class="status-enabled tips" data-tip="' . __( 'Enabled', 'woocommerce' ) . '">' . __( 'Yes', 'woocommerce' ) . '</span>';
+												echo '<span class="status-enabled tips" data-tip="' . __( 'Enabled', 'woocommerce-icenox-pay-plugin' ) . '">' . __( 'Yes', 'woocommerce-icenox-pay-plugin' ) . '</span>';
 											} else {
-												echo '<span class="status-disabled tips" data-tip="' . __( 'Disabled', 'woocommerce' ) . '">' . __( 'No', 'woocommerce' ) . '</span>';
+												echo '<span class="status-disabled tips" data-tip="' . __( 'Disabled', 'woocommerce-icenox-pay-plugin' ) . '">' . __( 'No', 'woocommerce-icenox-pay-plugin' ) . '</span>';
 											}
 										} else {
-											echo '<span class="status-disabled tips" data-tip="' . __( 'Disabled', 'woocommerce' ) . '">' . __( 'No', 'woocommerce' ) . '</span>';
+											echo '<span class="status-disabled tips" data-tip="' . __( 'Disabled', 'woocommerce-icenox-pay-plugin' ) . '">' . __( 'No', 'woocommerce-icenox-pay-plugin' ) . '</span>';
 										}
 										echo '</td>';
 										break;
 									case 'actions' :
 										echo '<td style="width:200px;">
-                                            <a class="button tips" data-tip="' . __( 'Configure', 'woocommerce' ) . '" href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . strtolower( $class_name ) ) . '">' . __( 'Configure', 'woocommerce' ) . '</a>
+                                            <a class="button tips" data-tip="' . __( 'Configure', 'woocommerce-icenox-pay-plugin' ) . '" href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . strtolower( $class_name ) ) . '">' . __( 'Configure', 'woocommerce-icenox-pay-plugin' ) . '</a>
                                         </td>';
 										break;
 									case 'processor' :
@@ -401,19 +401,19 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">';
 										if ( $gateway_settings ) {
 											if ( $gateway_settings['enabled'] == 'yes' ) {
-												echo '<span class="status-enabled tips" data-tip="' . __( 'Enabled', 'woocommerce' ) . '">' . __( 'Yes', 'woocommerce' ) . '</span>';
+												echo '<span class="status-enabled tips" data-tip="' . __( 'Enabled', 'woocommerce-icenox-pay-plugin' ) . '">' . __( 'Yes', 'woocommerce-icenox-pay-plugin' ) . '</span>';
 											} else {
-												echo '<span class="status-disabled tips" data-tip="' . __( 'Disabled', 'woocommerce' ) . '">' . __( 'No', 'woocommerce' ) . '</span>';
+												echo '<span class="status-disabled tips" data-tip="' . __( 'Disabled', 'woocommerce-icenox-pay-plugin' ) . '">' . __( 'No', 'woocommerce-icenox-pay-plugin' ) . '</span>';
 											}
 										} else {
-											echo '<span class="status-disabled tips" data-tip="' . __( 'Disabled', 'woocommerce' ) . '">' . __( 'No', 'woocommerce' ) . '</span>';
+											echo '<span class="status-disabled tips" data-tip="' . __( 'Disabled', 'woocommerce-icenox-pay-plugin' ) . '">' . __( 'No', 'woocommerce-icenox-pay-plugin' ) . '</span>';
 										}
 										echo '</td>';
 										break;
 									case 'actions' :
 										echo '<td style="width:200px;">
-                                            <a class="button tips" data-tip="' . __( 'Configure', 'woocommerce' ) . '" href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . strtolower( $class_name ) ) . '">' . __( 'Configure', 'woocommerce' ) . '</a>
-                                            <a style="color:red;" class="button" onclick="if(!window.confirm(\'Are you sure that you want to delete this gateway?\')) return false;" href="' . admin_url( 'admin.php?page=wc-settings&tab=icenox_pay&action=delete&gateway=' . $gateway->name . '&noheader=true' ) . '">' . __( 'Delete', 'woocommerce' ) . '</a>
+                                            <a class="button tips" data-tip="' . __( 'Configure', 'woocommerce-icenox-pay-plugin' ) . '" href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . strtolower( $class_name ) ) . '">' . __( 'Configure', 'woocommerce-icenox-pay-plugin' ) . '</a>
+                                            <a style="color:red;" class="button" onclick="if(!window.confirm(\'Are you sure that you want to delete this gateway?\')) return false;" href="' . admin_url( 'admin.php?page=wc-settings&tab=icenox_pay&action=delete&gateway=' . $gateway->name . '&noheader=true' ) . '">' . __( 'Delete', 'woocommerce-icenox-pay-plugin' ) . '</a>
                                         </td>';
 										break;
 									case 'processor' :
@@ -439,10 +439,6 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
                 </table>
             </td>
         </tr>
-        <script>jQuery(function ($) {
-                $('#wc_gateway_name').val('');
-                $(".icenox_pay_multiselect").selectWoo();
-            })</script>
 		<?php
 	}
 }
