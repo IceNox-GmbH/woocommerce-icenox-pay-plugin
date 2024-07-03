@@ -413,7 +413,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 				'type'        => 'checkbox',
 				'label'       => __( 'Enable ', 'woocommerce-icenox-pay-plugin' ),
 				'default'     => 'no',
-				'description' => __( 'If debug mode is enabled, the payment gateway will be activated just for the administrator. You can use the debug mode to make sure that the gateway work as you expected.' ),
+				'description' => __( 'If debug mode is enabled, the payment gateway will be activated just for the administrator. You can use the debug mode to make sure that the gateway work as you expected.', 'woocommerce-icenox-pay-plugin' ),
 			],
 		];
 	}
