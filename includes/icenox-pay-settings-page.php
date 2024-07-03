@@ -234,6 +234,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				'title'   => __( 'Payment Methods', 'woocommerce' ),
 				'desc'    => __( 'Select which IceNox Pay Methods you would like to use.', 'woocommerce' ),
 				'id'      => 'icenox_pay_default_gateways',
+                'class'   => 'icenox_pay_multiselect',
 				'type'    => 'multiselect',
 				'options' => $default_method_options
 			],
@@ -440,7 +441,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
         </tr>
         <script>jQuery(function ($) {
                 $('#wc_gateway_name').val('');
-                $("#icenox_pay_default_gateways").niceSelect();
+                $(".icenox_pay_multiselect").selectWoo();
             })</script>
 		<?php
 	}
