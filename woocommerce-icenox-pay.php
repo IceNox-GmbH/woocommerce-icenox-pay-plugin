@@ -3,7 +3,7 @@
  * Plugin Name:             WooCommerce IceNox Pay
  * Plugin URI:              https://pay.icenox.com/
  * Description:             Connect your WooCommerce Store with IceNox Pay. The payment system for your online shop.
- * Version:                 1.10.0
+ * Version:                 1.10.1
  * Requires at least:       4.0
  * Tested up to:            6.5
  * Requires PHP:            7.3
@@ -188,7 +188,7 @@ class IceNox_Pay {
 	}
 
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'woocommerce-custom-payment-gateway', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'woocommerce-icenox-pay-plugin', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 
 	public function add_custom_payment_gateway( $gateways ) {

@@ -1,14 +1,14 @@
 <tr valign="top">
     <th scope="row" class="titledesc">
-        <label for="woocommerce_auspost_debug_mode"><?php _e( 'Extra API Parameters', 'woocommerce-custom-payment-gateway' ); ?></label>
+        <label for="woocommerce_auspost_debug_mode"><?php _e( 'Extra API Parameters', 'woocommerce-icenox-pay-plugin' ); ?></label>
     </th>
     <td class="forminp">
         <fieldset>
             <table id="customized_payment_extra_attrs" class="wp-list-table widefat fixed striped posts">
                 <thead>
                 <tr>
-                    <th class="column-key"><?php _e( 'Key', 'woocommerce-custom-payment-gateway' ); ?></th>
-                    <th><?php _e( 'Value', 'woocommerce-custom-payment-gateway' ); ?></th>
+                    <th class="column-key"><?php _e( 'Key', 'woocommerce-icenox-pay-plugin' ); ?></th>
+                    <th><?php _e( 'Value', 'woocommerce-icenox-pay-plugin' ); ?></th>
                     <th class="column-featured"></th>
                 </tr>
                 </thead>
@@ -30,7 +30,7 @@
                 <tfoot>
                 <tr>
                     <th colspan="3"><a id="add_row_extra_atts_button" href="javascript:void(0);"
-                                       class="button"><?php _e( 'Add Row', 'woocommerce-custom-payment-gateway' ); ?></a>
+                                       class="button"><?php _e( 'Add Row', 'woocommerce-icenox-pay-plugin' ); ?></a>
                     </th>
                 </tr>
                 </tfoot>

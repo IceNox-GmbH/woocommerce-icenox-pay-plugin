@@ -304,8 +304,8 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	public function __construct( $child = false ) {
 		$this->id              = 'icenox_pay';
 		$this->api_url_to_ping = "https://imp.icenox.com/api/payment/create/";
-		$this->method_title    = __( 'IceNox Pay Payment', 'woocommerce-custom-payment-gateway' );
-		$this->title           = __( 'IceNox Pay', 'woocommerce-custom-payment-gateway' );
+		$this->method_title    = __( 'IceNox Pay Payment', 'woocommerce-icenox-pay-plugin' );
+		$this->title           = __( 'IceNox Pay', 'woocommerce-icenox-pay-plugin' );
 		$this->has_fields      = false;
 
 		$this->init_form_fields();
@@ -329,95 +329,93 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 		$this->icenox_pay_notification     = $this->get_option( 'icenox_pay_notification' );
 
 		// Debug mode, only administrators can use the gateway.
-		if ( $this->debug_mode == 'yes' ) {
-			if ( ! current_user_can( 'administrator' ) ) {
-				$this->enabled = 'no';
+		if ( $this->debug_mode === "yes" ) {
+			if ( ! current_user_can( "administrator" ) ) {
+				$this->enabled = "no";
 			}
 		}
 
-		add_action( 'woocommerce_receipt_custom_payment', array( $this, 'receipt_page' ) );
-
 		if ( $child === false ) {
-			add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array(
+			add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, [
 				$this,
 				'process_admin_options'
-			) );
+			] );
 		}
 
-		add_action( 'woocommerce_api_' . strtolower( get_class( $this ) ), array(
+		add_action( 'woocommerce_api_' . strtolower( get_class( $this ) ), [
 			$this,
 			'process_returned_response'
-		) );
+		] );
 
 	}
 
 	public function init_form_fields() {
-		$this->form_fields = array(
-			'enabled'                              => array(
-				'title'   => __( 'Enable/Disable', 'woocommerce-custom-payment-gateway' ),
+		$this->form_fields = [
+			'enabled'                              => [
+				'title'   => __( 'Enable/Disable', 'woocommerce-icenox-pay-plugin' ),
 				'type'    => 'checkbox',
-				'label'   => __( 'Enable Payment Method', 'woocommerce-custom-payment-gateway' ),
+				'label'   => __( 'Enable Payment Method', 'woocommerce-icenox-pay-plugin' ),
 				'default' => 'no'
-			),
-			'title'                                => array(
-				'title'       => __( 'Method Title', 'woocommerce-custom-payment-gateway' ),
+			],
+			'title'                                => [
+				'title'       => __( 'Method Title', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'text',
-				'description' => __( 'The title of the payment method which will show to the user on the checkout page.', 'woocommerce-custom-payment-gateway' ),
+				'description' => __( 'The title of the payment method which will show to the user on the checkout page.', 'woocommerce-icenox-pay-plugin' ),
 				'default'     => $this->method_title,
-			),
-			'gateway_icon'                         => array(
-				'title'       => __( 'Method Logo', 'woocommerce-custom-payment-gateway' ),
+			],
+			'gateway_icon'                         => [
+				'title'       => __( 'Method Logo', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'text',
-				'description' => __( 'URL for the payment method that will show to the user on the checkout page.', 'woocommerce-custom-payment-gateway' ),
-				'default'     => __( 'https://', 'woocommerce-custom-payment-gateway' ),
-			),
-			'description'                          => array(
-				'title'       => __( 'Method Description', 'woocommerce-custom-payment-gateway' ),
+				'description' => __( 'URL for the payment method that will show to the user on the checkout page.', 'woocommerce-icenox-pay-plugin' ),
+				'default'     => __( 'https://', 'woocommerce-icenox-pay-plugin' ),
+			],
+			'description'                          => [
+				'title'       => __( 'Method Description', 'woocommerce-icenox-pay-plugin' ),
 				'css'         => 'width:50%;',
 				'type'        => 'textarea',
 				'default'     => '',
-				'description' => __( 'Description for the payment method that will show to the user on the checkout page.', 'woocommerce-custom-payment-gateway' ),
+				'description' => __( 'Description for the payment method that will show to the user on the checkout page.', 'woocommerce-icenox-pay-plugin' ),
 
-			),
-			'advanced'                             => array(
-				'title'       => __( 'API Request options<hr>', 'woocommerce-custom-payment-gateway' ),
+			],
+			'advanced'                             => [
+				'title'       => __( 'API Request options<hr>', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'title',
 				'description' => '',
-			),
-			'icenox_pay_notification'              => array(
-				'title'   => __( 'Auto-Update Payment Status', 'woocommerce-custom-payment-gateway' ),
+			],
+			'icenox_pay_notification'              => [
+				'title'   => __( 'Auto-Update Payment Status', 'woocommerce-icenox-pay-plugin' ),
 				'type'    => 'checkbox',
-				'label'   => __( 'Enable IceNox Pay to update the WooCommerce order status after successful payment.', 'woocommerce-custom-payment-gateway' ),
+				'label'   => __( 'Enable IceNox Pay to update the WooCommerce order status after successful payment.', 'woocommerce-icenox-pay-plugin' ),
 				'default' => 'yes'
-			),
-			'icenox_pay_api_key'                   => array(
-				'title'       => __( 'API Key', 'woocommerce-custom-payment-gateway' ),
+			],
+			'icenox_pay_api_key'                   => [
+				'title'       => __( 'API Key', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'text',
-				'description' => __( 'API Key for IceNox Pay.', 'woocommerce-custom-payment-gateway' ),
+				'description' => __( 'API Key for IceNox Pay.', 'woocommerce-icenox-pay-plugin' ),
 				'default'     => get_option( 'icenox_pay_api_key' ),
 				'placeholder' => '00000000-0000-0000-0000-000000000000'
-			),
-			'icenox_pay_payment_method_identifier' => array(
-				'title'       => __( 'Payment Method Identifier', 'woocommerce-custom-payment-gateway' ),
+			],
+			'icenox_pay_payment_method_identifier' => [
+				'title'       => __( 'Payment Method Identifier', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'text',
-				'description' => __( 'Payment Method Identifier for IceNox Pay.', 'woocommerce-custom-payment-gateway' ),
+				'description' => __( 'Payment Method Identifier for IceNox Pay.', 'woocommerce-icenox-pay-plugin' ),
 				'default'     => '',
 				'placeholder' => '',
-			),
-			'icenox_pay_express_redirect'          => array(
-				'title'   => __( 'Express Redirect', 'woocommerce-custom-payment-gateway' ),
+			],
+			'icenox_pay_express_redirect'          => [
+				'title'   => __( 'Express Redirect', 'woocommerce-icenox-pay-plugin' ),
 				'type'    => 'checkbox',
-				'label'   => __( 'Redirect immediately to the payment (only available for selected payment methods)', 'woocommerce-custom-payment-gateway' ),
+				'label'   => __( 'Redirect immediately to the payment (only available for selected payment methods)', 'woocommerce-icenox-pay-plugin' ),
 				'default' => 'no'
-			),
-			'debug_mode'                           => array(
-				'title'       => __( 'Enable Debug Mode', 'woocommerce-custom-payment-gateway' ),
+			],
+			'debug_mode'                           => [
+				'title'       => __( 'Enable Debug Mode', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'checkbox',
-				'label'       => __( 'Enable ', 'woocommerce-custom-payment-gateway' ),
+				'label'       => __( 'Enable ', 'woocommerce-icenox-pay-plugin' ),
 				'default'     => 'no',
 				'description' => __( 'If debug mode is enabled, the payment gateway will be activated just for the administrator. You can use the debug mode to make sure that the gateway work as you expected.' ),
-			),
-		);
+			],
+		];
 	}
 
 
