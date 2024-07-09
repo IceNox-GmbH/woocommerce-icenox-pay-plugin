@@ -467,11 +467,11 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 			'Authorization' => 'Bearer ' . $this->icenox_pay_api_key,
 			'user-agent'    => 'IceNoxPay/' . IceNox_Pay::$plugin_version . ' WooCommerce (WordPress)'
 		];
-		$response        = wp_remote_post( $this->api_url_to_ping, array(
+		$response        = wp_remote_post( $this->api_url_to_ping, [
 			'headers' => apply_filters( 'custom_payment_gateways_json_post_headers', $headers ),
 			'body'    => json_encode( $request_body ),
 			'method'  => 'POST',
-		) );
+		] );
 		$decodedResponse = json_decode( $response['body'] );
 
 		if ( $decodedResponse->success ) {
@@ -489,7 +489,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function get_request_body( $api_data, $order_id ) {
-		$request_body = array();
+		$request_body = [];
 		if ( is_array( $this->custom_api_atts ) && ! empty( $this->custom_api_atts ) ) {
 			$request_body = $this->custom_api_atts;
 		}
