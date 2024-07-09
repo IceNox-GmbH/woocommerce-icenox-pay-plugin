@@ -7,14 +7,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * IceNox Pay Settings page to configure Payment Methods and the API Key.
+ * Allows users to add multiple Gateways.
  *
  * @author IceNox GmbH
  * @since 1.0.0
  */
 class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 
-	public static $defaultGateways = [
+	public $defaultGateways = [
 		'affirm'            => 'Affirm',
 		'afterpay-clearpay' => 'Afterpay / Clearpay',
 		'alipay'            => 'Alipay',
@@ -172,15 +172,15 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 
 		$enabled_method_keys   = get_option( 'icenox_pay_default_gateways', [] );
 		$enabled_method_values = array_map( function ( $value ) {
-			if ( isset( self::$defaultGateways[ $value ] ) ) {
-				return self::$defaultGateways[ $value ];
+			if ( isset( $this->defaultGateways[ $value ] ) ) {
+				return $this->defaultGateways[ $value ];
 			}
 
 			return $value . " (DEPRECATED)";
 		}, $enabled_method_keys );
 		$enabled_methods       = array_combine( $enabled_method_keys, $enabled_method_values );
 
-		$default_method_options = array_merge( $enabled_methods, self::$defaultGateways );
+		$default_method_options = array_merge( $enabled_methods, $this->defaultGateways );
 
 		return [
 			'title_gateways_options' => [
@@ -324,7 +324,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 									$processor = $processorMap[ $gateway_settings['icenox_pay_processor'] ];
 								} else {
 									if ( $gateway_settings['icenox_pay_processor'] === $gateway ) {
-										$processor = self::$defaultGateways[ $gateway_settings['icenox_pay_processor'] ] ?? "";
+										$processor = $this->defaultGateways[ $gateway_settings['icenox_pay_processor'] ] ?? "";
 									} else {
 										$processor = $gateway_settings['icenox_pay_processor'];
 									}
@@ -333,7 +333,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 								$processor = "";
 							}
 
-							$gateway_title = self::$defaultGateways[ $gateway ];
+							$gateway_title = $this->defaultGateways[ $gateway ];
 							echo '<tr>';
 							foreach ( $columns as $key => $column ) {
 

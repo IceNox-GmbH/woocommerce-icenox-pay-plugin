@@ -5,9 +5,6 @@ if ( $gateways ) {
 		$class_name = 'icenox_pay_' . preg_replace( '/^a-zA-Z0-9/', "",
 				strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) )
 			);
-		if(!isset(IceNox_Pay_Settings_Page::$defaultGateways[$gateway])) {
-			break;
-		}
 		eval( "
             class " . $class_name . " extends WC_IceNox_Pay_Payment_Gateway {
                 public function __construct(){
