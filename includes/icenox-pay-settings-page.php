@@ -55,10 +55,10 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 		$this->id    = 'icenox_pay';
 		$this->label = 'IceNox Pay';
 
-		add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_tab' ), 50 );
-		add_action( 'woocommerce_settings_tabs_icenox_pay', array( $this, 'settings_tab' ) );
-		add_action( 'woocommerce_update_options_icenox_pay', array( $this, 'update_settings' ) );
-		add_action( 'woocommerce_admin_field_gateways_table', array( $this, 'gateways_table_setting' ) );
+		add_filter( 'woocommerce_settings_tabs_array', [ $this, 'add_settings_tab' ], 50 );
+		add_action( 'woocommerce_settings_tabs_icenox_pay', [ $this, 'settings_tab' ] );
+		add_action( 'woocommerce_update_options_icenox_pay', [ $this, 'update_settings' ] );
+		add_action( 'woocommerce_admin_field_gateways_table', [ $this, 'gateways_table_setting' ] );
 		if ( isset( $_POST['wc_gateway_name'] ) && trim( $_POST['wc_gateway_name'] ) !== '' ) {
 			global $current_user;
 			$gatewayId                            = strtolower( trim( $_POST['wc_gateway_name'] ) );
@@ -287,13 +287,13 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
                     <thead>
                     <tr>
 						<?php
-						$columns = apply_filters( 'woocommerce_custom_gateways_setting_columns', array(
+						$columns = apply_filters( 'woocommerce_custom_gateways_setting_columns', [
 							'status'     => '',
 							'name'       => __( 'Payment Method', 'woocommerce-icenox-pay-plugin' ),
 							'processor'  => __( 'Processor', 'woocommerce-icenox-pay-plugin' ),
 							'created_by' => __( 'Created By', 'woocommerce-icenox-pay-plugin' ),
 							'actions'    => __( 'Actions', 'woocommerce-icenox-pay-plugin' ),
-						) );
+						] );
 						foreach ( $columns as $key => $column ) {
 							echo '<th class="wc-email-settings-table-' . esc_attr( $key ) . '">' . esc_html( $column ) . '</th>';
 						}
