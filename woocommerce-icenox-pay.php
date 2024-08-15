@@ -184,7 +184,7 @@ class IceNox_Pay {
 		if ( $default_gateways ) {
 			foreach ( $default_gateways as $gateway ) {
 
-				$gateway_id              = 'icenox_pay_' . preg_replace( '/^a-zA-Z0-9/', "",
+				$gateway_id              = 'icenox_pay_' . preg_replace( "/[^a-zA-Z0-9_]/", "",
 						strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway ) ) )
 					);
 				$gateways[ $gateway_id ] = $gateway_id;
@@ -196,7 +196,7 @@ class IceNox_Pay {
 		if ( $custom_gateways ) {
 			foreach ( $custom_gateways as $gateway ) {
 
-				$gateway_id              = 'icenox_pay_' . preg_replace( '/^a-zA-Z0-9/', "",
+				$gateway_id              = 'icenox_pay_' . preg_replace( "/[^a-zA-Z0-9_]/", "",
 						strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) )
 					);
 				$gateways[ $gateway_id ] = $gateway_id;

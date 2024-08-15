@@ -382,7 +382,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 
 					if ( $gateways ) {
 						foreach ( $gateways as $gateway_key => $gateway ) {
-							$class_name       = 'icenox_pay_' . preg_replace( '/^a-zA-Z0-9/', "",
+							$class_name       = 'icenox_pay_' . preg_replace( "/[^a-zA-Z0-9_]/", "",
 									strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) )
 								);
 							$gateway_settings = get_option( 'woocommerce_' . $class_name . '_settings' );
