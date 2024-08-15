@@ -5,6 +5,10 @@ if ( $gateways ) {
 		$class_name = "icenox_pay_" . preg_replace( "/[^a-zA-Z0-9_]/", "",
 				strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) )
 			);
+		if(class_exists($class_name)) {
+			break;
+		}
+
 		eval( "
             class " . $class_name . " extends WC_IceNox_Pay_Payment_Gateway {
                 public function __construct(){
