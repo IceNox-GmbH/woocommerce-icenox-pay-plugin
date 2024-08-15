@@ -210,6 +210,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 			'merchant_id'            => [
 				'title'       => __( 'Merchant ID', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'text',
+                'class'       => 'disabled',
 				'css'         => 'min-width:300px;pointer-events:none',
 				'value'       => get_option( 'icenox_pay_merchant_id' ),
 				'placeholder' => 'Will be filled in automatically',
@@ -218,6 +219,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 			'merchant_name'          => [
 				'title'       => __( 'Merchant Name', 'woocommerce-icenox-pay-plugin' ),
 				'type'        => 'text',
+				'class'       => 'disabled',
 				'css'         => 'min-width:300px;pointer-events:none',
 				'value'       => get_option( 'icenox_pay_merchant_name' ),
 				'placeholder' => 'Will be filled in automatically',
