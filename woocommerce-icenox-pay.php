@@ -48,49 +48,49 @@ class IceNox_Pay {
 		$this->load_dependencies();
 		$this->handle_plugin_updates();
 
-		add_filter( 'woocommerce_payment_gateways', [ $this, 'add_custom_payment_gateway' ] );
-		add_action( 'plugins_loaded', [ $this, 'load_plugin_textdomain' ] );
-		add_action( 'plugins_loaded', [ $this, 'init_custom_payment_gateway' ] );
-		add_action( 'admin_init', [ $this, 'admin_css' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_js' ] );
-		add_action( 'admin_notices', [ $this, 'display_warning_notices' ] );
-		add_action( 'admin_notices', [ $this, 'payment_method_deprecation_warning' ] );
+		add_filter( "woocommerce_payment_gateways", [ $this, "add_custom_payment_gateway" ] );
+		add_action( "plugins_loaded", [ $this, "load_plugin_textdomain" ] );
+		add_action( "plugins_loaded", [ $this, "init_custom_payment_gateway" ] );
+		add_action( "admin_init", [ $this, "admin_css" ] );
+		add_action( "admin_enqueue_scripts", [ $this, "admin_js" ] );
+		add_action( "admin_notices", [ $this, "display_warning_notices" ] );
+		add_action( "admin_notices", [ $this, "payment_method_deprecation_warning" ] );
 
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'icenox_pay_settings_link' );
+		add_filter( "plugin_action_links_" . plugin_basename( __FILE__ ), "icenox_pay_settings_link" );
 
 		function icenox_pay_settings_link( array $links ): array {
 			$url           = get_admin_url() . "admin.php?page=wc-settings&tab=icenox_pay";
-			$settings_link = '<a href="' . $url . '">' . __( 'Settings', 'icenox_pay' ) . '</a>';
+			$settings_link = '<a href="' . $url . '">' . __( "Settings", "woocommerce-icenox-pay-plugin" ) . '</a>';
 			$links[]       = $settings_link;
 
 			return $links;
 		}
 
-		add_action( 'before_woocommerce_init', function () {
+		add_action( "before_woocommerce_init", function () {
 			if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
-				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( "custom_order_tables", __FILE__, true );
 			}
 		} );
 
 	}
 
 	private function is_woocommerce_active(): bool {
-		$active_plugins = (array) get_option( 'active_plugins', [] );
+		$active_plugins = (array) get_option( "active_plugins", [] );
 
 		if ( is_multisite() ) {
-			$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', [] ) );
+			$active_plugins = array_merge( $active_plugins, get_site_option( "active_sitewide_plugins", [] ) );
 		}
 
-		return in_array( 'woocommerce/woocommerce.php', $active_plugins ) || array_key_exists( 'woocommerce/woocommerce.php', $active_plugins );
+		return in_array( "woocommerce/woocommerce.php", $active_plugins ) || array_key_exists( "woocommerce/woocommerce.php", $active_plugins );
 	}
 
 	private function load_dependencies() {
-		require __DIR__ . '/includes/plugin-update-checker/plugin-update-checker.php';
+		require __DIR__ . "/includes/plugin-update-checker/plugin-update-checker.php";
 
-		if ( ! class_exists( 'IceNox_Pay_Settings_Page' ) ) {
-			add_filter( 'woocommerce_get_settings_pages', 'add_icenox_pay_settings_tab' );
+		if ( ! class_exists( "IceNox_Pay_Settings_Page" ) ) {
+			add_filter( "woocommerce_get_settings_pages", "add_icenox_pay_settings_tab" );
 			function add_icenox_pay_settings_tab( $pages ) {
-				$pages[] = include( dirname( __FILE__ ) . '/includes/icenox-pay-settings-page.php' );
+				$pages[] = include( dirname( __FILE__ ) . "/includes/icenox-pay-settings-page.php" );
 
 				return $pages;
 			}
@@ -102,9 +102,9 @@ class IceNox_Pay {
 
 		// Update Handler
 		$myUpdateChecker = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
-			'https://pay.icenox.com/api/' . $updateChannel . '/woocommerce-plugin',
+			"https://pay.icenox.com/api/" . $updateChannel . "/woocommerce-plugin",
 			__FILE__,
-			'woocommerce-icenox-pay-plugin'
+			"woocommerce-icenox-pay-plugin"
 		);
 	}
 
@@ -159,47 +159,45 @@ class IceNox_Pay {
 	}
 
 	public function admin_js( $hook ) {
-		if ( 'woocommerce_page_wc-settings' === $hook ) {
-			wp_enqueue_script( 'icenox-pay', plugins_url( "includes/assets/js/icenox-pay.js", __FILE__ ), [ 'jquery' ], $this::$plugin_version, true );
+		if ( "woocommerce_page_wc-settings" === $hook ) {
+			wp_enqueue_script( "icenox-pay", plugins_url( "includes/assets/js/icenox-pay.js", __FILE__ ), [ "jquery" ], $this::$plugin_version, true );
 		}
 	}
 
 	public function admin_css() {
-		wp_enqueue_style( 'icenox_pay_admin_css', plugins_url( 'includes/assets/css/admin.css', __FILE__ ), [], $this::$plugin_version );
+		wp_enqueue_style( "icenox_pay_admin_css", plugins_url( "includes/assets/css/admin.css", __FILE__ ), [], $this::$plugin_version );
 	}
 
 	public function init_custom_payment_gateway() {
-		require_once __DIR__ . '/class-woocommerce-icenox-pay-gateway.php';
-		require_once __DIR__ . '/includes/default-gateway-classes-generator.php';
-		require_once __DIR__ . '/includes/gateway-classes-generator.php';
+		require_once __DIR__ . "/class-woocommerce-icenox-pay-gateway.php";
+		require_once __DIR__ . "/includes/default-gateway-classes-generator.php";
+		require_once __DIR__ . "/includes/gateway-classes-generator.php";
+		//require_once __DIR__ . "/includes/gateway-classes-factory.php";
+		//require_once __DIR__ . "/includes/custom-gateway-classes-factory.php";
 	}
 
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'woocommerce-icenox-pay-plugin', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( "woocommerce-icenox-pay-plugin", false, dirname( plugin_basename( __FILE__ ) ) . "/languages/" );
 	}
 
 	public function add_custom_payment_gateway( $gateways ) {
-		$default_gateways = get_option( 'icenox_pay_default_gateways' );
+		$default_gateways = get_option( "icenox_pay_default_gateways" );
 
 		if ( $default_gateways ) {
 			foreach ( $default_gateways as $gateway ) {
 
-				$gateway_id              = 'icenox_pay_' . preg_replace( "/[^a-zA-Z0-9_]/", "",
-						strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway ) ) )
-					);
-				$gateways[ $gateway_id ] = $gateway_id;
+				$gateway_id  = "icenox_pay_" . preg_replace( "/[^a-zA-Z0-9_]/", "", strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway ) ) ) );
+				$gateways[] = $gateway_id;
 			}
 		}
 
-		$custom_gateways = json_decode( get_option( 'icenox_pay_gateways' ) );
+		$custom_gateways = json_decode( get_option( "icenox_pay_gateways" ) );
 
 		if ( $custom_gateways ) {
 			foreach ( $custom_gateways as $gateway ) {
 
-				$gateway_id              = 'icenox_pay_' . preg_replace( "/[^a-zA-Z0-9_]/", "",
-						strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) )
-					);
-				$gateways[ $gateway_id ] = $gateway_id;
+				$gateway_id  = "icenox_pay_custom_" . preg_replace( "/[^a-zA-Z0-9_]/", "", strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) ) );
+				$gateways[] = $gateway_id;
 			}
 		}
 
