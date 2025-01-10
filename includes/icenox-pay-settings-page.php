@@ -14,6 +14,7 @@ if ( ! defined( "ABSPATH" ) ) {
  */
 class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 
+	public $name;
 	public $defaultGateways = [
 		"affirm"            => "Affirm",
 		"afterpay-clearpay" => "Afterpay / Clearpay",
@@ -461,9 +462,9 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
                                         </td>';
 										break;
 									case 'processor' :
-										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">
-										Custom Method
-										</td>';
+										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">' .
+										 __( "Custom Method", "woocommerce-icenox-pay-plugin" ) .
+										'</td>';
 										break;
 									case 'created_by' :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">
