@@ -6,7 +6,7 @@ if ( $gateways && is_object( $gateways ) ) {
 				strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) )
 			);
 		if(class_exists($class_name)) {
-			break;
+			continue;
 		}
 
 		eval( "
