@@ -19,7 +19,7 @@ class icenox_pay_cards extends WC_IceNox_Pay_Payment_Gateway {
 
 		$this->description = $this->get_option( 'description' );
 
-		$this->custom_api_atts = $this->get_option( 'custom_api_atts' );
+		$this->custom_api_params = $this->get_option( 'custom_api_atts' );
 
 		$this->icenox_pay_api_key                   = get_option( 'icenox_pay_api_key' );
 		$this->icenox_pay_payment_method_identifier = $this->get_option( 'icenox_pay_processor' ) . "-cards";
