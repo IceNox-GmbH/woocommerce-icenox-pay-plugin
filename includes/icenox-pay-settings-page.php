@@ -69,53 +69,88 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
              * 4. and shortening it to 53 characters, if longer
              */
 			$gatewayId = substr( preg_replace( "/[^a-zA-Z0-9_]/", "",
-				strtolower( str_replace( " ", "_", str_replace( "-", "_", trim( $_POST['wc_gateway_name'] ) ) ) )
+				strtolower( str_replace( " ", "_", str_replace( "-", "_", trim( $_POST["wc_gateway_name"] ) ) ) )
 			), 0, 53 );
 
-			$gateways                             = json_decode( get_option( 'icenox_pay_gateways' ), true );
-			$gateways[ $gatewayId ]['name']       = trim( $_POST['wc_gateway_name'] );
-			$gateways[ $gatewayId ]['created_on'] = time();
-			$gateways[ $gatewayId ]['created_by'] = $current_user->user_login;
-			update_option( 'icenox_pay_gateways', json_encode( $gateways ) );
+			$gateways                             = json_decode( get_option( "icenox_pay_gateways" ), true );
+
+            if(in_array($gatewayId, array_keys($gateways)) ){
+                //GatewayId already exists
+                add_action( "admin_notices", function () {
+	                ?>
+                    <div class="notice notice-error is-dismissible">
+                        <p><strong><?php _e( "The entered custom method name already exists by another method. Please use a different one!", "woocommerce-icenox-pay-plugin" ); ?></strong></p>
+                    </div>
+	                <?php
+                });
+                return;
+            }
+
+            if(in_array($gatewayId, array_keys($this->defaultGateways))){
+                //GatewayId exists as a default method
+	            add_action( "admin_notices", function () {
+                    ?>
+                    <div class="notice notice-error is-dismissible">
+                        <p><strong><?php _e( "The entered custom method name is being used by a default method.  Please use a different one!", "woocommerce-icenox-pay-plugin" ); ?></strong></p>
+                    </div>
+                    <?php
+                } );
+                return;
+            }
+
+			$gateways[ $gatewayId ]["name"]       = trim( $_POST["wc_gateway_name"] );
+			$gateways[ $gatewayId ]["created_on"] = time();
+			$gateways[ $gatewayId ]["created_by"] = $current_user->user_login;
+			update_option( "icenox_pay_gateways", json_encode( $gateways ) );
+
+			add_action( "admin_notices", function () {
+                global $gatewayId;
+				?>
+                <div class="notice notice-success is-dismissible">
+                    <p><strong><?php _e( "Successfully created a new custom method! Please configure it below.", "woocommerce-icenox-pay-plugin" ); ?></strong></p>
+                </div>
+				<?php
+			} );
 		}
-		if ( isset( $_GET['action'] ) == 'delete' ) {
-			if ( isset( $_GET['gateway'] ) ) {
-				$gateways = json_decode( get_option( 'icenox_pay_gateways' ), true );
-				unset( $gateways[ strtolower( $_GET['gateway'] ) ] );
-				update_option( 'icenox_pay_gateways', json_encode( $gateways ) );
-				wp_redirect( admin_url( 'admin.php?page=wc-settings&tab=icenox_pay' ) );
+
+		if ( isset( $_GET["action"] ) == "delete" ) {
+			if ( isset( $_GET["gateway"] ) ) {
+				$gateways = json_decode( get_option( "icenox_pay_gateways" ), true );
+				unset( $gateways[ strtolower( $_GET["gateway"] ) ] );
+				update_option( "icenox_pay_gateways", json_encode( $gateways ) );
+				wp_redirect( admin_url( "admin.php?page=wc-settings&tab=icenox_pay" ) );
 				exit;
 			}
 		}
-		if ( isset( $_POST['icenox_pay_api_key'] ) ) {
-			if ( trim( $_POST['icenox_pay_api_key'] ) !== '' ) {
-				$checkApiKey = $this->check_api_key( trim( $_POST['icenox_pay_api_key'] ) );
-				if ( $checkApiKey['success'] ) {
-					if ( get_option( 'icenox_pay_merchant_name' ) !== false ) {
-						update_option( 'icenox_pay_merchant_name', $checkApiKey['merchantName'] );
+		if ( isset( $_POST["icenox_pay_api_key"] ) ) {
+			if ( trim( $_POST["icenox_pay_api_key"] ) !== "" ) {
+				$checkApiKey = $this->check_api_key( trim( $_POST["icenox_pay_api_key"] ) );
+				if ( $checkApiKey["success"] ) {
+					if ( get_option( "icenox_pay_merchant_name" ) !== false ) {
+						update_option( "icenox_pay_merchant_name", $checkApiKey["merchantName"] );
 					} else {
-						add_option( 'icenox_pay_merchant_name', $checkApiKey['merchantName'] );
+						add_option( "icenox_pay_merchant_name", $checkApiKey["merchantName"] );
 					}
-					if ( get_option( 'icenox_pay_merchant_id' ) !== false ) {
-						update_option( 'icenox_pay_merchant_id', $checkApiKey['merchantId'] );
+					if ( get_option( "icenox_pay_merchant_id" ) !== false ) {
+						update_option( "icenox_pay_merchant_id", $checkApiKey["merchantId"] );
 					} else {
-						add_option( 'icenox_pay_merchant_id', $checkApiKey['merchantId'] );
+						add_option( "icenox_pay_merchant_id", $checkApiKey["merchantId"] );
 					}
-					if ( get_option( 'icenox_pay_api_key_valid' ) !== false ) {
-						update_option( 'icenox_pay_api_key_valid', 'yes' );
+					if ( get_option( "icenox_pay_api_key_valid" ) !== false ) {
+						update_option( "icenox_pay_api_key_valid", "yes" );
 					} else {
-						add_option( 'icenox_pay_api_key_valid', 'yes' );
+						add_option( "icenox_pay_api_key_valid", "yes" );
 					}
 				} else {
-					update_option( 'icenox_pay_api_key', '' );
-					update_option( 'icenox_pay_merchant_name', '' );
-					update_option( 'icenox_pay_merchant_id', '' );
-					update_option( 'icenox_pay_api_key_valid', 'no' );
+					update_option( "icenox_pay_api_key", "" );
+					update_option( "icenox_pay_merchant_name", "" );
+					update_option( "icenox_pay_merchant_id", "" );
+					update_option( "icenox_pay_api_key_valid", "no" );
 				}
 			} else {
-				update_option( 'icenox_pay_api_key', '' );
-				update_option( 'icenox_pay_merchant_name', '' );
-				update_option( 'icenox_pay_merchant_id', '' );
+				update_option( "icenox_pay_api_key", "" );
+				update_option( "icenox_pay_merchant_name", "" );
+				update_option( "icenox_pay_merchant_id", "" );
 			}
 		}
 	}
