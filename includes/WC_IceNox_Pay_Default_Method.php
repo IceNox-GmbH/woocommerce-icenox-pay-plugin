@@ -6,7 +6,7 @@ class WC_IceNox_Pay_Default_Method extends WC_IceNox_Pay_Payment_Gateway {
 	private $method_config;
 
 	public function __construct( $method_id ) {
-		parent::__construct( true );
+		parent::__construct( true, false );
 
 		$this->method_id     = $method_id;
 		$this->method_config = $this->defaultGateways[ $this->method_id ];

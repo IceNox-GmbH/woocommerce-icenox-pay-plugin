@@ -2,9 +2,7 @@
 $gateways = json_decode( get_option( "icenox_pay_gateways" ) );
 if ( $gateways && is_object( $gateways ) ) {
 	foreach ( $gateways as $gateway ) {
-		$class_name = "icenox_pay_custom_" . preg_replace( "/[^a-zA-Z0-9_]/", "",
-				strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) )
-			);
+		$class_name = "icenox_pay_custom_" . preg_replace( "/[^a-zA-Z0-9_]/", "", strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) ) );
 		if(class_exists($class_name)) {
 			continue;
 		}

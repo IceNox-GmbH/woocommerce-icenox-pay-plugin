@@ -288,7 +288,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	protected $api_data = [];
 	protected $debug_mode;
 	protected $api_url_to_ping;
-	protected $custom_api_params;
 
 	protected $icenox_pay_api_key;
 	protected $icenox_pay_method_processor;
@@ -318,8 +317,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 
 		$this->description = $this->get_option( "description" );
 
-		$this->custom_api_params = $this->get_option( "custom_api_atts" );
-
 		$this->icenox_pay_api_key                   = $this->get_option( "icenox_pay_api_key" );
 		$this->icenox_pay_payment_method_identifier = $this->get_option( "icenox_pay_payment_method_identifier" );
 
@@ -344,7 +341,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 			$this,
 			"process_returned_response"
 		] );
-
 	}
 
 	public function init_form_fields() {
@@ -376,7 +372,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 
 			],
 			"advanced"                             => [
-				"title"       => __( "API Request options<hr>", "woocommerce-icenox-pay-plugin" ),
+				"title"       => __( "API Request options", "woocommerce-icenox-pay-plugin" ) . "<hr>",
 				"type"        => "title",
 				"description" => "",
 			],
@@ -425,7 +421,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	 * @since 1.0.0
 	 */
 	public function admin_options() {
-		include_once __DIR__ . "/includes/views/admin_options_html.php";
+		include_once __DIR__ . "/views/admin_options_html.php";
 	}
 
 	public function process_payment( $order_id ) {
@@ -459,13 +455,13 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	public function create_icenox_pay_payment( $api_data, $order_id ) {
 		$request_body = $this->get_request_body( $api_data, $order_id );
 
-		$headers         = [
+		$headers          = [
 			"Content-Type"  => "application/json",
 			"Authorization" => "Bearer " . $this->icenox_pay_api_key,
 			"User-Agent"    => "IceNoxPay/" . IceNox_Pay::$plugin_version . " WooCommerce (WordPress)"
 		];
-		$response        = wp_remote_post( $this->api_url_to_ping, array(
-			"headers" => apply_filters( "custom_payment_gateways_json_post_headers", $headers ),
+		$response         = wp_remote_post( $this->api_url_to_ping, array(
+			"headers" => $headers,
 			"body"    => json_encode( $request_body ),
 			"method"  => "POST",
 		) );
@@ -487,9 +483,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 
 	public function get_request_body( $api_data, $order_id ) {
 		$request_body = [];
-		if ( is_array( $this->custom_api_params ) && ! empty( $this->custom_api_params ) ) {
-			$request_body = $this->custom_api_params;
-		}
 
 		if ( ! empty( $api_data ) ) {
 			$request_body = array_merge( $api_data, $request_body );

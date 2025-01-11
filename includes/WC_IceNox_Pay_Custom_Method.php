@@ -1,7 +1,7 @@
 <?php
 class WC_IceNox_Pay_Custom_Method extends WC_IceNox_Pay_Payment_Gateway {
 	public function __construct($id, $name) {
-		parent::__construct(true);
+		parent::__construct(true, false);
 
 		$this->id = $id;
 		$this->method_title = $name;

@@ -3,9 +3,7 @@ $gateways = get_option( 'icenox_pay_default_gateways' );
 
 if ( $gateways ) {
 	foreach ( $gateways as $gateway ) {
-		$class_name = 'icenox_pay_' . preg_replace( '/[^a-zA-Z0-9_]/', "",
-				strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway ) ) )
-			);
+		$class_name = 'icenox_pay_' . preg_replace( '/[^a-zA-Z0-9_]/', "", strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway ) ) ) );
 		if ( file_exists( __DIR__ . '/default-gateways/icenox-pay-' . str_replace( "_", "-", $gateway ) . ".php" ) ) {
 			require_once( __DIR__ . '/default-gateways/icenox-pay-' . str_replace( "_", "-", $gateway ) . ".php" );
 		} else {
