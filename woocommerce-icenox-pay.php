@@ -53,6 +53,7 @@ class IceNox_Pay {
 
 		add_action( "admin_init", [ $this, "admin_css" ] );
 		add_action( "admin_enqueue_scripts", [ $this, "admin_js" ] );
+		add_action( "wp_enqueue_scripts", [ $this, "checkout_css" ] );
 
 		add_filter( "woocommerce_payment_gateways", [ $this, "add_custom_payment_gateway" ] );
 
@@ -174,6 +175,12 @@ class IceNox_Pay {
 
 	public function admin_css() {
 		wp_enqueue_style( "icenox_pay_admin_css", plugins_url( "includes/assets/css/admin.css", __FILE__ ), [], $this::$plugin_version );
+	}
+
+	public function checkout_css() {
+		if (function_exists("is_checkout") && is_checkout()) {
+			wp_enqueue_style( "icenox_pay_checkout_css", plugins_url( "includes/assets/css/checkout.css", __FILE__ ), [], $this::$plugin_version );
+		}
 	}
 
 	public function load_plugin_textdomain() {

@@ -265,7 +265,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 		}
 
 		if ( trim( $this->gateway_icon ) != "" ) {
-			return '<img class="customized_payment_icon" src="' . esc_attr( $this->gateway_icon ) . '" />';
+			return '<img class="icenox-pay-method-icon customized_payment_icon" src="' . esc_attr( $this->gateway_icon ) . '" />';
 		}
 
 		return "";
