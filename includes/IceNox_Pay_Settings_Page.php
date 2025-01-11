@@ -80,7 +80,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				return;
 			}
 
-			if ( in_array( $gatewayId, array_keys( $this->defaultGateways ) ) ) {
+			if ( IceNox_Pay_Default_Methods::method_exists( $gatewayId ) ) {
 				add_action( "admin_notices", function () {
 					?>
                     <div class="notice notice-error is-dismissible">
@@ -227,15 +227,11 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 
 		$enabled_method_keys   = get_option( "icenox_pay_default_gateways", [] );
 		$enabled_method_values = array_map( function ( $value ) {
-			if ( isset( $this->defaultGateways[ $value ] ) ) {
-				return $this->defaultGateways[ $value ];
-			}
-
-			return $value . " (DEPRECATED)";
+            return IceNox_Pay_Default_Methods::get_method_name( $value ) ?? $value . " (DEPRECATED)";
 		}, $enabled_method_keys );
 		$enabled_methods       = array_combine( $enabled_method_keys, $enabled_method_values );
 
-		$default_method_options = array_merge( $enabled_methods, $this->defaultGateways );
+		$default_method_options = array_merge( $enabled_methods, IceNox_Pay_Default_Methods::get_method_id_name_array() );
 
 		return [
 			"title_gateways_options" => [
@@ -384,7 +380,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 									$processor = $processorMap[ $gateway_settings["icenox_pay_processor"] ];
 								} else {
 									if ( $gateway_settings["icenox_pay_processor"] === $gateway ) {
-										$processor = $this->defaultGateways[ $gateway_settings["icenox_pay_processor"] ] ?? "";
+										$processor = IceNox_Pay_Default_Methods::get_method_name( $gateway ) ?? "";
 									} else {
 										$processor = $gateway_settings["icenox_pay_processor"];
 									}
@@ -393,7 +389,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 								$processor = "";
 							}
 
-							$gateway_title = $this->defaultGateways[ $gateway ];
+							$gateway_title = IceNox_Pay_Default_Methods::get_method_name( $gateway ) ?? $gateway;
 							echo '<tr>';
 							foreach ( $columns as $key => $column ) {
 

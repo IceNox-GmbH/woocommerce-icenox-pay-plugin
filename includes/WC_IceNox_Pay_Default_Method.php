@@ -15,7 +15,7 @@ class WC_IceNox_Pay_Default_Method extends WC_IceNox_Pay_Payment_Gateway {
 		}
 
 		$this->id           = "icenox_pay_" . str_replace("-", "_", $this->method_id);
-		$this->method_title = $this->method_config["name"] ?? "";
+		$this->method_title = isset($this->method_config["name"]) ? __($this->method_config["name"], "woocommerce-icenox-pay-plugin") : "";
 		$this->title        = __( "IceNox Pay Method", "woocommerce-icenox-pay-plugin" );
 		$this->has_fields   = false;
 

@@ -99,6 +99,7 @@ class IceNox_Pay {
 	}
 
     public function include_payment_gateway_classes() {
+	    require_once __DIR__ . "/includes/IceNox_Pay_Default_Methods.php";
 	    require_once __DIR__ . "/includes/WC_IceNox_Pay_Payment_Gateway.php";
 	    require_once __DIR__ . "/includes/WC_IceNox_Pay_Default_Method.php";
 	    require_once __DIR__ . "/includes/WC_IceNox_Pay_Custom_Method.php";
