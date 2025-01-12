@@ -86,7 +86,7 @@ class WC_IceNox_Pay_Default_Method extends WC_IceNox_Pay_Payment_Gateway {
 			"icenox_pay_processor"        => $this->method_config["processor"] ? [
 				"title"       => __( "Payment Processor", "woocommerce-icenox-pay-plugin" ),
 				"type"        => "select",
-				"description" => __( "Please select your Payment Service Provider to process card payments.", "woocommerce-icenox-pay-plugin" ),
+				"description" => __( "Please select your Payment Service Provider to process this payment method.", "woocommerce-icenox-pay-plugin" ),
 				"options"     => $this->method_config["processor"],
 				"default"     => array_key_first( $this->method_config["processor"] ),
 			] : [
