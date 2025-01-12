@@ -114,13 +114,18 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 		if ( isset( $_GET["action"] ) == "delete" ) {
 			if ( isset( $_GET["gateway"] ) ) {
 				$gateways  = json_decode( get_option( "icenox_pay_gateways" ), true );
-				$gatewayId = $this->generateGatewayId( $_GET["gateway"] );
-				unset( $gateways[ $gatewayId ] );
+                if(isset($gateways[ $_GET["gateway"] ])) {
+                    unset($gateways[ $_GET["gateway"] ]);
+                } else {
+	                $gatewayId = $this->generateGatewayId( $_GET["gateway"] );
+	                unset( $gateways[ $gatewayId ] );
+                }
 				update_option( "icenox_pay_gateways", json_encode( $gateways ) );
 				wp_redirect( admin_url( "admin.php?page=wc-settings&tab=icenox_pay" ) );
 				exit;
 			}
 		}
+
 		if ( isset( $_POST["icenox_pay_api_key"] ) ) {
 			if ( trim( $_POST["icenox_pay_api_key"] ) !== "" ) {
 				$check_api_key = $this->check_api_key( trim( $_POST["icenox_pay_api_key"] ) );
@@ -446,12 +451,12 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 							foreach ( $columns as $key => $column ) {
 
 								switch ( $key ) {
-									case 'name' :
+									case "name" :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">
                                             <a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . strtolower( $class_name ) ) . '">' . $gateway_title . '</a>
                                         </td>';
 										break;
-									case 'status' :
+									case "status" :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">';
 										if ( $gateway_settings ) {
 											if ( $gateway_settings['enabled'] == 'yes' ) {
@@ -464,18 +469,18 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 										}
 										echo '</td>';
 										break;
-									case 'actions' :
+									case "actions" :
 										echo '<td style="width:200px;">
                                             <a class="button tips" data-tip="' . __( 'Configure', 'woocommerce-icenox-pay-plugin' ) . '" href="' . admin_url( "admin.php?page=wc-settings&tab=checkout&section=" . strtolower( $class_name ) ) . '">' . __( "Configure", "woocommerce-icenox-pay-plugin" ) . '</a>
                                             <a style="color:red;" class="button" onclick="if(!window.confirm(\'Are you sure that you want to delete this gateway?\')) return false;" href="' . admin_url( "admin.php?page=wc-settings&tab=icenox_pay&action=delete&gateway=" . $gateway_key . "&noheader=true" ) . '">' . __( "Delete", "woocommerce-icenox-pay-plugin" ) . '</a>
                                         </td>';
 										break;
-									case 'processor' :
+									case "processor" :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">' .
 										     __( "Custom Method", "woocommerce-icenox-pay-plugin" ) .
 										     '</td>';
 										break;
-									case 'created_by' :
+									case "created_by" :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">
                                             <a href="' . admin_url( 'user-edit.php?user_id=' . $user->ID ) . '">' . $gateway->created_by . '</a>
                                         </td>';
@@ -485,7 +490,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 								}
 							}
 
-							echo '</tr>';
+							echo "</tr>";
 						}
 					}
 					?>
