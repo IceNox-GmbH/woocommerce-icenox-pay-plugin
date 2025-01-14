@@ -56,26 +56,13 @@ class IceNox_Pay {
 		add_action( "wp_enqueue_scripts", [ $this, "checkout_css" ] );
 
 		add_filter( "woocommerce_payment_gateways", [ $this, "add_custom_payment_gateway" ] );
+		add_filter( "plugin_action_links_" . plugin_basename( __FILE__ ), [ $this, "plugin_settings_link" ] );
 
 		add_action( "admin_notices", [ $this, "display_warning_notices" ] );
 		add_action( "admin_notices", [ $this, "payment_method_deprecation_warning" ] );
 
-		add_filter( "plugin_action_links_" . plugin_basename( __FILE__ ), "icenox_pay_settings_link" );
-
-		function icenox_pay_settings_link( array $links ): array {
-			$url           = get_admin_url() . "admin.php?page=wc-settings&tab=icenox_pay";
-			$settings_link = '<a href="' . $url . '">' . __( "Settings", "woocommerce-icenox-pay-plugin" ) . '</a>';
-			$links[]       = $settings_link;
-
-			return $links;
-		}
-
-		add_action( "before_woocommerce_init", function () {
-			if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
-				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( "custom_order_tables", __FILE__, true );
-			}
-		} );
-
+		add_action( "wp_ajax_get-attachment-by-url", [ $this, "ajax_get_attachment_by_url" ], 15 );
+		add_action( "before_woocommerce_init", [ $this, "declare_hpos_compatibility" ] );
 	}
 
 	private function is_woocommerce_active(): bool {
@@ -93,25 +80,25 @@ class IceNox_Pay {
 
 		if ( ! class_exists( "IceNox_Pay_Settings_Page" ) ) {
 			add_filter( "woocommerce_get_settings_pages", function ( $pages ) {
-				$pages[] = include __DIR__ . "/includes/IceNox_Pay_Settings_Page.php" ;
-                return $pages;
+				$pages[] = include __DIR__ . "/includes/IceNox_Pay_Settings_Page.php";
+
+				return $pages;
 			} );
 		}
 	}
 
-    public function include_payment_gateway_classes() {
-	    require_once __DIR__ . "/includes/IceNox_Pay_Default_Methods.php";
-	    require_once __DIR__ . "/includes/WC_IceNox_Pay_Payment_Gateway.php";
-	    require_once __DIR__ . "/includes/WC_IceNox_Pay_Default_Method.php";
-	    require_once __DIR__ . "/includes/WC_IceNox_Pay_Custom_Method.php";
-    }
+	public function include_payment_gateway_classes() {
+		require_once __DIR__ . "/includes/IceNox_Pay_Default_Methods.php";
+		require_once __DIR__ . "/includes/WC_IceNox_Pay_Payment_Gateway.php";
+		require_once __DIR__ . "/includes/WC_IceNox_Pay_Default_Method.php";
+		require_once __DIR__ . "/includes/WC_IceNox_Pay_Custom_Method.php";
+	}
 
 	private function handle_plugin_updates() {
-		$updateChannel = get_option( "icenox_pay_beta" ) === "enabled" ? "beta" : "stable";
+		$update_channel = get_option( "icenox_pay_beta" ) === "enabled" ? "beta" : "stable";
 
-		// Update Handler
-		$myUpdateChecker = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
-			"https://pay.icenox.com/api/" . $updateChannel . "/woocommerce-plugin",
+		$update_handler = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
+			"https://pay.icenox.com/api/" . $update_channel . "/woocommerce-plugin",
 			__FILE__,
 			"woocommerce-icenox-pay-plugin"
 		);
@@ -169,16 +156,24 @@ class IceNox_Pay {
 
 	public function admin_js( $hook ) {
 		if ( "woocommerce_page_wc-settings" === $hook ) {
+			wp_register_script( "wp-media-picker-js", plugins_url( "includes/assets/js/wp-media-picker.min.js", __FILE__ ), [
+				"jquery",
+				"jquery-ui-widget",
+				"media-editor",
+				"underscore"
+			], "0.7.0", true );
 			wp_enqueue_script( "icenox-pay", plugins_url( "includes/assets/js/icenox-pay.js", __FILE__ ), [ "jquery" ], $this::$plugin_version, true );
 		}
 	}
 
 	public function admin_css() {
-		wp_enqueue_style( "icenox_pay_admin_css", plugins_url( "includes/assets/css/admin.css", __FILE__ ), [], $this::$plugin_version );
+		wp_register_style( "wp-media-picker-css", plugins_url( "includes/assets/css/wp-media-picker.min.css", __FILE__ ), [], "0.7.0" );
+		wp_enqueue_style( "icenox-pay-admin-css", plugins_url( "includes/assets/css/admin.css", __FILE__ ), [], $this::$plugin_version );
+
 	}
 
 	public function checkout_css() {
-		if (function_exists("is_checkout") && is_checkout()) {
+		if ( function_exists( "is_checkout" ) && is_checkout() ) {
 			wp_enqueue_style( "icenox_pay_checkout_css", plugins_url( "includes/assets/css/checkout.css", __FILE__ ), [], $this::$plugin_version );
 		}
 	}
@@ -192,7 +187,7 @@ class IceNox_Pay {
 
 		if ( $default_gateways ) {
 			foreach ( $default_gateways as $gateway ) {
-				$gateways[] = new WC_IceNox_Pay_Default_Method($gateway);
+				$gateways[] = new WC_IceNox_Pay_Default_Method( $gateway );
 			}
 		}
 
@@ -201,13 +196,60 @@ class IceNox_Pay {
 		if ( $custom_gateways ) {
 			foreach ( $custom_gateways as $gateway ) {
 
-				$gateway_id  = "icenox_pay_custom_" . preg_replace( "/[^a-zA-Z0-9_]/", "", strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) ) );
+				$gateway_id = "icenox_pay_custom_" . preg_replace( "/[^a-zA-Z0-9_]/", "", strtolower( str_replace( " ", "_", str_replace( "-", "_", $gateway->name ) ) ) );
 				$gateways[] = new WC_IceNox_Pay_Custom_Method( $gateway_id, $gateway->name );
 			}
 		}
 
 		return $gateways;
 	}
+
+	public function plugin_settings_link( array $links ): array {
+		$url           = get_admin_url() . "admin.php?page=wc-settings&tab=icenox_pay";
+		$settings_link = '<a href="' . $url . '">' . __( "Settings", "woocommerce-icenox-pay-plugin" ) . '</a>';
+		$links[]       = $settings_link;
+
+		return $links;
+	}
+
+    private function upload_image_from_url( $url ) {
+        $file_name = basename( $url );
+        $file_type = wp_check_filetype( $url );
+        $file_data = file_get_contents( $url );
+        return wp_insert_attachment(
+            [
+                "guid"           => $url,
+                "post_title"     => $file_name,
+                "post_content"   => "",
+                "post_status"    => "inherit",
+                "post_mime_type" => $file_type,
+            ]
+        );
+    }
+
+	public function ajax_get_attachment_by_url() {
+		if ( ! isset( $_REQUEST["url"] ) ) {
+			wp_send_json_error();
+		}
+
+		$id = attachment_url_to_postid( $_REQUEST["url"] );
+		if ( $id === 0 ) {
+			$id = $this->upload_image_from_url( $_REQUEST["url"] );
+			//wp_send_json_error();
+		}
+
+		$_REQUEST["id"] = $id;
+
+		wp_ajax_get_attachment();
+		die();
+	}
+
+	public function declare_hpos_compatibility() {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( "custom_order_tables", __FILE__, true );
+		}
+	}
+
 }
 
 IceNox_Pay::get_instance();

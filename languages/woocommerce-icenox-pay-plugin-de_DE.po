@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce IceNox Pay Plugin\n"
-"POT-Creation-Date: 2025-01-12 14:56+0100\n"
-"PO-Revision-Date: 2025-01-12 14:56+0100\n"
+"POT-Creation-Date: 2025-01-12 20:32+0100\n"
+"PO-Revision-Date: 2025-01-12 20:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -21,47 +21,51 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: includes/IceNox_Pay_Default_Methods.php:86
+#: includes/IceNox_Pay_Default_Methods.php:94
 msgid "SEPA Banktransfer"
 msgstr "SEPA-Banküberweisung"
 
-#: includes/IceNox_Pay_Default_Methods.php:119
+#: includes/IceNox_Pay_Default_Methods.php:128
 msgid "Credit card or Debit card"
 msgstr "Kredit- oder Debitkarte"
 
-#: includes/IceNox_Pay_Default_Methods.php:138
+#: includes/IceNox_Pay_Default_Methods.php:147
 msgid "Cryptocurrencies"
 msgstr "Kryptowährungen"
 
-#: includes/IceNox_Pay_Default_Methods.php:145
+#: includes/IceNox_Pay_Default_Methods.php:154
 msgid "Direct Debit"
 msgstr "Lastschrift"
 
-#: includes/IceNox_Pay_Default_Methods.php:153
+#: includes/IceNox_Pay_Default_Methods.php:162
 msgid "EPS"
 msgstr "eps-Überweisung"
 
-#: includes/IceNox_Pay_Default_Methods.php:182
+#: includes/IceNox_Pay_Default_Methods.php:199
 msgid "KBC Payment Button"
 msgstr "KBC Zahlungsbutton"
 
-#: includes/IceNox_Pay_Default_Methods.php:242
+#: includes/IceNox_Pay_Default_Methods.php:259
 msgid "Spain"
 msgstr "Spanien"
 
-#: includes/IceNox_Pay_Default_Methods.php:243
+#: includes/IceNox_Pay_Default_Methods.php:260
 msgid "Greece"
 msgstr "Griechenland"
 
-#: includes/IceNox_Pay_Default_Methods.php:244
+#: includes/IceNox_Pay_Default_Methods.php:261
 msgid "Portugal"
 msgstr "Portugal"
 
-#: includes/IceNox_Pay_Default_Methods.php:245
+#: includes/IceNox_Pay_Default_Methods.php:262
 msgid "United States"
 msgstr "USA"
 
-#: includes/IceNox_Pay_Default_Methods.php:276
+#: includes/IceNox_Pay_Default_Methods.php:277
+msgid "Pay by Bank"
+msgstr "Online-Banking (Pay by Bank)"
+
+#: includes/IceNox_Pay_Default_Methods.php:301
 msgid "Sofort"
 msgstr "Sofortüberweisung"
 

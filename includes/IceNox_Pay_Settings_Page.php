@@ -350,6 +350,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 						<?php
 						$columns = apply_filters( "woocommerce_custom_gateways_setting_columns", [
 							"status"     => "",
+							"icon"       => __( "Icon", "woocommerce-icenox-pay-plugin" ),
 							"name"       => __( "Payment Method", "woocommerce-icenox-pay-plugin" ),
 							"processor"  => __( "Processor", "woocommerce-icenox-pay-plugin" ),
 							"created_by" => __( "Created By", "woocommerce-icenox-pay-plugin" ),
@@ -399,6 +400,13 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 							foreach ( $columns as $key => $column ) {
 
 								switch ( $key ) {
+									case 'icon' :
+										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">';
+                                        if(isset($gateway_settings["gateway_icon"]) && $gateway_settings["gateway_icon"] !== "https://") {
+                                            echo '<img class="icenox-pay-settings-method-icon" src="' . $gateway_settings["gateway_icon"] . '"/>';
+                                        }
+                                        echo '</td>';
+										break;
 									case 'name' :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">
                                             <a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . strtolower( $class_name ) ) . '">' . $gateway_title . '</a>
@@ -451,6 +459,13 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 							foreach ( $columns as $key => $column ) {
 
 								switch ( $key ) {
+									case 'icon' :
+										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">';
+										if(isset($gateway_settings["gateway_icon"]) && $gateway_settings["gateway_icon"] !== "https://") {
+											echo '<img class="icenox-pay-settings-method-icon" src="' . $gateway_settings["gateway_icon"] . '"/>';
+										}
+										echo '</td>';
+										break;
 									case "name" :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">
                                             <a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . strtolower( $class_name ) ) . '">' . $gateway_title . '</a>
