@@ -6,6 +6,11 @@ jQuery(($) => {
         query: {
             type: "image"
         },
-        multiple: false
+        multiple: false,
+        label_add: IceNoxPayMethods.strings.label_add_icon,
+        label_remove: IceNoxPayMethods.strings.label_remove_icon,
+        label_replace: IceNoxPayMethods.strings.label_replace_icon,
+        label_modal: IceNoxPayMethods.strings.label_add_icon_modal_title,
+        label_button: IceNoxPayMethods.strings.label_add_icon_modal_button,
     });
 });

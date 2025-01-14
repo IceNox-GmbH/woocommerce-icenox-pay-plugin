@@ -86,8 +86,8 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 			"gateway_icon"                         => [
 				"title"       => __( "Method Logo", "woocommerce-icenox-pay-plugin" ),
 				"type"        => "text",
-				"description" => __( "URL for the payment method that will show to the user on the checkout page.", "woocommerce-icenox-pay-plugin" ),
-				"default"     => __( "https://", "woocommerce-icenox-pay-plugin" ),
+				"description" => __( "Icon for the payment method to be displayed on the checkout page.", "woocommerce-icenox-pay-plugin" ),
+				"default"     => "",
 				"class"       => "icenox-pay-method-icon-url",
 			],
 			"description"                          => [

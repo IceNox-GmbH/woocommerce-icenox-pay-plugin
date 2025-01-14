@@ -10,3 +10,16 @@
     max-height: 1.5rem;
     max-width: 4.5rem;
 }
+
+.wp-mediapicker-content-wrap, .wp-mediapicker-content {
+    max-width: 400px;
+}
+
+.wp-mediapicker-content:not(.size-auto) {
+    padding-bottom: calc( 4rem + .5rem );
+}
+
+.wp-mediapicker-content img {
+    max-height: 4rem;
+    padding: .25rem;
+}
