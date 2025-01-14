@@ -480,5 +480,3 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 		<?php
 	}
 }
-
-return new IceNox_Pay_Settings_Page();
