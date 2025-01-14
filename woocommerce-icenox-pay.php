@@ -55,13 +55,13 @@ class IceNox_Pay {
 		add_action( "admin_enqueue_scripts", [ $this, "admin_js" ] );
 		add_action( "wp_enqueue_scripts", [ $this, "checkout_css" ] );
 
-		add_filter( "woocommerce_payment_gateways", [ $this, "add_custom_payment_gateway" ] );
 		add_filter( "plugin_action_links_" . plugin_basename( __FILE__ ), [ $this, "plugin_settings_link" ] );
+		add_filter( "woocommerce_payment_gateways", [ $this, "add_woocommerce_payment_gateways" ] );
+		add_filter( "woocommerce_get_settings_pages", [ $this, "add_woocommerce_settings_page" ]);
 
 		add_action( "admin_notices", [ $this, "display_warning_notices" ] );
 		add_action( "admin_notices", [ $this, "payment_method_deprecation_warning" ] );
 
-		add_action( "wp_ajax_get-attachment-by-url", [ $this, "ajax_get_attachment_by_url" ], 15 );
 		add_action( "before_woocommerce_init", [ $this, "declare_hpos_compatibility" ] );
 	}
 
@@ -76,16 +76,16 @@ class IceNox_Pay {
 	}
 
 	private function load_dependencies() {
-		require __DIR__ . "/includes/plugin-update-checker/plugin-update-checker.php";
-
-		if ( ! class_exists( "IceNox_Pay_Settings_Page" ) ) {
-			add_filter( "woocommerce_get_settings_pages", function ( $pages ) {
-				$pages[] = include __DIR__ . "/includes/IceNox_Pay_Settings_Page.php";
-
-				return $pages;
-			} );
-		}
+		require_once __DIR__ . "/includes/plugin-update-checker/plugin-update-checker.php";
+		require_once __DIR__ . "/includes/IceNox_Pay_Method_Icon_Handler.php";
 	}
+
+    public function add_woocommerce_settings_page( $pages ) {
+	    require_once __DIR__ . "/includes/IceNox_Pay_Settings_Page.php";
+
+        $pages[] = new IceNox_Pay_Settings_Page();
+        return $pages;
+    }
 
 	public function include_payment_gateway_classes() {
 		require_once __DIR__ . "/includes/IceNox_Pay_Default_Methods.php";
@@ -191,7 +191,7 @@ class IceNox_Pay {
 		load_plugin_textdomain( "woocommerce-icenox-pay-plugin", false, dirname( plugin_basename( __FILE__ ) ) . "/languages/" );
 	}
 
-	public function add_custom_payment_gateway( $gateways ) {
+	public function add_woocommerce_payment_gateways( $gateways ) {
 		$default_gateways = get_option( "icenox_pay_default_gateways" );
 
 		if ( $default_gateways ) {
@@ -219,152 +219,6 @@ class IceNox_Pay {
 		$links[]       = $settings_link;
 
 		return $links;
-	}
-
-	private function analyze_file_from_url( $url ) {
-		return [
-			"name" => basename( $url ),
-			"type" => wp_check_filetype( $url )["type"],
-			"ext"  => wp_check_filetype( $url )["ext"],
-		];
-	}
-
-	private function create_attachment_image_from_url( $file_url, $file_details ): int {
-		return wp_insert_attachment(
-			[
-				"guid"           => $file_url,
-				"post_title"     => str_replace( "." . $file_details["ext"], "", $file_details["name"] ),
-				"post_content"   => "",
-				"post_status"    => "inherit",
-				"post_mime_type" => $file_details["type"],
-			]
-		);
-	}
-
-	/**
-	 * @param $file_url
-	 *
-	 * @return array|int[] Returns the dimensions of the svg as array [width, height] or [0, 0] on error.
-	 */
-	private function get_svg_dimensions( $file_url ): array {
-		if ( empty( $file_url ) ) {
-			return [0, 0];
-		}
-
-        $svg_content = file_get_contents( $file_url );
-		if ( empty( $svg_content ) || ! function_exists( "simplexml_load_string" ) ) {
-			return [0, 0];
-		}
-
-        $svg = simplexml_load_string( $svg_content );
-        if ( $svg === false || ! isset( $svg->attributes()->width ) || ! isset( $svg->attributes()->height) ) {
-	        return [0, 0];
-        }
-
-		return [
-			intval( $svg->attributes()->width ),
-			intval( $svg->attributes()->height ),
-		];
-	}
-
-	private function generate_svg_metadata( $file_name, $file_url = null ): array {
-        $dimensions = $this->get_svg_dimensions( $file_url );
-        $svg_width  = $dimensions[0];
-        $svg_height = $dimensions[1];
-
-		return [
-			"width"  => $svg_width,
-			"height" => $svg_height,
-			"file"   => $file_name,
-			"sizes"  => [
-				"thumbnail"    => [
-					"width"     => $svg_width,
-					"height"    => $svg_height,
-					"crop"      => false,
-					"file"      => $file_name,
-					"mime-type" => "image/svg+xml",
-				],
-				"medium"       => [
-					"width"     => $svg_width,
-					"height"    => $svg_height,
-					"crop"      => false,
-					"file"      => $file_name,
-					"mime-type" => "image/svg+xml",
-				],
-				"medium_large" => [
-					"width"     => $svg_width,
-					"height"    => $svg_height,
-					"crop"      => false,
-					"file"      => $file_name,
-					"mime-type" => "image/svg+xml",
-				],
-				"large"        => [
-					"width"     => $svg_width,
-					"height"    => $svg_height,
-					"crop"      => false,
-					"file"      => $file_name,
-					"mime-type" => "image/svg+xml",
-				],
-			],
-		];
-	}
-
-    private function get_postid_by_guid( $url ): int {
-	    global $wpdb;
-
-	    $sql = $wpdb->prepare(
-		    "SELECT ID, guid FROM $wpdb->posts WHERE guid = %s",
-		    $url
-	    );
-
-	    $results = $wpdb->get_results( $sql );
-	    $post_id = 0;
-
-	    if ( $results ) {
-		    // Use the first available result, but prefer a case-sensitive match, if exists.
-		    $post_id = reset( $results )->ID;
-
-		    if ( count( $results ) > 1 ) {
-			    foreach ( $results as $result ) {
-				    if ( $url === $result->guid ) {
-					    $post_id = $result->ID;
-					    break;
-				    }
-			    }
-		    }
-	    }
-
-        return $post_id;
-    }
-
-	public function ajax_get_attachment_by_url() {
-		if ( ! isset( $_REQUEST["url"] ) ) {
-			wp_send_json_error();
-		}
-
-		$url = $_REQUEST["url"];
-		$id  = attachment_url_to_postid( $url );
-
-		if ( $id === 0 ) {
-			//Manually search posts for post guid matching the url
-            $id = $this->get_postid_by_guid( $url );
-		}
-
-		if ( $id === 0 ) {
-            //Create new external attachment to be used in media gallery
-			$file_details = $this->analyze_file_from_url( $url );
-			$id           = $this->create_attachment_image_from_url( $url, $file_details );
-			if ( $file_details["ext"] === "svg" ) {
-				wp_update_attachment_metadata( $id, $this->generate_svg_metadata( $file_details["name"], $url ) );
-			} else {
-				wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $url ) );
-			}
-		}
-
-		$_REQUEST["id"] = $id;
-
-		wp_ajax_get_attachment();
-		die();
 	}
 
 	public function declare_hpos_compatibility() {

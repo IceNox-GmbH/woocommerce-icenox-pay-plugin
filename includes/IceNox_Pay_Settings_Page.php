@@ -15,42 +15,6 @@ if ( ! defined( "ABSPATH" ) ) {
 class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 
 	public $name;
-	public $defaultGateways = [
-		"affirm"            => "Affirm",
-		"afterpay-clearpay" => "Afterpay / Clearpay",
-		"alipay"            => "Alipay",
-		"amazon-pay"        => "Amazon Pay",
-		"apple-pay"         => "Apple Pay",
-		"bancomat-pay"      => "BANCOMAT Pay",
-		"bancontact"        => "Bancontact",
-		"banktransfer"      => "SEPA Banktransfer",
-		"belfius"           => "Belfius",
-		"blik"              => "BLIK",
-		"bunq"              => "bunq",
-		"cards"             => "Credit Card or Debit Card",
-		"cashapp"           => "Cash App Pay",
-		"direct-debit"      => "Direct Debit",
-		"eps"               => "EPS",
-		"google-pay"        => "Google Pay",
-		"ideal"             => "iDEAL",
-		"kbc"               => "KBC Payment Button",
-		"klarna"            => "Klarna",
-		"link"              => "Link",
-		"mobilepay"         => "MobilePay",
-		"multibanco"        => "Multibanco",
-		"mybank"            => "MyBank",
-		"p24"               => "Przelewy24",
-		"paypal"            => "PayPal",
-		"paysafecard"       => "paysafecard",
-		"revolut"           => "Revolut",
-		"revolut-pay"       => "Revolut Pay",
-		"sofort"            => "Sofort",
-		"swish"             => "Swish",
-		"tink"              => "Tink",
-		"trustly"           => "Trustly",
-		"twint"             => "TWINT",
-		"wechat"            => "WeChat Pay"
-	];
 
 	public function __construct() {
 		$this->id    = "icenox_pay";
