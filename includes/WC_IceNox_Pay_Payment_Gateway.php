@@ -66,6 +66,10 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function init_form_fields() {
+		wp_enqueue_media();
+		wp_enqueue_script( "wp-media-picker-js");
+		wp_enqueue_style( "wp-media-picker-css");
+
 		$this->form_fields = [
 			"enabled"                              => [
 				"title"   => __( "Enable/Disable", "woocommerce-icenox-pay-plugin" ),
@@ -82,8 +86,9 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 			"gateway_icon"                         => [
 				"title"       => __( "Method Logo", "woocommerce-icenox-pay-plugin" ),
 				"type"        => "text",
-				"description" => __( "URL for the payment method that will show to the user on the checkout page.", "woocommerce-icenox-pay-plugin" ),
-				"default"     => __( "https://", "woocommerce-icenox-pay-plugin" ),
+				"description" => __( "Icon for the payment method to be displayed on the checkout page.", "woocommerce-icenox-pay-plugin" ),
+				"default"     => "",
+				"class"       => "icenox-pay-method-icon-url",
 			],
 			"description"                          => [
 				"title"       => __( "Method Description", "woocommerce-icenox-pay-plugin" ),

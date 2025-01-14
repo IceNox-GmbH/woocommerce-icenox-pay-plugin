@@ -45,6 +45,14 @@ class IceNox_Pay_Default_Methods {
 					"stripe" => "Stripe"
 				],
 			],
+			"alma"              => [
+				"id"        => "alma",
+				"name"      => "Alma",
+				"processor" => [
+					"stripe" => "Stripe",
+					"mollie" => "Mollie",
+				],
+			],
 			"amazon-pay"        => [
 				"id"        => "amazon-pay",
 				"name"      => "Amazon Pay",
@@ -81,12 +89,13 @@ class IceNox_Pay_Default_Methods {
 					"sumup"  => "SumUp",
 				],
 			],
-			"bank-transfer"      => [
+			"bank-transfer"     => [
 				"id"        => "bank-transfer",
 				"name"      => __( "SEPA Banktransfer", "woocommerce-icenox-pay-plugin" ),
 				"processor" => [
 					"stripe" => "Stripe",
 					"mollie" => "Mollie",
+					"pay"    => "PAY.NL",
 				]
 			],
 			"belfius"           => [
@@ -133,6 +142,13 @@ class IceNox_Pay_Default_Methods {
 					"stripe" => "Stripe",
 				],
 			],
+			"crypto"            => [
+				"id"        => "crypto",
+				"name"      => __( "Cryptocurrencies", "woocommerce-icenox-pay-plugin" ),
+				"processor" => [
+					"hp" => "Hoodpay",
+				],
+			],
 			"direct-debit"      => [
 				"id"        => "direct-debit",
 				"name"      => __( "Direct Debit", "woocommerce-icenox-pay-plugin" ),
@@ -151,12 +167,20 @@ class IceNox_Pay_Default_Methods {
 					"sumup"  => "SumUp",
 				],
 			],
+			"fpx"               => [
+				"id"        => "fpx",
+				"name"      => "FPX",
+				"processor" => [
+					"stripe" => "Stripe",
+				],
+			],
 			"google-pay"        => [
 				"id"        => "google-pay",
 				"name"      => "Google Pay",
 				"processor" => [
 					"stripe" => "Stripe",
 					"ct"     => "Computop",
+					"pay"    => "PAY.NL",
 					"sumup"  => "SumUp",
 				],
 			],
@@ -204,6 +228,7 @@ class IceNox_Pay_Default_Methods {
 				"processor" => [
 					"stripe" => "Stripe",
 					"pay"    => "PAY.NL",
+					"e"      => "e-Payouts",
 				],
 			],
 			"mybank"            => [
@@ -212,7 +237,6 @@ class IceNox_Pay_Default_Methods {
 				"processor" => [
 					"mollie" => "Mollie",
 					"pay"    => "PAY.NL",
-					"sumup"  => "SumUp",
 				],
 			],
 			"p24"               => [
@@ -231,6 +255,11 @@ class IceNox_Pay_Default_Methods {
 				"processor" => [
 					"paypal" => "PayPal",
 					"s"      => "Stripe",
+					"e"      => "e-Payouts",
+					"e-es"   => "e-Payouts (" . __( "Spain", "woocommerce-icenox-pay-plugin" ) . ")",
+					"e-gr"   => "e-Payouts (" . __( "Greece", "woocommerce-icenox-pay-plugin" ) . ")",
+					"e-pt"   => "e-Payouts (" . __( "Portugal", "woocommerce-icenox-pay-plugin" ) . ")",
+					"e-us"   => "e-Payouts (" . __( "United States", "woocommerce-icenox-pay-plugin" ) . ")",
 				],
 			],
 			"paysafecard"       => [
@@ -241,6 +270,14 @@ class IceNox_Pay_Default_Methods {
 					"mollie" => "Mollie",
 					"m"      => "Mollie PSC",
 					"pay"    => "PAY.NL",
+				],
+			],
+			"pay-by-bank"       => [
+				"id"        => "pay-by-bank",
+				"name"      => __( "Pay by Bank", "woocommerce-icenox-pay-plugin" ),
+				"processor" => [
+					"stripe" => "stripe",
+					"mollie" => "Mollie",
 				],
 			],
 			"revolut"           => [
@@ -304,7 +341,14 @@ class IceNox_Pay_Default_Methods {
 					"stripe" => "Stripe",
 					"pay"    => "PAY.NL",
 				],
-			]
+			],
+			"zip"               => [
+				"id"        => "zip",
+				"name"      => "Zip",
+				"processor" => [
+					"stripe" => "Stripe",
+				],
+			],
 		];
 	}
 }
