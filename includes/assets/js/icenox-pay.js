@@ -6,6 +6,6 @@ jQuery(($) => {
         query: {
             type: "image"
         },
-        multiple: false,
+        multiple: false
     });
 });
