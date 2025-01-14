@@ -451,7 +451,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 									case "actions" :
 										echo '<td style="width:200px;">
                                             <a class="button tips" data-tip="' . __( 'Configure', 'woocommerce-icenox-pay-plugin' ) . '" href="' . admin_url( "admin.php?page=wc-settings&tab=checkout&section=" . strtolower( $class_name ) ) . '">' . __( "Configure", "woocommerce-icenox-pay-plugin" ) . '</a>
-                                            <a style="color:red;" class="button" onclick="if(!window.confirm(\'Are you sure that you want to delete this gateway?\')) return false;" href="' . admin_url( "admin.php?page=wc-settings&tab=icenox_pay&action=delete&gateway=" . $gateway_key . "&noheader=true" ) . '">' . __( "Delete", "woocommerce-icenox-pay-plugin" ) . '</a>
+                                            <a style="color:red;" class="button" onclick="if(!window.confirm(\'' . __("Are you sure that you want to delete this method?", "woocommerce-icenox-pay-plugin") . '\')) return false;" href="' . admin_url( "admin.php?page=wc-settings&tab=icenox_pay&action=delete&gateway=" . $gateway_key . "&noheader=true" ) . '">' . __( "Delete", "woocommerce-icenox-pay-plugin" ) . '</a>
                                         </td>';
 										break;
 									case "processor" :
