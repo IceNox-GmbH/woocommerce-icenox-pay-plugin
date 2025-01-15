@@ -1,11 +1,10 @@
 <?php
 class WC_IceNox_Pay_Custom_Method extends WC_IceNox_Pay_Payment_Gateway {
 	public function __construct($id, $name) {
-		parent::__construct(true, false);
+		parent::__construct();
 
 		$this->id = $id;
 		$this->method_title = $name;
-		$this->title           = __( "IceNox Pay Method", "woocommerce-icenox-pay-plugin" );
 		$this->has_fields      = false;
 
 		$this->init_form_fields();

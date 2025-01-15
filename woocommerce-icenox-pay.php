@@ -57,7 +57,7 @@ class IceNox_Pay {
 
 		add_filter( "plugin_action_links_" . plugin_basename( __FILE__ ), [ $this, "plugin_settings_link" ] );
 		add_filter( "woocommerce_payment_gateways", [ $this, "add_woocommerce_payment_gateways" ] );
-		add_filter( "woocommerce_get_settings_pages", [ $this, "add_woocommerce_settings_page" ]);
+		add_filter( "woocommerce_get_settings_pages", [ $this, "add_woocommerce_settings_page" ] );
 
 		add_action( "admin_notices", [ $this, "display_warning_notices" ] );
 		add_action( "admin_notices", [ $this, "payment_method_deprecation_warning" ] );
@@ -76,16 +76,17 @@ class IceNox_Pay {
 	}
 
 	private function load_dependencies() {
-		require_once __DIR__ . "/includes/plugin-update-checker/plugin-update-checker.php";
 		require_once __DIR__ . "/includes/IceNox_Pay_Method_Icon_Handler.php";
+		require_once __DIR__ . "/includes/plugin-update-checker/plugin-update-checker.php";
 	}
 
-    public function add_woocommerce_settings_page( $pages ) {
-	    require_once __DIR__ . "/includes/IceNox_Pay_Settings_Page.php";
+	public function add_woocommerce_settings_page( $pages ) {
+		require_once __DIR__ . "/includes/IceNox_Pay_Settings_Page.php";
 
-        $pages[] = new IceNox_Pay_Settings_Page();
-        return $pages;
-    }
+		$pages[] = new IceNox_Pay_Settings_Page();
+
+		return $pages;
+	}
 
 	public function include_payment_gateway_classes() {
 		require_once __DIR__ . "/includes/IceNox_Pay_Default_Methods.php";
@@ -163,22 +164,21 @@ class IceNox_Pay {
 				"underscore"
 			], "0.7.0", true );
 			wp_enqueue_script( "icenox-pay", plugins_url( "includes/assets/js/icenox-pay.js", __FILE__ ), [ "jquery" ], $this::$plugin_version, true );
-            wp_localize_script( "icenox-pay", "IceNoxPayMethods", [
-                    "strings" => [
-                        "label_add_icon" => __( "Add Icon", "woocommerce-icenox-pay-plugin" ),
-                        "label_replace_icon" => __( "Replace Icon", "woocommerce-icenox-pay-plugin" ),
-                        "label_remove_icon" => __( "Remove Icon", "woocommerce-icenox-pay-plugin" ),
-                        "label_add_icon_modal_title" => __( "Select Icon", "woocommerce-icenox-pay-plugin" ),
-                        "label_add_icon_modal_button" => __( "Select Icon", "woocommerce-icenox-pay-plugin" ),
-                    ]
-            ]);
+			wp_localize_script( "icenox-pay", "IceNoxPayMethods", [
+				"strings" => [
+					"label_add_icon"              => __( "Add Icon", "woocommerce-icenox-pay-plugin" ),
+					"label_replace_icon"          => __( "Replace Icon", "woocommerce-icenox-pay-plugin" ),
+					"label_remove_icon"           => __( "Remove Icon", "woocommerce-icenox-pay-plugin" ),
+					"label_add_icon_modal_title"  => __( "Select Icon", "woocommerce-icenox-pay-plugin" ),
+					"label_add_icon_modal_button" => __( "Select Icon", "woocommerce-icenox-pay-plugin" ),
+				]
+			] );
 		}
 	}
 
 	public function admin_css() {
 		wp_register_style( "wp-media-picker-css", plugins_url( "includes/assets/css/wp-media-picker.min.css", __FILE__ ), [], "0.7.0" );
 		wp_enqueue_style( "icenox-pay-admin-css", plugins_url( "includes/assets/css/admin.css", __FILE__ ), [], $this::$plugin_version );
-
 	}
 
 	public function checkout_css() {

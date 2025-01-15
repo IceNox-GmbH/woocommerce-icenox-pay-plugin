@@ -17,46 +17,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	protected $icenox_pay_notification;
 
 
-	public function __construct( $child = false, $initSettings = true ) {
-		$this->id              = "icenox_pay";
-		$this->api_url_to_ping = "https://imp.icenox.com/api/payment/create/";
-		$this->method_title    = __( "IceNox Pay Payment", "woocommerce-icenox-pay-plugin" );
-		$this->title           = __( "IceNox Pay", "woocommerce-icenox-pay-plugin" );
-		$this->has_fields      = false;
-
-		if ( $initSettings === true ) {
-			$this->init_form_fields();
-			$this->init_settings();
-		}
-
-		$this->enabled      = $this->get_option( "enabled" );
-		$this->title        = $this->get_option( "title" );
-		$this->gateway_icon = $this->get_option( "gateway_icon" );
-		$this->debug_mode   = $this->get_option( "debug_mode" );
-
-
-		$this->description = $this->get_option( "description" );
-
-		$this->icenox_pay_api_key                   = $this->get_option( "icenox_pay_api_key" );
-		$this->icenox_pay_payment_method_identifier = $this->get_option( "icenox_pay_payment_method_identifier" );
-
-		$this->icenox_pay_express_redirect = $this->get_option( "icenox_pay_express_redirect" );
-		$this->icenox_pay_notification     = $this->get_option( "icenox_pay_notification" );
-
-		// Debug mode, only administrators can use the gateway.
-		if ( $this->debug_mode === "yes" ) {
-			if ( ! current_user_can( "administrator" ) ) {
-				$this->enabled = "no";
-			}
-		}
-
-		if ( $child === false ) {
-			add_action( "woocommerce_update_options_payment_gateways_" . $this->id, [
-				$this,
-				"process_admin_options"
-			] );
-		}
-
+	public function __construct() {
 		add_action( "woocommerce_api_" . strtolower( get_class( $this ) ), [
 			$this,
 			"process_returned_response"
@@ -65,11 +26,14 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 		$this->defaultGateways = IceNox_Pay_Default_Methods::get_all_methods();
 	}
 
-	public function init_form_fields() {
+	protected function load_method_icon_picker() {
 		wp_enqueue_media();
 		wp_enqueue_script( "wp-media-picker-js");
 		wp_enqueue_style( "wp-media-picker-css");
+	}
 
+	public function init_form_fields() {
+		$this->load_method_icon_picker();
 		$this->form_fields = [
 			"enabled"                              => [
 				"title"   => __( "Enable/Disable", "woocommerce-icenox-pay-plugin" ),
@@ -139,14 +103,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 		];
 	}
 
-
-	/**
-	 * Admin Panel Options
-	 * - Options for bits like "title" and availability on a country-by-country basis
-	 *
-	 * @return void
-	 * @since 1.0.0
-	 */
 	public function admin_options() {
 		include_once __DIR__ . "/views/admin_options_html.php";
 	}

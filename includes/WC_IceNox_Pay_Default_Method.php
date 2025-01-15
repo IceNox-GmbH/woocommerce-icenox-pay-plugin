@@ -6,7 +6,7 @@ class WC_IceNox_Pay_Default_Method extends WC_IceNox_Pay_Payment_Gateway {
 	private $method_config;
 
 	public function __construct( $method_id ) {
-		parent::__construct( true, false );
+		parent::__construct();
 
 		$this->method_id     = $method_id;
 		$this->method_config = $this->defaultGateways[ $this->method_id ];
@@ -16,7 +16,6 @@ class WC_IceNox_Pay_Default_Method extends WC_IceNox_Pay_Payment_Gateway {
 
 		$this->id           = "icenox_pay_" . str_replace("-", "_", $this->method_id);
 		$this->method_title = isset($this->method_config["name"]) ? __($this->method_config["name"], "woocommerce-icenox-pay-plugin") : "";
-		$this->title        = __( "IceNox Pay Method", "woocommerce-icenox-pay-plugin" );
 		$this->has_fields   = false;
 
 		$this->init_form_fields();
@@ -51,10 +50,7 @@ class WC_IceNox_Pay_Default_Method extends WC_IceNox_Pay_Payment_Gateway {
 	}
 
 	public function init_form_fields() {
-		wp_enqueue_media();
-		wp_enqueue_script( "wp-media-picker-js");
-		wp_enqueue_style( "wp-media-picker-css");
-
+		$this->load_method_icon_picker();
 		$this->form_fields = [
 			"enabled"                     => [
 				"title"   => __( "Enable/Disable", "woocommerce-icenox-pay-plugin" ),

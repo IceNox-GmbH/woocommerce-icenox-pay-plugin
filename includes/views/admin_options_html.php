@@ -1,4 +1,10 @@
-<h3><?php echo __( "Payment Method Settings", "woocommerce-icenox-pay-plugin" ) . " - " . $this->method_title; ?></h3>
+<h3>
+<?php
+echo __( "Payment Method Settings", "woocommerce-icenox-pay-plugin" ) . " - " . esc_html( $this->get_method_title() );
+wc_back_link( __( 'Return to payments', 'woocommerce' ), admin_url( 'admin.php?page=wc-settings&tab=checkout' ) );
+?>
+</h3>
+
 <div id="poststuff">
     <div id="post-body" class="metabox-holder columns-2">
         <div id="post-body-content">
