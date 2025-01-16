@@ -7,7 +7,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	protected $gateway_icon;
 	protected $api_data = [];
 	protected $debug_mode;
-	protected $api_url_to_ping;
+	protected $icenox_pay_api_url;
 
 	protected $icenox_pay_api_key;
 	protected $icenox_pay_method_processor;
@@ -18,6 +18,8 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 
 
 	public function __construct() {
+		$this->icenox_pay_api_url = "https://imp.icenox.com/api/payment/create/";
+
 		add_action( "woocommerce_api_" . strtolower( get_class( $this ) ), [
 			$this,
 			"process_returned_response"
@@ -28,8 +30,8 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 
 	protected function load_method_icon_picker() {
 		wp_enqueue_media();
-		wp_enqueue_script( "wp-media-picker-js");
-		wp_enqueue_style( "wp-media-picker-css");
+		wp_enqueue_script( "wp-media-picker-js" );
+		wp_enqueue_style( "wp-media-picker-css" );
 	}
 
 	public function init_form_fields() {
@@ -143,14 +145,19 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 			"Authorization" => "Bearer " . $this->icenox_pay_api_key,
 			"User-Agent"    => "IceNoxPay/" . IceNox_Pay::$plugin_version . " WooCommerce (WordPress)"
 		];
-		$response         = wp_remote_post( $this->api_url_to_ping, array(
+		$response         = wp_remote_post( $this->icenox_pay_api_url, [
 			"headers" => $headers,
 			"body"    => json_encode( $request_body ),
 			"method"  => "POST",
-		) );
+		] );
+		if(is_wp_error( $response )) {
+			return [
+				"success" => false
+			];
+		}
 		$decoded_response = json_decode( $response["body"] );
 
-		if ( $decoded_response->success ) {
+		if ( $decoded_response && $decoded_response->success ) {
 			return [
 				"success"   => true,
 				"paymentId" => $decoded_response->paymentid,
