@@ -24,7 +24,7 @@ class IceNox_Pay {
 	 * The single instance of the class.
 	 */
 	protected static $_instance = null;
-	public static $plugin_version = "1.12.0";
+	public static $plugin_version = "1.12.1";
 
 	/**
 	 * @return IceNox_Pay

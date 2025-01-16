@@ -1,11 +1,20 @@
 <?php
+
 class WC_IceNox_Pay_Custom_Method extends WC_IceNox_Pay_Payment_Gateway {
-	public function __construct($id, $name) {
+	public function __construct( $id, $name ) {
 		parent::__construct();
 
-		$this->id = $id;
+		$this->id           = $id;
 		$this->method_title = $name;
-		$this->has_fields      = false;
+		$this->has_fields   = false;
+
+		//Load previous config if no new config exists
+		if ( get_option( "woocommerce_" . $id . "_settings", false ) === false ) {
+			$previous_config = get_option( "woocommerce_" . str_replace( "icenox_pay_custom_", "icenox_pay_", $id ) . "_settings", false );
+			if( $previous_config !== false ) {
+				update_option( "woocommerce_" . $id . "_settings", $previous_config );
+			}
+		}
 
 		$this->init_form_fields();
 		$this->init_settings();
