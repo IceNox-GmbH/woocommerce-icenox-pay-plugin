@@ -68,7 +68,7 @@ class WC_IceNox_Pay_Default_Method extends WC_IceNox_Pay_Payment_Gateway {
 				"title"       => __( "Method Icon", "woocommerce-icenox-pay-plugin" ),
 				"type"        => "text",
 				"description" => __( "Logo / Icon for the payment method to be displayed on the checkout page.", "woocommerce-icenox-pay-plugin" ),
-				"default"     => home_url() . "/wp-content/plugins/woocommerce-icenox-pay-plugin/includes/assets/images/paymentmethods/" . $this->method_id . ".svg",
+				"default"     => WP_PLUGIN_URL . "/woocommerce-icenox-pay-plugin/includes/assets/images/paymentmethods/" . $this->method_id . ".svg",
 				"class"       => "icenox-pay-method-icon-url",
 			],
 			"description"                 => [

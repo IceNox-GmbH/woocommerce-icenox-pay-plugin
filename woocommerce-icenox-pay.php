@@ -3,7 +3,7 @@
  * Plugin Name:             WooCommerce IceNox Pay
  * Plugin URI:              https://pay.icenox.com/
  * Description:             Connect your WooCommerce Store with IceNox Pay. The payment system for your online shop.
- * Version:                 1.13.0
+ * Version:                 1.13.1
  * Requires at least:       4.0
  * Tested up to:            6.7
  * Requires PHP:            7.3
@@ -24,7 +24,7 @@ class IceNox_Pay {
 	 * The single instance of the class.
 	 */
 	protected static $_instance = null;
-	public static $plugin_version = "1.13.0";
+	public static $plugin_version = "1.13.1";
 
 	/**
 	 * @return IceNox_Pay
@@ -76,12 +76,12 @@ class IceNox_Pay {
 	}
 
 	private function load_dependencies() {
-		require_once __DIR__ . "/includes/IceNox_Pay_Method_Icon_Handler.php";
+		require_once __DIR__ . "/includes/class-icenox-pay-method-icon-handler.php";
 		require_once __DIR__ . "/includes/plugin-update-checker/plugin-update-checker.php";
 	}
 
 	public function add_woocommerce_settings_page( $pages ) {
-		require_once __DIR__ . "/includes/IceNox_Pay_Settings_Page.php";
+		require_once __DIR__ . "/includes/class-icenox-pay-settings-page.php";
 
 		$pages[] = new IceNox_Pay_Settings_Page();
 
@@ -89,10 +89,10 @@ class IceNox_Pay {
 	}
 
 	public function include_payment_gateway_classes() {
-		require_once __DIR__ . "/includes/IceNox_Pay_Default_Methods.php";
-		require_once __DIR__ . "/includes/WC_IceNox_Pay_Payment_Gateway.php";
-		require_once __DIR__ . "/includes/WC_IceNox_Pay_Default_Method.php";
-		require_once __DIR__ . "/includes/WC_IceNox_Pay_Custom_Method.php";
+		require_once __DIR__ . "/includes/class-icenox-pay-default-methods.php";
+		require_once __DIR__ . "/includes/class-wc-icenox-pay-payment-gateway.php";
+		require_once __DIR__ . "/includes/class-wc-icenox-pay-default-method.php";
+		require_once __DIR__ . "/includes/class-wc-icenox-pay-custom-method.php";
 	}
 
 	private function handle_plugin_updates() {
