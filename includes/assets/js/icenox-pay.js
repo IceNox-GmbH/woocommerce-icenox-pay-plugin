@@ -1,5 +1,5 @@
 jQuery(($) => {
-    $('#wc_gateway_name').val('');
+    $("#wc_gateway_name").val("");
     $(".icenox_pay_multiselect").selectWoo();
     $(".icenox-pay-method-icon-url").wpMediaPicker({
         store: "url",
