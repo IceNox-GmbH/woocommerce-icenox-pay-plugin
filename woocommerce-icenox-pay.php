@@ -76,12 +76,12 @@ class IceNox_Pay {
 	}
 
 	private function load_dependencies() {
-		require_once __DIR__ . "/includes/class-icenox-pay-method-icon-handler.php";
+		require_once __DIR__ . "/includes/classes/class-icenox-pay-method-icon-handler.php";
 		require_once __DIR__ . "/includes/plugin-update-checker/plugin-update-checker.php";
 	}
 
 	public function add_woocommerce_settings_page( $pages ) {
-		require_once __DIR__ . "/includes/class-icenox-pay-settings-page.php";
+		require_once __DIR__ . "/includes/classes/class-icenox-pay-settings-page.php";
 
 		$pages[] = new IceNox_Pay_Settings_Page();
 
@@ -89,10 +89,10 @@ class IceNox_Pay {
 	}
 
 	public function include_payment_gateway_classes() {
-		require_once __DIR__ . "/includes/class-icenox-pay-default-methods.php";
-		require_once __DIR__ . "/includes/class-wc-icenox-pay-payment-gateway.php";
-		require_once __DIR__ . "/includes/class-wc-icenox-pay-default-method.php";
-		require_once __DIR__ . "/includes/class-wc-icenox-pay-custom-method.php";
+		require_once __DIR__ . "/includes/classes/class-icenox-pay-default-methods.php";
+		require_once __DIR__ . "/includes/classes/class-wc-icenox-pay-payment-gateway.php";
+		require_once __DIR__ . "/includes/classes/class-wc-icenox-pay-default-method.php";
+		require_once __DIR__ . "/includes/classes/class-wc-icenox-pay-custom-method.php";
 	}
 
 	private function handle_plugin_updates() {
