@@ -106,7 +106,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function admin_options() {
-		include_once __DIR__ . "/views/admin_options_html.php";
+		include_once __DIR__ . "/../views/admin_options_html.php";
 	}
 
 	public function process_payment( $order_id ) {
