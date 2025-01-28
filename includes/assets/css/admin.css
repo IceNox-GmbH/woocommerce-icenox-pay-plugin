@@ -20,6 +20,7 @@
 }
 
 .wp-mediapicker-content img {
-    max-height: 4rem;
+    box-sizing: border-box;
+    height: 4rem;
     padding: .25rem;
 }
