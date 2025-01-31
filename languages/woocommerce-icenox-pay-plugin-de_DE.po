@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce IceNox Pay Plugin\n"
-"POT-Creation-Date: 2025-01-15 00:43+0100\n"
-"PO-Revision-Date: 2025-01-15 00:44+0100\n"
+"POT-Creation-Date: 2025-02-01 00:45+0100\n"
+"PO-Revision-Date: 2025-02-01 00:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -21,55 +21,55 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: includes/IceNox_Pay_Default_Methods.php:94
+#: includes/classes/class-icenox-pay-default-methods.php:94
 msgid "SEPA Banktransfer"
 msgstr "SEPA-Banküberweisung"
 
-#: includes/IceNox_Pay_Default_Methods.php:128
+#: includes/classes/class-icenox-pay-default-methods.php:128
 msgid "Credit card or Debit card"
 msgstr "Kredit- oder Debitkarte"
 
-#: includes/IceNox_Pay_Default_Methods.php:147
+#: includes/classes/class-icenox-pay-default-methods.php:147
 msgid "Cryptocurrencies"
 msgstr "Kryptowährungen"
 
-#: includes/IceNox_Pay_Default_Methods.php:154
+#: includes/classes/class-icenox-pay-default-methods.php:154
 msgid "Direct Debit"
 msgstr "Lastschrift"
 
-#: includes/IceNox_Pay_Default_Methods.php:162
+#: includes/classes/class-icenox-pay-default-methods.php:162
 msgid "EPS"
 msgstr "eps-Überweisung"
 
-#: includes/IceNox_Pay_Default_Methods.php:199
+#: includes/classes/class-icenox-pay-default-methods.php:199
 msgid "KBC Payment Button"
 msgstr "KBC Zahlungsbutton"
 
-#: includes/IceNox_Pay_Default_Methods.php:259
+#: includes/classes/class-icenox-pay-default-methods.php:259
 msgid "Spain"
 msgstr "Spanien"
 
-#: includes/IceNox_Pay_Default_Methods.php:260
+#: includes/classes/class-icenox-pay-default-methods.php:260
 msgid "Greece"
 msgstr "Griechenland"
 
-#: includes/IceNox_Pay_Default_Methods.php:261
+#: includes/classes/class-icenox-pay-default-methods.php:261
 msgid "Portugal"
 msgstr "Portugal"
 
-#: includes/IceNox_Pay_Default_Methods.php:262
+#: includes/classes/class-icenox-pay-default-methods.php:262
 msgid "United States"
 msgstr "USA"
 
-#: includes/IceNox_Pay_Default_Methods.php:277
+#: includes/classes/class-icenox-pay-default-methods.php:277
 msgid "Pay by Bank"
 msgstr "Online-Banking (Pay by Bank)"
 
-#: includes/IceNox_Pay_Default_Methods.php:301
+#: includes/classes/class-icenox-pay-default-methods.php:301
 msgid "Sofort"
 msgstr "Sofortüberweisung"
 
-#: includes/IceNox_Pay_Settings_Page.php:38
+#: includes/classes/class-icenox-pay-settings-page.php:38
 msgid ""
 "The entered custom method name already exists by another method. Please use "
 "a different one!"
@@ -77,7 +77,7 @@ msgstr ""
 "Der eingegebene Name der benutzerdefinierten Methode wird bereits von einer "
 "anderen Methode verwendet. Bitte verwenden Sie einen anderen Namen!"
 
-#: includes/IceNox_Pay_Settings_Page.php:52
+#: includes/classes/class-icenox-pay-settings-page.php:52
 msgid ""
 "The entered custom method name is being used by a default method.  Please "
 "use a different one!"
@@ -85,22 +85,22 @@ msgstr ""
 "Der eingegebene Name der benutzerdefinierten Methode wird bereits von einer "
 "Standardmethode verwendet.  Bitte verwenden Sie einen anderen Namen!"
 
-#: includes/IceNox_Pay_Settings_Page.php:71
+#: includes/classes/class-icenox-pay-settings-page.php:71
 msgid "Successfully created a new custom method! Please configure it below."
 msgstr ""
 "Sie haben erfolgreich eine neue benutzerdefinierte Methode erstellt! Bitte "
 "konfigurieren Sie diese unten."
 
-#: includes/IceNox_Pay_Settings_Page.php:207
+#: includes/classes/class-icenox-pay-settings-page.php:207
 msgid "IceNox Pay Settings"
 msgstr "IceNox Pay Einstellungen"
 
-#: includes/IceNox_Pay_Settings_Page.php:212
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:113
+#: includes/classes/class-icenox-pay-settings-page.php:212
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:74
 msgid "API Key"
 msgstr "API-Schlüssel"
 
-#: includes/IceNox_Pay_Settings_Page.php:213
+#: includes/classes/class-icenox-pay-settings-page.php:213
 msgid ""
 "Please enter your IceNox Pay API Key. The API Key can be found in the "
 "Merchant Dashboard."
@@ -108,246 +108,189 @@ msgstr ""
 "Bitte geben Sie Ihren IceNox Pay API Key ein. Den API-Schlüssel finden Sie "
 "im Händler-Dashboard."
 
-#: includes/IceNox_Pay_Settings_Page.php:221
+#: includes/classes/class-icenox-pay-settings-page.php:221
 msgid "Merchant ID"
 msgstr "Händler-ID"
 
-#: includes/IceNox_Pay_Settings_Page.php:230
+#: includes/classes/class-icenox-pay-settings-page.php:230
 msgid "Merchant Name"
 msgstr "Händlername"
 
-#: includes/IceNox_Pay_Settings_Page.php:239
+#: includes/classes/class-icenox-pay-settings-page.php:239
 msgid "Advanced Mode"
 msgstr "Erweiterter Modus"
 
-#: includes/IceNox_Pay_Settings_Page.php:250
+#: includes/classes/class-icenox-pay-settings-page.php:250
 msgid "Add or Remove Payment Methods"
 msgstr "Zahlungsmethoden hinzufügen oder entfernen"
 
-#: includes/IceNox_Pay_Settings_Page.php:256
+#: includes/classes/class-icenox-pay-settings-page.php:256
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/IceNox_Pay_Settings_Page.php:257
+#: includes/classes/class-icenox-pay-settings-page.php:257
 msgid "Select which IceNox Pay Methods you would like to use."
 msgstr "Wählen Sie aus, welche IceNox-Zahlungsmethoden Sie verwenden möchten."
 
-#: includes/IceNox_Pay_Settings_Page.php:264
-#: includes/IceNox_Pay_Settings_Page.php:459
+#: includes/classes/class-icenox-pay-settings-page.php:264
+#: includes/classes/class-icenox-pay-settings-page.php:459
 msgid "Custom Method"
 msgstr "Benutzerdefinierte Methode"
 
-#: includes/IceNox_Pay_Settings_Page.php:265
+#: includes/classes/class-icenox-pay-settings-page.php:265
 msgid "Enter the name of the payment method then click on Save Changes."
 msgstr ""
 "Geben Sie den Namen der Zahlungsmethode ein und klicken dann auf Änderungen "
 "speichern."
 
-#: includes/IceNox_Pay_Settings_Page.php:281
+#: includes/classes/class-icenox-pay-settings-page.php:281
 msgid "Available Payment Methods"
 msgstr "Verfügbare Zahlungsmethoden"
 
-#: includes/IceNox_Pay_Settings_Page.php:317
+#: includes/classes/class-icenox-pay-settings-page.php:317
+#: includes/classes/class-wc-icenox-pay-default-method.php:72
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:57
 msgid "Icon"
 msgstr "Icon"
 
-#: includes/IceNox_Pay_Settings_Page.php:318
+#: includes/classes/class-icenox-pay-settings-page.php:318
 msgid "Payment Method"
 msgstr "Zahlungsart"
 
-#: includes/IceNox_Pay_Settings_Page.php:319
+#: includes/classes/class-icenox-pay-settings-page.php:319
 msgid "Processor"
 msgstr "Prozessor"
 
-#: includes/IceNox_Pay_Settings_Page.php:320
+#: includes/classes/class-icenox-pay-settings-page.php:320
 msgid "Created By"
 msgstr "Erstellt von"
 
-#: includes/IceNox_Pay_Settings_Page.php:321
+#: includes/classes/class-icenox-pay-settings-page.php:321
 msgid "Actions"
 msgstr "Aktionen"
 
-#: includes/IceNox_Pay_Settings_Page.php:383
-#: includes/IceNox_Pay_Settings_Page.php:442
+#: includes/classes/class-icenox-pay-settings-page.php:383
+#: includes/classes/class-icenox-pay-settings-page.php:442
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: includes/IceNox_Pay_Settings_Page.php:383
-#: includes/IceNox_Pay_Settings_Page.php:442
+#: includes/classes/class-icenox-pay-settings-page.php:383
+#: includes/classes/class-icenox-pay-settings-page.php:442
 msgid "Yes"
 msgstr "Ja"
 
-#: includes/IceNox_Pay_Settings_Page.php:385
-#: includes/IceNox_Pay_Settings_Page.php:388
-#: includes/IceNox_Pay_Settings_Page.php:444
-#: includes/IceNox_Pay_Settings_Page.php:447
+#: includes/classes/class-icenox-pay-settings-page.php:385
+#: includes/classes/class-icenox-pay-settings-page.php:388
+#: includes/classes/class-icenox-pay-settings-page.php:444
+#: includes/classes/class-icenox-pay-settings-page.php:447
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: includes/IceNox_Pay_Settings_Page.php:385
-#: includes/IceNox_Pay_Settings_Page.php:388
-#: includes/IceNox_Pay_Settings_Page.php:444
-#: includes/IceNox_Pay_Settings_Page.php:447
+#: includes/classes/class-icenox-pay-settings-page.php:385
+#: includes/classes/class-icenox-pay-settings-page.php:388
+#: includes/classes/class-icenox-pay-settings-page.php:444
+#: includes/classes/class-icenox-pay-settings-page.php:447
 msgid "No"
 msgstr "Nein"
 
-#: includes/IceNox_Pay_Settings_Page.php:394
-#: includes/IceNox_Pay_Settings_Page.php:453
+#: includes/classes/class-icenox-pay-settings-page.php:394
+#: includes/classes/class-icenox-pay-settings-page.php:453
 msgid "Configure"
 msgstr "Konfigurieren"
 
-#: includes/IceNox_Pay_Settings_Page.php:454
+#: includes/classes/class-icenox-pay-settings-page.php:454
 msgid "Are you sure that you want to delete this method?"
 msgstr "Sind Sie sicher, dass Sie diese Methode löschen wollen?"
 
-#: includes/IceNox_Pay_Settings_Page.php:454
+#: includes/classes/class-icenox-pay-settings-page.php:454
 msgid "Delete"
 msgstr "Löschen"
 
-#: includes/WC_IceNox_Pay_Custom_Method.php:8
-#: includes/WC_IceNox_Pay_Default_Method.php:19
-msgid "IceNox Pay Method"
-msgstr "IceNox Pay Zahlungsmethode"
+#: includes/classes/class-wc-icenox-pay-default-method.php:55
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:40
+msgid "Status"
+msgstr "Status"
 
-#: includes/WC_IceNox_Pay_Default_Method.php:60
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:75
-msgid "Enable/Disable"
-msgstr "Aktivieren/Deaktivieren"
-
-#: includes/WC_IceNox_Pay_Default_Method.php:62
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:77
-msgid "Enable Payment Method"
+#: includes/classes/class-wc-icenox-pay-default-method.php:59
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:44
+msgid "Enable Method"
 msgstr "Zahlungsmethode aktivieren"
 
-#: includes/WC_IceNox_Pay_Default_Method.php:66
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:81
-msgid "Method Title"
-msgstr "Name der Methode"
+#: includes/classes/class-wc-icenox-pay-default-method.php:62
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:47
+msgid "Checkout Settings"
+msgstr "Checkout Einstellungen"
 
-#: includes/WC_IceNox_Pay_Default_Method.php:68
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:83
+#: includes/classes/class-wc-icenox-pay-default-method.php:64
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:49
 msgid ""
-"The title of the payment method which will show to the user on the checkout "
-"page."
+"The following settings allow you to customize how the payment method is "
+"displayed to the customer."
 msgstr ""
-"Der Titel der Zahlungsmethode, der auf der Checkout-Seite angezeigt wird."
+"Mit den folgenden Einstellungen können Sie anpassen, wie die Zahlungsmethode "
+"dem Kunden angezeigt wird."
 
-#: includes/WC_IceNox_Pay_Default_Method.php:72
-msgid "Method Icon"
-msgstr "Icon für die Zahlungsmethode"
+#: includes/classes/class-wc-icenox-pay-default-method.php:67
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:52
+msgid "Name"
+msgstr "Name"
 
-#: includes/WC_IceNox_Pay_Default_Method.php:74
-msgid ""
-"Logo / Icon for the payment method to be displayed on the checkout page."
-msgstr "Das Logo / Icon wird auf der Checkout-Seite angezeigt."
+#: includes/classes/class-wc-icenox-pay-default-method.php:78
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:63
+msgid "Description"
+msgstr "Beschreibung"
 
-#: includes/WC_IceNox_Pay_Default_Method.php:79
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:94
-msgid "Method Description"
-msgstr "Methodenbeschreibung"
+#: includes/classes/class-wc-icenox-pay-default-method.php:84
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:69
+msgid "Method Configuration"
+msgstr "Konfiguration der Zahlungsmethode"
 
-#: includes/WC_IceNox_Pay_Default_Method.php:83
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:98
-msgid ""
-"Description for the payment method that will show to the user on the "
-"checkout page."
-msgstr ""
-"Beschreibung für die Zahlungsmethode, die auf der Checkout-Seite angezeigt "
-"wird."
-
-#: includes/WC_IceNox_Pay_Default_Method.php:86
-msgid "Method Settings"
-msgstr "Zahlungsmethoden Einstellungen"
-
-#: includes/WC_IceNox_Pay_Default_Method.php:91
+#: includes/classes/class-wc-icenox-pay-default-method.php:89
 msgid "Payment Processor"
 msgstr "Zahlungsdienstleister"
 
-#: includes/WC_IceNox_Pay_Default_Method.php:93
+#: includes/classes/class-wc-icenox-pay-default-method.php:91
 msgid ""
 "Please select your Payment Service Provider to process this payment method."
 msgstr ""
 "Bitte wählen Sie einen Zahlungsdienstleister, um diese Zahlungsmethode zu "
 "verarbeiten."
 
-#: includes/WC_IceNox_Pay_Default_Method.php:102
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:127
+#: includes/classes/class-wc-icenox-pay-default-method.php:100
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:86
 msgid "Express Redirect"
 msgstr "Express Weiterleitung"
 
-#: includes/WC_IceNox_Pay_Default_Method.php:104
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:129
+#: includes/classes/class-wc-icenox-pay-default-method.php:103
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:89
 msgid ""
-"Redirect immediately to the payment (only available for selected payment "
-"methods)"
+"Skip the IceNox Pay payment page and redirect immediately to the selected "
+"method."
 msgstr ""
-"Direkt zur Zahlung weiterleiten (nur für ausgewählte Zahlungsarten verfügbar)"
+"Die IceNox Pay-Zahlungsseite überspringen und sofort zur ausgewählten "
+"Methode weiterleiten."
 
-#: includes/WC_IceNox_Pay_Default_Method.php:108
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:133
+#: includes/classes/class-wc-icenox-pay-default-method.php:104
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:90
+msgid ""
+"Only available for redirect-based methods not requiring additional "
+"information from the customer."
+msgstr ""
+"Nur verfügbar für umleitungsbasierte Methoden, die keine zusätzlichen "
+"Informationen vom Kunden erfordern."
+
+#: includes/classes/class-wc-icenox-pay-default-method.php:108
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:94
+msgid "Debug Mode"
+msgstr "Debug-Modus"
+
+#: includes/classes/class-wc-icenox-pay-default-method.php:111
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:97
 msgid "Enable Debug Mode"
 msgstr "Debug-Modus aktivieren"
 
-#: includes/WC_IceNox_Pay_Default_Method.php:110
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:135
-msgid "Enable "
-msgstr "Aktivieren "
-
-#: includes/WC_IceNox_Pay_Default_Method.php:112
-msgid ""
-"If debug mode is enabled, the payment gateway will be activated just for the "
-"administrator. You can use the debug mode to make sure that the gateway "
-"works as expected."
-msgstr ""
-"Wenn der Debug-Modus aktiviert ist, wird die Zahlungsmethode nur für "
-"Administrator aktiviert. Sie können den Debug-Modus verwenden, um "
-"sicherzustellen, dass die Zahlungsmethode wie erwartet funktioniert."
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:23
-msgid "IceNox Pay Payment"
-msgstr "Zahlung mit IceNox Pay"
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:24
-msgid "IceNox Pay"
-msgstr "IceNox Pay"
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:87
-msgid "Method Logo"
-msgstr "Logo der Zahlungsmethode"
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:89
-msgid "Icon for the payment method to be displayed on the checkout page."
-msgstr "Das Icon/Logo wird auf der Checkout-Seite angezeigt."
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:102
-msgid "API Request options"
-msgstr "API-Request Optionen"
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:107
-msgid "Auto-Update Payment Status"
-msgstr "Bestellstatus automatisch aktualisieren"
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:109
-msgid ""
-"Enable IceNox Pay to update the WooCommerce order status after successful "
-"payment."
-msgstr ""
-"Aktivieren Sie diese Option, damit IceNox Pay den WooCommerce-Bestellstatus "
-"nach erfolgreicher Zahlung aktualisiert."
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:115
-msgid "API Key for IceNox Pay."
-msgstr "API-Schlüssel für IceNox Pay."
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:120
-msgid "Payment Method Identifier"
-msgstr "Zahlungsmethoden Identifier"
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:122
-msgid "Payment Method Identifier for IceNox Pay."
-msgstr "Zahlungsmethoden Identifier für IceNox Pay."
-
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:137
+#: includes/classes/class-wc-icenox-pay-default-method.php:113
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:99
 msgid ""
 "If debug mode is enabled, the payment gateway will be activated just for the "
 "administrator. You can use the debug mode to make sure that the gateway work "
@@ -357,7 +300,29 @@ msgstr ""
 "Administrator aktiviert. Sie können den Debug-Modus verwenden, um "
 "sicherzustellen, dass die Zahlungsmethode wie erwartet funktioniert."
 
-#: includes/WC_IceNox_Pay_Payment_Gateway.php:170
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:80
+msgid "Payment Method Identifier"
+msgstr "Zahlungsmethoden Identifier"
+
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:108
+msgid "Return to payments"
+msgstr "Zurück zu den Zahlungen"
+
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:120
+msgid "Need Help?"
+msgstr "Brauchen Sie Hilfe?"
+
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:124
+msgid "Contact our Merchant Support, if you need help configuring the plugin."
+msgstr ""
+"Kontaktieren Sie unseren Merchant Support, wenn Sie Hilfe bei der "
+"Konfiguration des Plugins benötigen."
+
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:126
+msgid "Email Us"
+msgstr "E-Mail an uns"
+
+#: includes/classes/class-wc-icenox-pay-payment-gateway.php:155
 msgid ""
 "There was a problem redirecting you to the Payment Gateway. Please try again "
 "or contact our support."
@@ -365,81 +330,76 @@ msgstr ""
 "Bei der Weiterleitung zum Payment Gateway ist ein Problem aufgetreten. Bitte "
 "versuchen Sie es erneut oder kontaktieren Sie unseren Support."
 
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:56
+#: includes/plugin-update-checker/Puc/v5p5/Plugin/Ui.php:56
 msgid "View details"
 msgstr "Details anzeigen"
 
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:79
+#: includes/plugin-update-checker/Puc/v5p5/Plugin/Ui.php:79
 #, php-format
 msgid "More information about %s"
 msgstr "Mehr Informationen über %s"
 
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:130
+#: includes/plugin-update-checker/Puc/v5p5/Plugin/Ui.php:130
 msgid "Check for updates"
 msgstr "Auf Aktualisierungen prüfen"
 
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:217
+#: includes/plugin-update-checker/Puc/v5p5/Plugin/Ui.php:217
 #, php-format
 msgctxt "the plugin title"
 msgid "The %s plugin is up to date."
 msgstr "Das %s Plugin ist aktuell."
 
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:219
+#: includes/plugin-update-checker/Puc/v5p5/Plugin/Ui.php:219
 #, php-format
 msgctxt "the plugin title"
 msgid "A new version of the %s plugin is available."
 msgstr "Eine neue Version des Plugins %s ist verfügbar."
 
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:221
+#: includes/plugin-update-checker/Puc/v5p5/Plugin/Ui.php:221
 #, php-format
 msgctxt "the plugin title"
 msgid "Could not determine if updates are available for %s."
 msgstr "Konnte nicht prüfen, ob Updates für das Plugin %s verfügbar sind."
 
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:227
+#: includes/plugin-update-checker/Puc/v5p5/Plugin/Ui.php:227
 #, php-format
 msgid "Unknown update checker status \"%s\""
 msgstr "Unbekannter Status für Aktualisierungscheck \"%s\""
 
-#: includes/plugin-update-checker/Puc/v5p4/Vcs/PluginUpdateChecker.php:113
+#: includes/plugin-update-checker/Puc/v5p5/Vcs/PluginUpdateChecker.php:113
 msgid "There is no changelog available."
 msgstr "Es steht kein Änderungsprotokoll zur Verfügung."
 
-#: includes/views/admin_options_html.php:1
-msgid "Payment Method Settings"
-msgstr "Zahlungsmethoden Einstellungen"
-
-#: includes/views/admin_options_html.php:12
-msgid "Need Help?"
-msgstr "Brauchen Sie Hilfe?"
-
-#: includes/views/admin_options_html.php:21
-msgid "Contact our Merchant Support, if you need help configuring the plugin."
-msgstr ""
-"Kontaktieren Sie unseren Merchant Support, wenn Sie Hilfe bei der "
-"Konfiguration des Plugins benötigen."
-
-#: includes/views/admin_options_html.php:24
-msgid "Email Us"
-msgstr "E-Mail an uns"
-
-#: woocommerce-icenox-pay.php:168
-msgid "Add Icon"
-msgstr "Icon hinzufügen"
-
-#: woocommerce-icenox-pay.php:169
-msgid "Replace Icon"
-msgstr "Icon ersetzen"
-
-#: woocommerce-icenox-pay.php:170
-msgid "Remove Icon"
-msgstr "Icon entfernen"
-
-#: woocommerce-icenox-pay.php:171 woocommerce-icenox-pay.php:172
+#: woocommerce-icenox-pay.php:169 woocommerce-icenox-pay.php:172
+#: woocommerce-icenox-pay.php:173
 msgid "Select Icon"
 msgstr "Icon auswählen"
 
-#: woocommerce-icenox-pay.php:218
+#: woocommerce-icenox-pay.php:170
+msgid "Replace Icon"
+msgstr "Icon ersetzen"
+
+#: woocommerce-icenox-pay.php:171
+msgid "Remove Icon"
+msgstr "Icon entfernen"
+
+#: woocommerce-icenox-pay.php:174
+msgid "Enter Icon URL"
+msgstr "Icon URL eingeben"
+
+#: woocommerce-icenox-pay.php:175
+msgid "Load URL"
+msgstr "URL laden"
+
+#: woocommerce-icenox-pay.php:176
+msgid "Method enabled"
+msgstr "Zahlungsmethode aktiviert"
+
+#: woocommerce-icenox-pay.php:177
+msgid "Method disabled"
+msgstr "Zahlungsmethode deaktiviert"
+
+#: woocommerce-icenox-pay.php:222
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -466,6 +426,109 @@ msgstr "IceNox GmbH"
 #. Author URI of the plugin/theme
 msgid "https://icenox.com/"
 msgstr "https://icenox.de/"
+
+#~ msgid "Enable/Disable"
+#~ msgstr "Aktivieren/Deaktivieren"
+
+#~ msgid "Enable Payment Method"
+#~ msgstr "Zahlungsmethode aktivieren"
+
+#~ msgid "Method Name"
+#~ msgstr "Name der Methode"
+
+#~ msgid "The payment method name on the checkout page."
+#~ msgstr "Der Name der Zahlungsmethode wird auf der Checkout-Seite angezeigt."
+
+#~ msgid "Method Icon"
+#~ msgstr "Icon für die Zahlungsmethode"
+
+#~ msgid "Payment method icon to display on the checkout page."
+#~ msgstr "Das Icon/Logo wird auf der Checkout-Seite angezeigt."
+
+#~ msgid "Method Description"
+#~ msgstr "Methodenbeschreibung"
+
+#~ msgid "Payment method description on the checkout page."
+#~ msgstr "Die Beschreibung wird auf der Checkout-Seite angezeigt."
+
+#~ msgid "Enable "
+#~ msgstr "Aktivieren "
+
+#~ msgid "IceNox Pay API Key"
+#~ msgstr "IceNox Pay API-Schlüssel"
+
+#~ msgid "Payment Method Identifier for IceNox Pay."
+#~ msgstr "Zahlungsmethoden Identifier für IceNox Pay."
+
+#~ msgid "API Key for IceNox Pay."
+#~ msgstr "API-Schlüssel für IceNox Pay."
+
+#~ msgid "Payment Method Settings"
+#~ msgstr "Zahlungsmethoden Einstellungen"
+
+#~ msgid "Auto-Update Payment Status"
+#~ msgstr "Bestellstatus automatisch aktualisieren"
+
+#~ msgid ""
+#~ "Enable IceNox Pay to update the WooCommerce order status after successful "
+#~ "payment."
+#~ msgstr ""
+#~ "Aktivieren Sie diese Option, damit IceNox Pay den WooCommerce-"
+#~ "Bestellstatus nach erfolgreicher Zahlung aktualisiert."
+
+#, fuzzy
+#~| msgid "Select Icon"
+#~ msgid "Select Icon "
+#~ msgstr "Icon auswählen"
+
+#~ msgid "API Request options"
+#~ msgstr "API-Request Optionen"
+
+#~ msgid "Add Icon"
+#~ msgstr "Icon hinzufügen"
+
+#~ msgid ""
+#~ "The title of the payment method which will show to the user on the "
+#~ "checkout page."
+#~ msgstr ""
+#~ "Der Titel der Zahlungsmethode, der auf der Checkout-Seite angezeigt wird."
+
+#~ msgid ""
+#~ "Description for the payment method that will show to the user on the "
+#~ "checkout page."
+#~ msgstr ""
+#~ "Beschreibung für die Zahlungsmethode, die auf der Checkout-Seite "
+#~ "angezeigt wird."
+
+#~ msgid "Method Logo"
+#~ msgstr "Logo der Zahlungsmethode"
+
+#~ msgid ""
+#~ "Redirect immediately to the payment (only available for selected payment "
+#~ "methods)"
+#~ msgstr ""
+#~ "Direkt zur Zahlung weiterleiten (nur für ausgewählte Zahlungsarten "
+#~ "verfügbar)"
+
+#~ msgid ""
+#~ "If debug mode is enabled, the payment gateway will be activated just for "
+#~ "the administrator. You can use the debug mode to make sure that the "
+#~ "gateway works as expected."
+#~ msgstr ""
+#~ "Wenn der Debug-Modus aktiviert ist, wird die Zahlungsmethode nur für "
+#~ "Administrator aktiviert. Sie können den Debug-Modus verwenden, um "
+#~ "sicherzustellen, dass die Zahlungsmethode wie erwartet funktioniert."
+
+#, fuzzy
+#~| msgid "Settings"
+#~ msgid "Display Settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "IceNox Pay Method"
+#~ msgstr "IceNox Pay Zahlungsmethode"
+
+#~ msgid "IceNox Pay"
+#~ msgstr "IceNox Pay"
 
 #~ msgid ""
 #~ "URL for the payment method that will show to the user on the checkout "

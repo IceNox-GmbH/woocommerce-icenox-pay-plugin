@@ -166,11 +166,15 @@ class IceNox_Pay {
 			wp_enqueue_script( "icenox-pay", plugins_url( "includes/assets/js/icenox-pay.js", __FILE__ ), [ "jquery" ], $this::$plugin_version, true );
 			wp_localize_script( "icenox-pay", "IceNoxPayMethods", [
 				"strings" => [
-					"label_add_icon"              => __( "Add Icon", "woocommerce-icenox-pay-plugin" ),
+					"label_add_icon"              => __( "Select Icon", "woocommerce-icenox-pay-plugin" ),
 					"label_replace_icon"          => __( "Replace Icon", "woocommerce-icenox-pay-plugin" ),
 					"label_remove_icon"           => __( "Remove Icon", "woocommerce-icenox-pay-plugin" ),
 					"label_add_icon_modal_title"  => __( "Select Icon", "woocommerce-icenox-pay-plugin" ),
 					"label_add_icon_modal_button" => __( "Select Icon", "woocommerce-icenox-pay-plugin" ),
+					"label_edit_url" => __( "Enter Icon URL", "woocommerce-icenox-pay-plugin" ),
+					"label_load_url" => __( "Load URL", "woocommerce-icenox-pay-plugin" ),
+                    "label_method_enabled" => __( "Method enabled", "woocommerce-icenox-pay-plugin" ),
+                    "label_method_disabled" => __( "Method disabled", "woocommerce-icenox-pay-plugin" ),
 				]
 			] );
 		}

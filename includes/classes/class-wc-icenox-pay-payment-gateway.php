@@ -14,7 +14,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	protected $icenox_pay_payment_method_identifier;
 
 	protected $icenox_pay_express_redirect;
-	protected $icenox_pay_notification;
 
 
 	public function __construct() {
@@ -38,67 +37,64 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 		$this->load_method_icon_picker();
 		$this->form_fields = [
 			"enabled"                              => [
-				"title"   => __( "Enable/Disable", "woocommerce-icenox-pay-plugin" ),
+				"title"   => __( "Status", "woocommerce-icenox-pay-plugin" ),
 				"type"    => "checkbox",
-				"label"   => __( "Enable Payment Method", "woocommerce-icenox-pay-plugin" ),
-				"default" => "no"
+				"default" => "no",
+				"class"   => "icenox-pay-method-enabled-toggle toggle-input",
+				"label"   => '<span class="toggle-slider"></span>' . __( "Enable Method", "woocommerce-icenox-pay-plugin" ),
+			],
+			"general"                              => [
+				"title"       => __( "Checkout Settings", "woocommerce-icenox-pay-plugin" ) . "<hr>",
+				"type"        => "title",
+				"description" => __( "The following settings allow you to customize how the payment method is displayed to the customer.", "woocommerce-icenox-pay-plugin" )
 			],
 			"title"                                => [
-				"title"       => __( "Method Title", "woocommerce-icenox-pay-plugin" ),
-				"type"        => "text",
-				"description" => __( "The title of the payment method which will show to the user on the checkout page.", "woocommerce-icenox-pay-plugin" ),
-				"default"     => $this->method_title,
+				"title"   => __( "Name", "woocommerce-icenox-pay-plugin" ),
+				"type"    => "text",
+				"default" => $this->method_title,
 			],
 			"gateway_icon"                         => [
-				"title"       => __( "Method Logo", "woocommerce-icenox-pay-plugin" ),
-				"type"        => "text",
-				"description" => __( "Icon for the payment method to be displayed on the checkout page.", "woocommerce-icenox-pay-plugin" ),
-				"default"     => "",
-				"class"       => "icenox-pay-method-icon-url",
+				"title"   => __( "Icon", "woocommerce-icenox-pay-plugin" ),
+				"type"    => "url",
+				"default" => "",
+				"class"   => "icenox-pay-method-icon-url",
 			],
 			"description"                          => [
-				"title"       => __( "Method Description", "woocommerce-icenox-pay-plugin" ),
-				"css"         => "width:50%;",
-				"type"        => "textarea",
-				"default"     => "",
-				"description" => __( "Description for the payment method that will show to the user on the checkout page.", "woocommerce-icenox-pay-plugin" ),
-
+				"title"   => __( "Description", "woocommerce-icenox-pay-plugin" ),
+				"css"     => "max-width:400px;",
+				"type"    => "textarea",
+				"default" => "",
 			],
 			"advanced"                             => [
-				"title"       => __( "API Request options", "woocommerce-icenox-pay-plugin" ) . "<hr>",
+				"title"       => __( "Method Configuration", "woocommerce-icenox-pay-plugin" ) . "<hr>",
 				"type"        => "title",
-				"description" => "",
-			],
-			"icenox_pay_notification"              => [
-				"title"   => __( "Auto-Update Payment Status", "woocommerce-icenox-pay-plugin" ),
-				"type"    => "checkbox",
-				"label"   => __( "Enable IceNox Pay to update the WooCommerce order status after successful payment.", "woocommerce-icenox-pay-plugin" ),
-				"default" => "yes"
+				"description" => ""
 			],
 			"icenox_pay_api_key"                   => [
 				"title"       => __( "API Key", "woocommerce-icenox-pay-plugin" ),
 				"type"        => "text",
-				"description" => __( "API Key for IceNox Pay.", "woocommerce-icenox-pay-plugin" ),
 				"default"     => get_option( "icenox_pay_api_key" ),
 				"placeholder" => "00000000-0000-0000-0000-000000000000"
 			],
 			"icenox_pay_payment_method_identifier" => [
 				"title"       => __( "Payment Method Identifier", "woocommerce-icenox-pay-plugin" ),
 				"type"        => "text",
-				"description" => __( "Payment Method Identifier for IceNox Pay.", "woocommerce-icenox-pay-plugin" ),
 				"default"     => "",
 				"placeholder" => "",
 			],
 			"icenox_pay_express_redirect"          => [
-				"title"   => __( "Express Redirect", "woocommerce-icenox-pay-plugin" ),
-				"type"    => "checkbox",
-				"label"   => __( "Redirect immediately to the payment (only available for selected payment methods)", "woocommerce-icenox-pay-plugin" ),
-				"default" => "no"
+				"title"       => __( "Express Redirect", "woocommerce-icenox-pay-plugin" ),
+				"type"        => "checkbox",
+				"class"       => "toggle-input",
+				"label"       => '<span class="toggle-slider"></span>' . __( "Skip the IceNox Pay payment page and redirect immediately to the selected method.", "woocommerce-icenox-pay-plugin" ),
+				"description" => __( "Only available for redirect-based methods not requiring additional information from the customer.", "woocommerce-icenox-pay-plugin" ),
+				"default"     => "no"
 			],
 			"debug_mode"                           => [
-				"title"       => __( "Enable Debug Mode", "woocommerce-icenox-pay-plugin" ),
+				"title"       => __( "Debug Mode", "woocommerce-icenox-pay-plugin" ),
 				"type"        => "checkbox",
-				"label"       => __( "Enable ", "woocommerce-icenox-pay-plugin" ),
+				"class"       => "toggle-input",
+				"label"       => '<span class="toggle-slider"></span>' . __( "Enable Debug Mode", "woocommerce-icenox-pay-plugin" ),
 				"default"     => "no",
 				"description" => __( "If debug mode is enabled, the payment gateway will be activated just for the administrator. You can use the debug mode to make sure that the gateway work as you expected.", "woocommerce-icenox-pay-plugin" ),
 			],
@@ -106,7 +102,38 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function admin_options() {
-		include_once __DIR__ . "/../views/admin_options_html.php";
+		?>
+		<h2>
+			<?php echo esc_html( $this->get_method_title() ); ?> [IceNox Pay]
+			<?php wc_back_link( __( "Return to payments", "woocommerce" ), admin_url( "admin.php?page=wc-settings&tab=checkout" ) ); ?>
+		</h2>
+		<div id="poststuff" class="icenox-pay-method-settings">
+			<div id="post-body" class="metabox-holder columns-2">
+				<div id="post-body-content">
+					<table class="form-table">
+						<?php $this->generate_settings_html(); ?>
+					</table>
+				</div>
+				<div id="postbox-container-1" class="postbox-container">
+					<div id="side-sortables" class="meta-box-sortables ui-sortable">
+						<div class="postbox " id="icenox-support">
+							<h3><?php echo __( "Need Help?", "woocommerce-icenox-pay-plugin" ); ?></h3>
+							<div class="inside">
+								<div class="support-widget">
+									<img src="https://pay.icenox.com/static/images/logo-dark.svg" alt="IceNox Pay">
+									<span><?php _e( "Contact our Merchant Support, if you need help configuring the plugin.", "woocommerce-icenox-pay-plugin" ); ?></span>
+									<ul>
+										<li>» <a href="mailto:info@icenox.com" target="_blank"><?php echo __( "Email Us", "woocommerce-icenox-pay-plugin" ); ?></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<?php
 	}
 
 	public function process_payment( $order_id ) {
@@ -140,17 +167,17 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	public function create_icenox_pay_payment( $api_data, $order_id ) {
 		$request_body = $this->get_request_body( $api_data, $order_id );
 
-		$headers          = [
+		$headers  = [
 			"Content-Type"  => "application/json",
 			"Authorization" => "Bearer " . $this->icenox_pay_api_key,
 			"User-Agent"    => "IceNoxPay/" . IceNox_Pay::$plugin_version . " WooCommerce (WordPress)"
 		];
-		$response         = wp_remote_post( $this->icenox_pay_api_url, [
+		$response = wp_remote_post( $this->icenox_pay_api_url, [
 			"headers" => $headers,
 			"body"    => json_encode( $request_body ),
 			"method"  => "POST",
 		] );
-		if(is_wp_error( $response )) {
+		if ( is_wp_error( $response ) ) {
 			return [
 				"success" => false
 			];
@@ -208,7 +235,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 				]
 			] ),
 			"customerid"          => $order->get_customer_id(),
-			"notification_mode"   => $this->icenox_pay_notification === "yes" ? "woocommerce" : "off",
+			"notification_mode"   => "woocommerce",
 			"currency"            => $order->get_currency(),
 			"shippingmethod"      => $order->get_shipping_method(),
 			"redirect_url"        => $this->get_return_url( $order ),

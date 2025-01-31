@@ -31,7 +31,6 @@ class WC_IceNox_Pay_Custom_Method extends WC_IceNox_Pay_Payment_Gateway {
 		$this->icenox_pay_payment_method_identifier = $this->get_option( "icenox_pay_payment_method_identifier" );
 
 		$this->icenox_pay_express_redirect = $this->get_option( "icenox_pay_express_redirect" );
-		$this->icenox_pay_notification     = $this->get_option( "icenox_pay_notification" );
 
 		// Debug mode, only administrators can use the gateway.
 		if ( $this->debug_mode === "yes" ) {
