@@ -28,7 +28,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 			global $current_user;
 
 			$gatewayId = $this->generateGatewayId( trim( $_POST["wc_gateway_name"] ) );
-			$gateways = json_decode( get_option( "icenox_pay_gateways" ), true ) ?? [];
+			$gateways  = json_decode( get_option( "icenox_pay_gateways" ), true ) ?? [];
 
 			if ( in_array( $gatewayId, array_keys( $gateways ) ) ) {
 				add_action( "admin_notices", function () {
@@ -77,13 +77,13 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 
 		if ( isset( $_GET["action"] ) == "delete" ) {
 			if ( isset( $_GET["gateway"] ) ) {
-				$gateways  = json_decode( get_option( "icenox_pay_gateways" ), true );
-                if(isset($gateways[ $_GET["gateway"] ])) {
-                    unset($gateways[ $_GET["gateway"] ]);
-                } else {
-	                $gatewayId = $this->generateGatewayId( $_GET["gateway"] );
-	                unset( $gateways[ $gatewayId ] );
-                }
+				$gateways = json_decode( get_option( "icenox_pay_gateways" ), true );
+				if ( isset( $gateways[ $_GET["gateway"] ] ) ) {
+					unset( $gateways[ $_GET["gateway"] ] );
+				} else {
+					$gatewayId = $this->generateGatewayId( $_GET["gateway"] );
+					unset( $gateways[ $gatewayId ] );
+				}
 				update_option( "icenox_pay_gateways", json_encode( $gateways ) );
 				wp_redirect( admin_url( "admin.php?page=wc-settings&tab=icenox_pay" ) );
 				exit;
@@ -196,7 +196,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 
 		$enabled_method_keys   = get_option( "icenox_pay_default_gateways", [] );
 		$enabled_method_values = array_map( function ( $value ) {
-            return IceNox_Pay_Default_Methods::get_method_name( $value ) ?? $value . " (DEPRECATED)";
+			return IceNox_Pay_Default_Methods::get_method_name( $value ) ?? $value . " (DEPRECATED)";
 		}, $enabled_method_keys );
 		$enabled_methods       = array_combine( $enabled_method_keys, $enabled_method_values );
 
@@ -261,17 +261,17 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 				"options" => $default_method_options
 			],
 			"name"                   => get_option( "icenox_pay_advanced_mode" ) === "yes" ? [
-				"title"     => __( "Custom Method", "woocommerce-icenox-pay-plugin" ),
-				"desc"      => __( "Enter the name of the payment method then click on Save Changes.", "woocommerce-icenox-pay-plugin" ),
-				"id"        => "wc_gateway_name",
-				"type"      => "text",
-				"css"       => "min-width:300px;",
-				"default"   => "",
-				"autoload"  => true,
-				"value"     => "",
-                "custom_attributes" => [
-	                "maxlength" => "32",
-                ]
+				"title"             => __( "Custom Method", "woocommerce-icenox-pay-plugin" ),
+				"desc"              => __( "Enter the name of the payment method then click on Save Changes.", "woocommerce-icenox-pay-plugin" ),
+				"id"                => "wc_gateway_name",
+				"type"              => "text",
+				"css"               => "min-width:300px;",
+				"default"           => "",
+				"autoload"          => true,
+				"value"             => "",
+				"custom_attributes" => [
+					"maxlength" => "32",
+				]
 			] : [],
 			[
 				"type" => "sectionend",
@@ -333,28 +333,27 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 							$class_name       = "icenox_pay_" . str_replace( "-", "_", $gateway );
 							$gateway_settings = get_option( "woocommerce_" . $class_name . "_settings" );
 							$user             = "IceNox Pay";
-							$processorMap     = [
-								"stripe" => "Stripe",
-								"s"      => "Stripe",
-								"mollie" => "Mollie",
-								"m"      => "Mollie PSC",
-								"pay"    => "PAY.NL",
-								"mp"     => "Micropayment",
-								"ct"     => "Computop",
-								"sumup"  => "SumUp",
-								"paypal" => "PayPal",
-								"e"      => "e-Payouts"
-							];
 							if ( isset( $gateway_settings["icenox_pay_processor"] ) ) {
-								if ( isset( $processorMap[ $gateway_settings["icenox_pay_processor"] ] ) ) {
-									$processor = $processorMap[ $gateway_settings["icenox_pay_processor"] ];
-								} else {
-									if ( $gateway_settings["icenox_pay_processor"] === $gateway ) {
-										$processor = IceNox_Pay_Default_Methods::get_method_name( $gateway ) ?? "";
-									} else {
-										$processor = $gateway_settings["icenox_pay_processor"];
-									}
-								}
+								$processor_prefix = $gateway_settings["icenox_pay_processor"];
+								$processor_map    = [
+									"stripe" => "Stripe",
+									"s"      => "Stripe",
+									"mollie" => "Mollie",
+									"m"      => "Mollie PSC",
+									"pay"    => "PAY.NL",
+									"mp"     => "Micropayment",
+									"ct"     => "Computop",
+									"sumup"  => "SumUp",
+									"paypal" => "PayPal",
+									"e"      => "e-Payouts",
+									"e-es"   => "e-Payouts (" . __( "Spain", "woocommerce-icenox-pay-plugin" ) . ")",
+									"e-gr"   => "e-Payouts (" . __( "Greece", "woocommerce-icenox-pay-plugin" ) . ")",
+									"e-pt"   => "e-Payouts (" . __( "Portugal", "woocommerce-icenox-pay-plugin" ) . ")",
+									"e-us"   => "e-Payouts (" . __( "United States", "woocommerce-icenox-pay-plugin" ) . ")",
+									"hp"     => "Hoodpay",
+									$gateway => IceNox_Pay_Default_Methods::get_method_name( $gateway ) ?? $processor_prefix,
+								];
+								$processor        = $processor_map[ $processor_prefix ] ?? $processor_prefix;
 							} else {
 								$processor = "";
 							}
@@ -366,10 +365,10 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 								switch ( $key ) {
 									case 'icon' :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">';
-                                        if(isset($gateway_settings["gateway_icon"]) && $gateway_settings["gateway_icon"] !== "https://") {
-                                            echo '<img class="icenox-pay-settings-method-icon" src="' . $gateway_settings["gateway_icon"] . '"/>';
-                                        }
-                                        echo '</td>';
+										if ( isset( $gateway_settings["gateway_icon"] ) && $gateway_settings["gateway_icon"] !== "https://" ) {
+											echo '<img class="icenox-pay-settings-method-icon" src="' . $gateway_settings["gateway_icon"] . '"/>';
+										}
+										echo '</td>';
 										break;
 									case 'name' :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">
@@ -425,7 +424,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 								switch ( $key ) {
 									case 'icon' :
 										echo '<td class="wc-email-settings-table-' . esc_attr( $key ) . '">';
-										if(isset($gateway_settings["gateway_icon"]) && $gateway_settings["gateway_icon"] !== "https://") {
+										if ( isset( $gateway_settings["gateway_icon"] ) && $gateway_settings["gateway_icon"] !== "https://" ) {
 											echo '<img class="icenox-pay-settings-method-icon" src="' . $gateway_settings["gateway_icon"] . '"/>';
 										}
 										echo '</td>';
@@ -451,7 +450,7 @@ class IceNox_Pay_Settings_Page extends WC_Settings_Page {
 									case "actions" :
 										echo '<td style="width:200px;">
                                             <a class="button tips" data-tip="' . __( 'Configure', 'woocommerce-icenox-pay-plugin' ) . '" href="' . admin_url( "admin.php?page=wc-settings&tab=checkout&section=" . strtolower( $class_name ) ) . '">' . __( "Configure", "woocommerce-icenox-pay-plugin" ) . '</a>
-                                            <a style="color:red;" class="button" onclick="if(!window.confirm(\'' . __("Are you sure that you want to delete this method?", "woocommerce-icenox-pay-plugin") . '\')) return false;" href="' . admin_url( "admin.php?page=wc-settings&tab=icenox_pay&action=delete&gateway=" . $gateway_key . "&noheader=true" ) . '">' . __( "Delete", "woocommerce-icenox-pay-plugin" ) . '</a>
+                                            <a style="color:red;" class="button" onclick="if(!window.confirm(\'' . __( "Are you sure that you want to delete this method?", "woocommerce-icenox-pay-plugin" ) . '\')) return false;" href="' . admin_url( "admin.php?page=wc-settings&tab=icenox_pay&action=delete&gateway=" . $gateway_key . "&noheader=true" ) . '">' . __( "Delete", "woocommerce-icenox-pay-plugin" ) . '</a>
                                         </td>';
 										break;
 									case "processor" :
