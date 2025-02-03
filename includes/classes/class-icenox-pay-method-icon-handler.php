@@ -1,4 +1,5 @@
 <?php
+
 class IceNox_Pay_Method_Icon_Handler {
 
 	public function __construct() {
@@ -65,10 +66,21 @@ class IceNox_Pay_Method_Icon_Handler {
 	}
 
 	private function analyze_file_from_url( $url ): array {
+		add_filter( "upload_mimes", function ( $mimes ) {
+			//Allow SVG as filetype, even if it's not in the currently allowed upload_mimes
+			if ( ! isset( $mimes["svg"] ) ) {
+				$mimes["svg"] = "image/svg+xml";
+			}
+
+			return $mimes;
+		} );
+
+		$filetype = wp_check_filetype( $url );
+
 		return [
 			"name" => basename( $url ),
-			"type" => wp_check_filetype( $url )["type"],
-			"ext"  => wp_check_filetype( $url )["ext"],
+			"type" => $filetype["type"],
+			"ext"  => $filetype["ext"],
 		];
 	}
 
@@ -133,17 +145,17 @@ class IceNox_Pay_Method_Icon_Handler {
 	 */
 	private function get_svg_dimensions( $file_url ): array {
 		if ( empty( $file_url ) ) {
-			return [0, 0];
+			return [ 0, 0 ];
 		}
 
 		$svg_content = file_get_contents( $file_url );
 		if ( empty( $svg_content ) || ! function_exists( "simplexml_load_string" ) ) {
-			return [0, 0];
+			return [ 0, 0 ];
 		}
 
 		$svg = simplexml_load_string( $svg_content );
-		if ( $svg === false || ! isset( $svg->attributes()->width ) || ! isset( $svg->attributes()->height) ) {
-			return [0, 0];
+		if ( $svg === false || ! isset( $svg->attributes()->width ) || ! isset( $svg->attributes()->height ) ) {
+			return [ 0, 0 ];
 		}
 
 		return [
