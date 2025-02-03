@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce IceNox Pay Plugin\n"
-"POT-Creation-Date: 2025-02-01 00:45+0100\n"
+"POT-Creation-Date: 2025-02-03 13:25+0100\n"
 "PO-Revision-Date: 2023-05-26 21:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -46,18 +46,22 @@ msgid "KBC Payment Button"
 msgstr ""
 
 #: includes/classes/class-icenox-pay-default-methods.php:259
+#: includes/classes/class-icenox-pay-settings-page.php:349
 msgid "Spain"
 msgstr ""
 
 #: includes/classes/class-icenox-pay-default-methods.php:260
+#: includes/classes/class-icenox-pay-settings-page.php:350
 msgid "Greece"
 msgstr ""
 
 #: includes/classes/class-icenox-pay-default-methods.php:261
+#: includes/classes/class-icenox-pay-settings-page.php:351
 msgid "Portugal"
 msgstr ""
 
 #: includes/classes/class-icenox-pay-default-methods.php:262
+#: includes/classes/class-icenox-pay-settings-page.php:352
 msgid "United States"
 msgstr ""
 
@@ -125,7 +129,7 @@ msgid "Select which IceNox Pay Methods you would like to use."
 msgstr ""
 
 #: includes/classes/class-icenox-pay-settings-page.php:264
-#: includes/classes/class-icenox-pay-settings-page.php:459
+#: includes/classes/class-icenox-pay-settings-page.php:458
 msgid "Custom Method"
 msgstr ""
 
@@ -159,40 +163,40 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: includes/classes/class-icenox-pay-settings-page.php:383
-#: includes/classes/class-icenox-pay-settings-page.php:442
+#: includes/classes/class-icenox-pay-settings-page.php:382
+#: includes/classes/class-icenox-pay-settings-page.php:441
 msgid "Enabled"
 msgstr ""
 
-#: includes/classes/class-icenox-pay-settings-page.php:383
-#: includes/classes/class-icenox-pay-settings-page.php:442
+#: includes/classes/class-icenox-pay-settings-page.php:382
+#: includes/classes/class-icenox-pay-settings-page.php:441
 msgid "Yes"
 msgstr ""
 
-#: includes/classes/class-icenox-pay-settings-page.php:385
-#: includes/classes/class-icenox-pay-settings-page.php:388
-#: includes/classes/class-icenox-pay-settings-page.php:444
-#: includes/classes/class-icenox-pay-settings-page.php:447
+#: includes/classes/class-icenox-pay-settings-page.php:384
+#: includes/classes/class-icenox-pay-settings-page.php:387
+#: includes/classes/class-icenox-pay-settings-page.php:443
+#: includes/classes/class-icenox-pay-settings-page.php:446
 msgid "Disabled"
 msgstr ""
 
-#: includes/classes/class-icenox-pay-settings-page.php:385
-#: includes/classes/class-icenox-pay-settings-page.php:388
-#: includes/classes/class-icenox-pay-settings-page.php:444
-#: includes/classes/class-icenox-pay-settings-page.php:447
+#: includes/classes/class-icenox-pay-settings-page.php:384
+#: includes/classes/class-icenox-pay-settings-page.php:387
+#: includes/classes/class-icenox-pay-settings-page.php:443
+#: includes/classes/class-icenox-pay-settings-page.php:446
 msgid "No"
 msgstr ""
 
-#: includes/classes/class-icenox-pay-settings-page.php:394
-#: includes/classes/class-icenox-pay-settings-page.php:453
+#: includes/classes/class-icenox-pay-settings-page.php:393
+#: includes/classes/class-icenox-pay-settings-page.php:452
 msgid "Configure"
 msgstr ""
 
-#: includes/classes/class-icenox-pay-settings-page.php:454
+#: includes/classes/class-icenox-pay-settings-page.php:453
 msgid "Are you sure that you want to delete this method?"
 msgstr ""
 
-#: includes/classes/class-icenox-pay-settings-page.php:454
+#: includes/classes/class-icenox-pay-settings-page.php:453
 msgid "Delete"
 msgstr ""
 

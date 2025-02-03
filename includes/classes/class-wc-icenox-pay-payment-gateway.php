@@ -195,7 +195,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 				"success" => false
 			];
 		}
-
 	}
 
 	public function get_request_body( $api_data, $order_id ) {

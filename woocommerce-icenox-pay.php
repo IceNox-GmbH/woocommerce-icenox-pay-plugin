@@ -3,12 +3,12 @@
  * Plugin Name:             WooCommerce IceNox Pay
  * Plugin URI:              https://pay.icenox.com/
  * Description:             Connect your WooCommerce Store with IceNox Pay. The payment system for your online shop.
- * Version:                 1.14.0
+ * Version:                 1.14.1
  * Requires at least:       4.0
  * Tested up to:            6.7
  * Requires PHP:            7.3
  * WC requires at least:    6.0
- * WC tested up to:         9.5
+ * WC tested up to:         9.6
  * Author:                  IceNox GmbH
  * Author URI:              https://icenox.com/
  * License:                 GPL v2 or later
@@ -24,12 +24,12 @@ class IceNox_Pay {
 	 * The single instance of the class.
 	 */
 	protected static $_instance = null;
-	public static $plugin_version = "1.14.0";
+	public static $plugin_version = "1.14.1";
 
 	/**
 	 * @return IceNox_Pay
 	 */
-	public static function get_instance() {
+	public static function get_instance(): ?IceNox_Pay {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
@@ -171,10 +171,10 @@ class IceNox_Pay {
 					"label_remove_icon"           => __( "Remove Icon", "woocommerce-icenox-pay-plugin" ),
 					"label_add_icon_modal_title"  => __( "Select Icon", "woocommerce-icenox-pay-plugin" ),
 					"label_add_icon_modal_button" => __( "Select Icon", "woocommerce-icenox-pay-plugin" ),
-					"label_edit_url" => __( "Enter Icon URL", "woocommerce-icenox-pay-plugin" ),
-					"label_load_url" => __( "Load URL", "woocommerce-icenox-pay-plugin" ),
-                    "label_method_enabled" => __( "Method enabled", "woocommerce-icenox-pay-plugin" ),
-                    "label_method_disabled" => __( "Method disabled", "woocommerce-icenox-pay-plugin" ),
+					"label_edit_url"              => __( "Enter Icon URL", "woocommerce-icenox-pay-plugin" ),
+					"label_load_url"              => __( "Load URL", "woocommerce-icenox-pay-plugin" ),
+					"label_method_enabled"        => __( "Method enabled", "woocommerce-icenox-pay-plugin" ),
+					"label_method_disabled"       => __( "Method disabled", "woocommerce-icenox-pay-plugin" ),
 				]
 			] );
 		}
