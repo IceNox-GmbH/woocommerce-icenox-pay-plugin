@@ -34,7 +34,6 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function init_form_fields() {
-		$this->load_method_icon_picker();
 		$this->form_fields = [
 			"enabled"                              => [
 				"title"   => __( "Status", "woocommerce-icenox-pay-plugin" ),
@@ -102,6 +101,7 @@ class WC_IceNox_Pay_Payment_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function admin_options() {
+		$this->load_method_icon_picker();
 		?>
 		<h2>
 			<?php echo esc_html( $this->get_method_title() ); ?> [IceNox Pay]

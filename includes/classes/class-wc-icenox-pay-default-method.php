@@ -49,7 +49,6 @@ class WC_IceNox_Pay_Default_Method extends WC_IceNox_Pay_Payment_Gateway {
 	}
 
 	public function init_form_fields() {
-		$this->load_method_icon_picker();
 		$this->form_fields = [
 			"enabled"                              => [
 				"title"   => __( "Status", "woocommerce-icenox-pay-plugin" ),
